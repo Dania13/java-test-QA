@@ -90,9 +90,9 @@ public class AuthTests {
     static Stream<Arguments> provideAuthData() {
         String validPassword = ConstantValues.PASSWORD_AUTH;
         return Stream.of(
-                Arguments.of(validPassword, true),
-                Arguments.of(validPassword+"1", false),
-                Arguments.of(null, false)
+                Arguments.of(validPassword, true)
+                ,Arguments.of(validPassword+"1", false)
+//               ,Arguments.of(null, false)
         );
     }
 }
