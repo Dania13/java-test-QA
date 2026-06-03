@@ -144,6 +144,11 @@ public class CalcTest {
                    }
                  }
                 """;
+        System.out.println(ConstantValues.BASE_URL);
+        System.out.println(ConstantValues.LOGIN_AUTH);
+        System.out.println(ConstantValues.PASSWORD_AUTH);
+        System.out.println(responseAuth.getSessionToken());
+
         given()
                 .baseUri(ConstantValues.BASE_URL)
                 .header("sessionToken", responseAuth.getSessionToken())

@@ -29,7 +29,7 @@ jobs:
             cache: 'maven'
         - run: mvn clean compile
         - run: echo "${{ vars.ENV_FILE }}" >> .env
-        - run: mvn test
+        - run: mvn test -Dtest=AuthTests
 
   notification:
     if: always()

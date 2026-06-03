@@ -56,7 +56,13 @@ public class AuthTests {
                 .statusCode(200) // Проверяем статус код
                 .body("success", equalTo(false)) // Проверяем значение поля в JSON
                 .log().all();
+
+        System.out.println(ConstantValues.BASE_URL);
+        System.out.println(ConstantValues.LOGIN_AUTH);
+        System.out.println(ConstantValues.PASSWORD_AUTH);
     }
+
+
 
     @ParameterizedTest
     @MethodSource("provideAuthData")
@@ -77,6 +83,8 @@ public class AuthTests {
                 .as(AuthResponse.class);
 
 
+
+
         assertEquals(success, response.getSuccess());
         if (success) {
             assertEquals(36, response.getSessionToken().length());
@@ -91,7 +99,7 @@ public class AuthTests {
         return Stream.of(
                 Arguments.of(validPassword, true)
                 ,Arguments.of(validPassword+"1", false)
-//               ,Arguments.of(null, false)
+                ,Arguments.of(null, false)
         );
     }
 }
