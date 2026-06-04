@@ -31,8 +31,8 @@ jobs:
         - run: echo "${{ secrets.LOGIN_AUTH }}" >> .env
         - run: echo "${{ secrets.PASSWORD_AUTH }}" >> .env
         - run: echo "${{ vars.BASE_URL }}" >> .env
+        - run: cat .env
         - run: mvn test
-        - run: echo .env
 
   notification:
     if: always()
