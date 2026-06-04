@@ -19,6 +19,7 @@ jobs:
   testAPI:
 
       runs-on: ubuntu-latest
+      environment: TEST
       steps:
         - uses: actions/checkout@v4
         - uses: actions/setup-java@v4
@@ -27,7 +28,9 @@ jobs:
             java-version: '22'
             cache: 'maven'
         - run: mvn clean compile
-        - run: echo "${{ vars.ENV_FILE }}" >> .env
+        - run: echo "${{ secrets.LOGIN_AUTH }}" >> .env
+        - run: echo "${{ secrets.PASSWORD_AUTH }}" >> .env
+        - run: echo "${{ vars.BASE_URL }}" >> .env
         - run: mvn test
 
   notification:
