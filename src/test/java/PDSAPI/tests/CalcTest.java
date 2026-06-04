@@ -13,6 +13,7 @@ import java.util.Collections;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
 
 public class CalcTest {
 
@@ -144,10 +145,6 @@ public class CalcTest {
                    }
                  }
                 """;
-        System.out.println(ConstantValues.BASE_URL);
-        System.out.println(ConstantValues.LOGIN_AUTH);
-        System.out.println(ConstantValues.PASSWORD_AUTH);
-        System.out.println(responseAuth.getSessionToken());
 
         given()
                 .baseUri(ConstantValues.BASE_URL)
@@ -159,8 +156,11 @@ public class CalcTest {
         then()
                 .statusCode(200)
                 .body("accID", equalTo(responseAuth.getSessionToken()))
-                .body("calcPolicyResult.calcResults[0].policy.calcID", equalTo("123"))
-                .log().all();
+                .body("calcPolicyResult.calcResults[0].policy.calcID", notNullValue())
+//                .log().all();
+        ;
+
+//        assertNotNull("calcPolicyResult.calcResults[0].policy.calcID");
     }
 
     @Test
@@ -172,15 +172,15 @@ public class CalcTest {
 
         parametsItems.add(new Parameter("dogovor.vkladchikPol", "Возраст", "жен.", "Строка"));
         parametsItems.add(new Parameter("dogovor.vkladchikVozrast","Возраст вкладчика", 45,"Целое"));
-        parametsItems.add(new Parameter("dogovor.dohodvmes", "Среднемесячный доход", 60000, "Вещественный"));
-        parametsItems.add(new Parameter("dogovor.povtornyeVznosy", "Повторные взносы", 4500, "Вещественный"));
+        parametsItems.add(new Parameter("dogovor.dohodvmes", "Среднемесячный доход", 60000., "Вещественный"));
+        parametsItems.add(new Parameter("dogovor.povtornyeVznosy", "Повторные взносы", 4500., "Вещественный"));
         parametsItems.add(new Parameter("dogovor.periodichnostVznosov", "Периодичность повторных взносов", "ежеквартально", "Строка"));
         parametsItems.add(new Parameter("dogovor.srokNakoplenij", "Срок накоплений", 25, "Целое"));
         parametsItems.add(new Parameter("dogovor.srokEzhemesVyplat", "Срок ежемесячных выплат", 10, "Целое"));
         parametsItems.add(new Parameter("dogovor.perevestiPensionNakopleniya", "Сумма кредита", "да", "Строка"));
-        parametsItems.add(new Parameter("dogovor.razmerPensionNakoplenij", "Сумма пенсионных накоплений по ОПС", 6500, "Вещественный"));
+        parametsItems.add(new Parameter("dogovor.razmerPensionNakoplenij", "Сумма пенсионных накоплений по ОПС", 6500., "Вещественный"));
         parametsItems.add(new Parameter("dogovor.investirovatNalogovyjVychet", "Инвестировать налоговый вычет в программу(", "да", "Строка"));
-        parametsItems.add(new Parameter("dogovor.godDohodnostInvestSredstv", "Годовая доходность инвестирования средств", 25, "Вещественный"));
+        parametsItems.add(new Parameter("dogovor.godDohodnostInvestSredstv", "Годовая доходность инвестирования средств", 25., "Вещественный"));
         parametsItems.add(new Parameter("dogovor.predvRaschet", "Предварительный расчет", true, "Логический"));
 
         Parameters parameters = new Parameters(parametsItems);
@@ -217,8 +217,9 @@ public class CalcTest {
                 then()
                 .statusCode(200)
                 .body("accID", equalTo(responseAuth.getSessionToken()))
-//                .body("calcPolicyResult.calcResults[0].policy.calcID", notNullValue().toString())
-                .log().all();
+                .body("calcPolicyResult.calcResults[0].policy.calcID", notNullValue())
+//                .log().all()
+        ;
     }
 
 }

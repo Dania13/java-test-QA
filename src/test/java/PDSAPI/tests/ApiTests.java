@@ -12,8 +12,8 @@ public class ApiTests {
                 .when()
                 .get("/docs")
                 .then()
-                .statusCode(200) // Проверяем статус код
+                .statusCode(200); // Проверяем статус код
 //                .body("data.id", equalTo(2)) // Проверяем значение поля в JSON
-                .log().all(); // Логируем детали ответа
+//                .log().all(); // Логируем детали ответа
     }
 }

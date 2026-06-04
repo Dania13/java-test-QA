@@ -56,12 +56,7 @@ public class AuthTests {
                 .statusCode(200) // Проверяем статус код
                 .body("success", equalTo(false)) // Проверяем значение поля в JSON
                 .log().all();
-
-        System.out.println(ConstantValues.BASE_URL);
-        System.out.println(ConstantValues.LOGIN_AUTH);
-        System.out.println(ConstantValues.PASSWORD_AUTH);
     }
-
 
 
     @ParameterizedTest
@@ -78,11 +73,9 @@ public class AuthTests {
                 .post(ConstantValues.AUTH_ENDPOINT).
         then()
                 .statusCode(200)
-                .log().all()
+//                .log().all()
                 .extract()
                 .as(AuthResponse.class);
-
-
 
 
         assertEquals(success, response.getSuccess());

@@ -12,7 +12,7 @@ public class Parameter {
     private String stringValue;
     private String type;
     private Integer intValue;
-    private Integer decimalValue;
+    private double decimalValue;
     private Boolean boolValue;
 
     public Parameter (String code, String name, String stringValue, String type) {
@@ -35,4 +35,12 @@ public class Parameter {
         this.boolValue = boolValue;
         this.type = type;
     }
+
+    public Parameter (String code, String name, double decimalValue, String type) {
+        this.code = code;
+        this.name = name;
+        this.decimalValue = decimalValue;
+        this.type = type;
+    }
+
 }
