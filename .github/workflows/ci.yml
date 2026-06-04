@@ -33,8 +33,8 @@ jobs:
         - run: echo "BASE_URL=${{ vars.BASE_URL }}" >> .env
         - run: mvn test
 
-  notification:
-    if: always()
+  notificationFail:
+    if: failure()
     needs: [ testAPI ]
 
     runs-on: ubuntu-latest
@@ -43,4 +43,16 @@ jobs:
           curl --request POST \
                --url https://api.telegram.org/bot${{ secrets.TEST_TELEGRAM_TOKEN }}/sendMessage \
                --header 'Content-Type: application/json' \
-                --data '{ "chat_id": "${{ secrets.TEST_TELEGRAM_CHAT_ID }}", "text": "Report link: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" }'
+                --data '{ "chat_id": "${{ secrets.TEST_TELEGRAM_CHAT_ID }}", "text": "Провалилось :-(/nReport link: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" }'
+
+  notificationSuccess:
+    if: success()
+    needs: [ testAPI ]
+
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl --request POST \
+               --url https://api.telegram.org/bot${{ secrets.TEST_TELEGRAM_TOKEN }}/sendMessage \
+               --header 'Content-Type: application/json' \
+                --data '{ "chat_id": "${{ secrets.TEST_TELEGRAM_CHAT_ID }}", "text": "Успех/nReport link: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" }'
