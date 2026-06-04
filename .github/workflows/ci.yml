@@ -28,9 +28,9 @@ jobs:
             java-version: '22'
             cache: 'maven'
         - run: mvn clean compile
-        - run: echo "${{ secrets.LOGIN_AUTH }}" >> .env
-        - run: echo "${{ secrets.PASSWORD_AUTH }}" >> .env
-        - run: echo "${{ vars.BASE_URL }}" >> .env
+        - run: echo "LOGIN_AUTH=${{ secrets.LOGIN_AUTH }}" >> .env
+        - run: echo "PASSWORD_AUTH=${{ secrets.PASSWORD_AUTH }}" >> .env
+        - run: echo "BASE_URL=${{ vars.BASE_URL }}" >> .env
         - run: cat .env
         - run: mvn test
 
