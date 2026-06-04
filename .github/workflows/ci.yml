@@ -31,7 +31,6 @@ jobs:
         - run: echo "LOGIN_AUTH=${{ secrets.LOGIN_AUTH }}" >> .env
         - run: echo "PASSWORD_AUTH=${{ secrets.PASSWORD_AUTH }}" >> .env
         - run: echo "BASE_URL=${{ vars.BASE_URL }}" >> .env
-        - run: cat .env
         - run: mvn test
 
   notification:
