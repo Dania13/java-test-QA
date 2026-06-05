@@ -160,7 +160,7 @@ public class CalcTests {
     @Test
     public void successCalcWithPOJO(){
 
-        Product product = new Product("Программа долгосрочных сбережений граждан (ПДС)");
+        Product product = new Product();
 
         List<Parameter> parametsItems = new ArrayList<>();
 

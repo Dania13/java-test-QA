@@ -37,12 +37,13 @@ public class DictTests {
                 .baseUri(ConstantValues.BASE_URL)
                 .contentType(ContentType.JSON)
                 .body(dict)
-                .log().all().
-        when()
-                .post(ConstantValues.DICT_ENDPOINT).
-        then()
+//                .log().all()
+        .when()
+                .post(ConstantValues.DICT_ENDPOINT)
+        .then()
                 .statusCode(200)
 //                .body("types.dictionaries.code", equalTo("region"))
-                .log().all();
+//                .log().all()
+        ;
     }
 }

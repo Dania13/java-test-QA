@@ -2,21 +2,12 @@ package PDSAPI.actions;
 
 import PDSAPI.models.*;
 import PDSAPI.models.Object;
-import helpers.InnGenerator;
-import helpers.SNILSGenerator;
-import org.jetbrains.annotations.NotNull;
-import com.github.javafaker.Faker;
-import java.util.Locale;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class CreatePolicy {
-    static Faker faker = new Faker(Locale.forLanguageTag("ru"));
-    String INN = InnGenerator.getINNFL();
-    String SNILS = SNILSGenerator.getSNILS(true);
-
 
     List<Parameter> parametsItems = new ArrayList<>();
 
@@ -39,7 +30,6 @@ public class CreatePolicy {
         insuranceObjects = new InsuranceObjects(Objects);
         createInsurant = new CreateInsurant().getInsurant();
     }
-
 
     public PolicyImport getPolicy() {
         return PolicyImport.builder()

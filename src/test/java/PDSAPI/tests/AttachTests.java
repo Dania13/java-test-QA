@@ -4,18 +4,10 @@ import PDSAPI.actions.Auth;
 import PDSAPI.actions.CreatePolicy;
 import PDSAPI.actions.Import;
 import PDSAPI.models.*;
-import PDSAPI.models.Object;
 import PDSAPI.specs.ConstantValues;
-import helpers.InnGenerator;
-import helpers.SNILSGenerator;
 import io.restassured.http.ContentType;
-import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;

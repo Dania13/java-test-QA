@@ -15,13 +15,13 @@ public class Import {
                 .baseUri(BaseUrl)
                 .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
-                .log().all()
+//                .log().all()
                 .body(user).
                 when()
                 .post(Endpoint).
                 then()
                 .statusCode(200)
-                .log().all()
+//                .log().all()
                 .extract()
                 .as(ImportResponse.class);
 
@@ -29,6 +29,7 @@ public class Import {
             assertNull(response.getWarnings());
         } catch (AssertionError e) {
             StringBuilder errorMessages = new StringBuilder();
+            assert response.getWarnings() != null;
             for (Error error : response.getWarnings().getErrors()) {
                 errorMessages.append(error.getDetailMessage()).append("\n");
             }
