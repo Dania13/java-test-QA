@@ -43,7 +43,7 @@ public class Annul {
                 errorMessages.append(error.getMessage()).append("\n");
             }
 
-            throw new AssertionError(errorMessages.toString().trim());
+            throw new AssertionError(errorMessages.toString().trim()+ " " + calcID);
         }
 
     }

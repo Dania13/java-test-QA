@@ -14,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AnnulTests {
     private String sessionToken, calcID, policyID;
-    PolicyImport policy = new CreatePolicy().getPolicy();
 
     @BeforeEach
     public void setUp() {
@@ -22,7 +21,7 @@ public class AnnulTests {
                 ConstantValues.LOGIN_AUTH,
                 ConstantValues.PASSWORD_AUTH
         );
-        ImportResponse response = Import.getImportResponse(sessionToken, policy);
+        ImportResponse response = Import.getImportResponse(sessionToken, new CreatePolicy().getPolicy());
         calcID = Import.getCalcID(response);
         policyID = Import.getPolicyID(response);
     }
@@ -68,7 +67,7 @@ public class AnnulTests {
                 errorMessages.append(error.getMessage()).append("\n");
             }
 
-            throw new AssertionError(errorMessages.toString().trim());
+            throw new AssertionError(errorMessages.toString().trim() + " " + calcID);
         }
 
     }

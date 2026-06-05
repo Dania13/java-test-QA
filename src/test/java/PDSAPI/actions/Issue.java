@@ -40,7 +40,8 @@ public class Issue {
                 errorMessages.append(error.getMessage()).append("\n");
             }
 
-            throw new AssertionError(errorMessages.toString().trim());
+            throw new AssertionError(errorMessages.toString().trim() + " " + policyID);
+
         }
 
     }

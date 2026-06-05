@@ -9,10 +9,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
-
 public class RegressionTests {
     private String sessionToken, calcID, policyID, policyNumber;
-    PolicyImport policy = new CreatePolicy().getPolicy();
 
     @BeforeEach
     public void setUp() {
@@ -20,7 +18,7 @@ public class RegressionTests {
                 ConstantValues.LOGIN_AUTH,
                 ConstantValues.PASSWORD_AUTH
         );
-        ImportResponse response = Import.getImportResponse(sessionToken, policy);
+        ImportResponse response = Import.getImportResponse(sessionToken, new CreatePolicy().getPolicy());
         calcID = Import.getCalcID(response);
         policyID = Import.getPolicyID(response);
         policyNumber = Import.getNumber(response);

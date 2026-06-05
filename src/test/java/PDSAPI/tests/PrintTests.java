@@ -15,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class PrintTests {
     private String sessionToken, calcID, policyID, number;
-    PolicyImport policy = new CreatePolicy().getPolicy();
 
     @BeforeEach
     public void setUp() {
@@ -23,7 +22,7 @@ public class PrintTests {
                 ConstantValues.LOGIN_AUTH,
                 ConstantValues.PASSWORD_AUTH
         );
-        ImportResponse response = Import.getImportResponse(sessionToken, policy);
+        ImportResponse response = Import.getImportResponse(sessionToken, new CreatePolicy().getPolicy());
         calcID = Import.getCalcID(response);
         policyID = Import.getPolicyID(response);
         number = Import.getNumber(response);
@@ -68,7 +67,7 @@ public class PrintTests {
                 errorMessages.append(error.getMessage()).append("\n");
             }
 
-            throw new AssertionError(errorMessages.toString().trim());
+            throw new AssertionError(errorMessages.toString().trim() + " " + calcID);
         }
 
     }
@@ -105,7 +104,7 @@ public class PrintTests {
                 errorMessages.append(error.getMessage()).append("\n");
             }
 
-            throw new AssertionError(errorMessages.toString().trim());
+            throw new AssertionError(errorMessages.toString().trim() + " " + calcID);
         }
 
     }

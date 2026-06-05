@@ -36,7 +36,7 @@ public class Import {
                 errorMessages.append(error.getDetailMessage()).append("\n");
             }
 
-            throw new AssertionError(errorMessages.toString().trim());
+            throw new AssertionError(errorMessages.toString().trim()+ " " + response.getPolicy().getCalcID());
         }
         return response;
     }

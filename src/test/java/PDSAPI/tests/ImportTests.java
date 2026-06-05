@@ -55,7 +55,7 @@ public class ImportTests {
             for (Error error : response.getWarnings().getErrors()) {
                 errorMessages.append(error.getDetailMessage()).append("\n");
             }
-            throw new AssertionError(errorMessages.toString().trim());
+            throw new AssertionError(errorMessages.toString().trim() + " " + response.getPolicy().getCalcID());
         }
 
     }
