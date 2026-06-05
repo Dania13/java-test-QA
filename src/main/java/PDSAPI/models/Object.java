@@ -17,4 +17,8 @@ public class Object {
         this.parameters = parameters;
         this.riskInfo = riskInfo;
     }
+
+    public Object() {
+    }
+
 }

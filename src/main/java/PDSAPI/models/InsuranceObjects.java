@@ -13,4 +13,7 @@ public class InsuranceObjects {
     public InsuranceObjects(List<PDSAPI.models.Object> objects) {
         this.objects = objects;
     }
+
+    public InsuranceObjects() {
+    }
 }

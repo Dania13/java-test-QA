@@ -13,4 +13,7 @@ public class RiskInfo {
     public RiskInfo(List<Risk> risks) {
         this.risks = risks;
     }
+
+    public RiskInfo() {
+    }
 }

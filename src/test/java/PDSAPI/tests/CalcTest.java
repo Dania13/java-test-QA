@@ -1,5 +1,6 @@
 package PDSAPI.tests;
 
+import PDSAPI.actions.Auth;
 import PDSAPI.models.*;
 import PDSAPI.models.Object;
 import PDSAPI.specs.ConstantValues;
@@ -14,26 +15,20 @@ import java.util.Collections;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class CalcTest {
-
-    private AuthResponse responseAuth;
+    private String sessionToken;
 
     @BeforeEach
-    public void auth(){
-        AuthRequest user = AuthRequest.builder()
-                .login(ConstantValues.LOGIN_AUTH)
-                .password(ConstantValues.PASSWORD_AUTH).build();
-        responseAuth = given()
-                .baseUri(ConstantValues.BASE_URL)
-                .contentType(ContentType.JSON)
-                .body(user).
-                when()
-                .post(ConstantValues.AUTH_ENDPOINT).
-                then()
-                .statusCode(200)
-                .extract()
-                .as(AuthResponse.class);
+    public void setUp() {
+        sessionToken = Auth.loginUser(
+                ConstantValues.BASE_URL,
+                ConstantValues.AUTH_ENDPOINT,
+                ConstantValues.LOGIN_AUTH,
+                ConstantValues.PASSWORD_AUTH
+        );
     }
 
     @Test
@@ -148,14 +143,14 @@ public class CalcTest {
 
         given()
                 .baseUri(ConstantValues.BASE_URL)
-                .header("sessionToken", responseAuth.getSessionToken())
+                .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
                 .body(requestBody).
         when()
                 .post(ConstantValues.CALC_ENDPOINT).
         then()
                 .statusCode(200)
-                .body("accID", equalTo(responseAuth.getSessionToken()))
+                .body("accID", equalTo(sessionToken))
                 .body("calcPolicyResult.calcResults[0].policy.calcID", notNullValue())
 //                .log().all();
         ;
@@ -206,9 +201,9 @@ public class CalcTest {
         CalcRequest calc = new CalcRequest("Рисковое страхование", policyCalc);
 
 
-        given()
+        CalcResponse responce = given()
                 .baseUri(ConstantValues.BASE_URL)
-                .header("sessionToken", responseAuth.getSessionToken())
+                .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
                 .body(calc)
 //                .log().all()
@@ -216,10 +211,14 @@ public class CalcTest {
                 .post(ConstantValues.CALC_ENDPOINT).
                 then()
                 .statusCode(200)
-                .body("accID", equalTo(responseAuth.getSessionToken()))
-                .body("calcPolicyResult.calcResults[0].policy.calcID", notNullValue())
+                .body("accID", equalTo(sessionToken))
+                .extract()
+                .as(CalcResponse.class)
 //                .log().all()
         ;
+
+        assertNotNull(responce.getCalcPolicyResult().getCalcResults().getFirst().getPolicy().getCalcID());
+        assert responce.getCalcPolicyResult().getCalcResults().getFirst().getPolicy().getInsPremTotal() > 0;
     }
 
 }

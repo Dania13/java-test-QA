@@ -11,8 +11,5 @@ public class AuthResponse {
     private boolean success;
     private String message;
 
-    public AuthResponse() {}
-
     public boolean getSuccess() { return success; }
-
 }

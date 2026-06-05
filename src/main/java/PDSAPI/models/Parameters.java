@@ -13,4 +13,7 @@ public class Parameters {
     public Parameters(List<Parameter> parameters) {
         this.parameters = parameters;
     }
+
+    public Parameters() {
+    }
 }

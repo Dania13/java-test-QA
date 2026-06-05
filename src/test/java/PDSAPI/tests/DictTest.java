@@ -1,5 +1,6 @@
 package PDSAPI.tests;
 
+import PDSAPI.actions.Auth;
 import PDSAPI.models.AuthRequest;
 import PDSAPI.models.AuthResponse;
 import PDSAPI.models.DictRequest;
@@ -13,23 +14,16 @@ import static io.restassured.RestAssured.given;
 
 public class DictTest {
 
-    private AuthResponse responseAuth;
+    private String sessionToken;
 
     @BeforeEach
-    public void auth(){
-        AuthRequest user = AuthRequest.builder()
-                .login(ConstantValues.LOGIN_AUTH)
-                .password(ConstantValues.PASSWORD_AUTH).build();
-        responseAuth = given()
-                .baseUri(ConstantValues.BASE_URL)
-                .contentType(ContentType.JSON)
-                .body(user).
-                when()
-                .post(ConstantValues.AUTH_ENDPOINT).
-                then()
-                .statusCode(200)
-                .extract()
-                .as(AuthResponse.class);
+    public void setUp() {
+        sessionToken = Auth.loginUser(
+                ConstantValues.BASE_URL,
+                ConstantValues.AUTH_ENDPOINT,
+                ConstantValues.LOGIN_AUTH,
+                ConstantValues.PASSWORD_AUTH
+        );
     }
 
 
@@ -37,18 +31,19 @@ public class DictTest {
     @Disabled("в процессе отладки")
     public void successGetDict(){
         DictRequest dict = DictRequest.builder()
-                .accID(responseAuth.getSessionToken())
+                .accID(sessionToken)
                 .product("ПДС")
                 .dictionaryCode("region")
                 .build();
         given()
                 .baseUri(ConstantValues.BASE_URL)
                 .contentType(ContentType.JSON)
-                .body(dict).
+                .body(dict)
+                .log().all().
         when()
                 .post(ConstantValues.DICT_ENDPOINT).
         then()
-                .statusCode(400)
+                .statusCode(200)
 //                .body("types.dictionaries.code", equalTo("region"))
                 .log().all();
     }

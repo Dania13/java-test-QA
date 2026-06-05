@@ -49,4 +49,7 @@ public class Parameter {
         this.type = type;
     }
 
+    public Parameter () {
+    }
+
 }
