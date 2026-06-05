@@ -30,6 +30,7 @@ public class ConstantValues {
     public static final String DICT_ENDPOINT = "/v1/getDictionaries";
     public static final String CALC_ENDPOINT = "/v1/calculate";
     public static final String IMPORT_ENDPOINT = "/v1/import";
+    public static final String ATTACH_ENDPOINT = "/v1/attachDoc";
 
 //    Переменные окружения
     public static final String BASE_URL = getEnvValue("BASE_URL");
