@@ -54,7 +54,10 @@ jobs:
           
           MESSAGE="${STATUS}\nReport link: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"  
           
+              # Экранируем для JSON: кавычки, слеши, переносы строк
+          ESCAPED=$(echo "$MESSAGE" | jq -R -s '.')
+          
           curl --request POST \
-               --url https://api.telegram.org/bot${{ secrets.TEST_TELEGRAM_TOKEN }}/sendMessage \
-               --header 'Content-Type: application/json' \
-                --data '{ "chat_id": "${{ secrets.TEST_TELEGRAM_CHAT_ID }}", "text": "$MESSAGE" }'
+            --url https://api.telegram.org/bot${{ secrets.TEST_TELEGRAM_TOKEN }}/sendMessage \
+            --header 'Content-Type: application/json' \
+            --data "{\"chat_id\": \"${{ secrets.TEST_TELEGRAM_CHAT_ID }}\", \"text\": $ESCAPED}"
