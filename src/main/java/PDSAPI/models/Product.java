@@ -12,9 +12,6 @@ public class Product {
     private String name;
 
     public Product() {
-    }
-
-    public Product(String name) {
-        this.name = name;
+        this.name = "Программа долгосрочных сбережений граждан (ПДС)";
     }
 }
