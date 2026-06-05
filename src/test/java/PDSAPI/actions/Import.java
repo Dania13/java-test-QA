@@ -11,14 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 public class Import {
 
     public static ImportResponse ImportPolicy (String BaseUrl, String sessionToken, PolicyImport policy) {
-        ImportRequest user = ImportRequest.builder()
+        ImportRequest request = ImportRequest.builder()
                 .policy(policy).build();
         ImportResponse response = given()
                 .baseUri(BaseUrl)
                 .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
 //                .log().all()
-                .body(user).
+                .body(request).
                 when()
                 .post(ConstantValues.IMPORT_ENDPOINT).
                 then()
@@ -51,5 +51,9 @@ public class Import {
 
     public static String getPolicyID(ImportResponse response) {
         return response.getPolicy().getID();
+    }
+
+    public static String getNumber(ImportResponse response) {
+        return response.getPolicy().getNumber();
     }
 }

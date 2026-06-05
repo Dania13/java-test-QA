@@ -2,8 +2,6 @@ package PDSAPI.specs;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
-import java.net.URI;
-
 public class ConstantValues {
 
     private static String getEnvValue(String key) {

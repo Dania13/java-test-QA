@@ -1,6 +1,6 @@
 package PDSAPI.tests;
 
-import PDSAPI.actions.AttachDocs;
+import PDSAPI.actions.Attach;
 import PDSAPI.actions.Auth;
 import PDSAPI.actions.CreatePolicy;
 import PDSAPI.actions.Import;
@@ -36,10 +36,10 @@ public class IssueTests {
     @Test
     public void successIssueWithPOJO(){
 
-        AttachDocs.AttachDocs(ConstantValues.BASE_URL, sessionToken, calcID, "Документ, удостоверяющий личность");
-        AttachDocs.AttachDocs(ConstantValues.BASE_URL, sessionToken, calcID, "Анкета для проведения идентификации клиента");
-        AttachDocs.AttachDocs(ConstantValues.BASE_URL, sessionToken, calcID, "Согласие на обработку ПД");
-        AttachDocs.AttachDocs(ConstantValues.BASE_URL, sessionToken, calcID, "Согласие на доп. услугу");
+        Attach.AttachDocs(ConstantValues.BASE_URL, sessionToken, calcID, "Документ, удостоверяющий личность");
+        Attach.AttachDocs(ConstantValues.BASE_URL, sessionToken, calcID, "Анкета для проведения идентификации клиента");
+        Attach.AttachDocs(ConstantValues.BASE_URL, sessionToken, calcID, "Согласие на обработку ПД");
+        Attach.AttachDocs(ConstantValues.BASE_URL, sessionToken, calcID, "Согласие на доп. услугу");
         IssueRequest request = IssueRequest.builder()
                 .policyID(policyID).build();
 

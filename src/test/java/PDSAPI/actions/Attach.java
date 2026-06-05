@@ -8,15 +8,15 @@ import io.restassured.http.ContentType;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AttachDocs {
+public class Attach {
     public static void AttachDocs(String BaseUrl, String sessionToken, String calcID, String typeDoc) {
-        AttachRequest attachRequest = new AttachRequest(calcID, typeDoc);
+        AttachRequest request = new AttachRequest(calcID, typeDoc);
 
         AttachResponse response = given()
                 .baseUri(BaseUrl)
                 .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
-                .body(attachRequest)
+                .body(request)
 //                .log().all()
                 .when()
                 .post(ConstantValues.ATTACH_ENDPOINT).

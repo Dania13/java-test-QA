@@ -9,6 +9,7 @@ public class AttachRequest {
     private String calcID;
     private String fileName;
     private String type;
+    private String comment;
     private String attachment;
 
     public AttachRequest(String calcID, String type) {
@@ -16,5 +17,6 @@ public class AttachRequest {
         this.fileName = "test.txt";
         this.type = type;
         this.attachment = "0KLQtdGB0YLQvtCy0YvQuSDQtNC+0LrRg9C80LXQvdGC";
+        this.comment = "Проверка";
     }
 }
