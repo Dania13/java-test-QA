@@ -47,12 +47,12 @@ jobs:
       - name: Отправка уведомления в Telegram
         run: |
           if [[ "${{ needs.testAPI.result }}" == "success" ]]; then
-            STATUS="✅ Успех"
+            STATUS="✔️ Успех"
           else
-            STATUS="❌ Провалилось :-("
+            STATUS="😒 Провалилось :-("
           fi
           
-          MESSAGE="${STATUS}\nReport link: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"  
+          MESSAGE="${STATUS} \n Report link: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"  
           
               # Экранируем для JSON: кавычки, слеши, переносы строк
           ESCAPED=$(echo "$MESSAGE" | jq -R -s '.')
