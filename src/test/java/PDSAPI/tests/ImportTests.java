@@ -20,7 +20,6 @@ public class ImportTests {
     public void setUp() {
         sessionToken = Auth.loginUser(
                 ConstantValues.BASE_URL,
-                ConstantValues.AUTH_ENDPOINT,
                 ConstantValues.LOGIN_AUTH,
                 ConstantValues.PASSWORD_AUTH
         );

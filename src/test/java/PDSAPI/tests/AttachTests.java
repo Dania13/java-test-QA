@@ -20,11 +20,11 @@ public class AttachTests {
     public void setUp() {
         sessionToken = Auth.loginUser(
                 ConstantValues.BASE_URL,
-                ConstantValues.AUTH_ENDPOINT,
                 ConstantValues.LOGIN_AUTH,
                 ConstantValues.PASSWORD_AUTH
         );
-        calcID = Import.ImportPolicy(ConstantValues.BASE_URL, ConstantValues.IMPORT_ENDPOINT, sessionToken, policy);
+        ImportResponse response = Import.getImportResponse(ConstantValues.BASE_URL, sessionToken, policy);
+        calcID = Import.getCalcID(response);
     }
 
 

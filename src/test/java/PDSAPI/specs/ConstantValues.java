@@ -31,6 +31,7 @@ public class ConstantValues {
     public static final String CALC_ENDPOINT = "/v1/calculate";
     public static final String IMPORT_ENDPOINT = "/v1/import";
     public static final String ATTACH_ENDPOINT = "/v1/attachDoc";
+    public static final String ISSUE_ENDPOINT = "/v1/issue";
 
 //    Переменные окружения
     public static final String BASE_URL = getEnvValue("BASE_URL");

@@ -2,13 +2,14 @@ package PDSAPI.actions;
 
 import PDSAPI.models.AuthRequest;
 import PDSAPI.models.AuthResponse;
+import PDSAPI.specs.ConstantValues;
 import io.restassured.http.ContentType;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class Auth {
-    public static String loginUser(String BaseUrl, String Endpoint, String Login, String Password) {
+    public static String loginUser(String BaseUrl, String Login, String Password) {
         AuthRequest user = AuthRequest.builder()
                 .login(Login)
                 .password(Password).build();
@@ -17,7 +18,7 @@ public class Auth {
                 .contentType(ContentType.JSON)
                 .body(user).
                 when()
-                .post(Endpoint).
+                .post(ConstantValues.AUTH_ENDPOINT).
                 then()
                 .statusCode(200)
 //                .log().all()

@@ -2,13 +2,15 @@ package PDSAPI.actions;
 
 import PDSAPI.models.*;
 import PDSAPI.models.Error;
+import PDSAPI.specs.ConstantValues;
 import io.restassured.http.ContentType;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class Import {
-    public static String ImportPolicy (String BaseUrl, String Endpoint, String sessionToken, PolicyImport policy) {
+
+    public static ImportResponse ImportPolicy (String BaseUrl, String sessionToken, PolicyImport policy) {
         ImportRequest user = ImportRequest.builder()
                 .policy(policy).build();
         ImportResponse response = given()
@@ -18,7 +20,7 @@ public class Import {
 //                .log().all()
                 .body(user).
                 when()
-                .post(Endpoint).
+                .post(ConstantValues.IMPORT_ENDPOINT).
                 then()
                 .statusCode(200)
 //                .log().all()
@@ -36,6 +38,18 @@ public class Import {
 
             throw new AssertionError(errorMessages.toString().trim());
         }
-        return response.getPolicy().getCalcID();
+        return response;
+    }
+
+    public static ImportResponse getImportResponse(String BaseUrl, String sessionToken, PolicyImport policy) {
+        return ImportPolicy(BaseUrl, sessionToken, policy);
+    }
+
+    public static String getCalcID(ImportResponse response) {
+            return response.getPolicy().getCalcID();
+    }
+
+    public static String getPolicyID(ImportResponse response) {
+        return response.getPolicy().getID();
     }
 }
