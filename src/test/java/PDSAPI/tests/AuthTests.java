@@ -22,10 +22,10 @@ public class AuthTests {
     public void successAuth(){
         String requestBody = """
                 {
-                    "login": "AutoQA",
-                    "password": "AutoQA"
+                    "login": "%s",
+                    "password": "%s"
                 }
-                """;
+                """.formatted(ConstantValues.LOGIN_AUTH, ConstantValues.PASSWORD_AUTH);
         given()
                 .baseUri(ConstantValues.BASE_URL)
                 .contentType(ContentType.JSON)

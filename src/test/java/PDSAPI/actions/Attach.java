@@ -9,11 +9,17 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Attach {
-    public static void AttachDocs(String BaseUrl, String sessionToken, String calcID, String typeDoc) {
-        AttachRequest request = new AttachRequest(calcID, typeDoc);
+    public static void AttachDocs(String sessionToken, String calcID, String typeDoc) {
+
+        AttachRequest request = AttachRequest.builder()
+                .calcID(calcID)
+                .fileName("test.txt")
+                .type(typeDoc)
+                .comment("тестовый документ")
+                .attachment("0KLQtdGB0YLQvtCy0YvQuSDQtNC+0LrRg9C80LXQvdGC").build();
 
         AttachResponse response = given()
-                .baseUri(BaseUrl)
+                .baseUri(ConstantValues.BASE_URL)
                 .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
                 .body(request)

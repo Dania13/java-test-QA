@@ -23,7 +23,6 @@ public class CalcTests {
     @BeforeEach
     public void setUp() {
         sessionToken = Auth.loginUser(
-                ConstantValues.BASE_URL,
                 ConstantValues.LOGIN_AUTH,
                 ConstantValues.PASSWORD_AUTH
         );
@@ -152,14 +151,12 @@ public class CalcTests {
                 .body("calcPolicyResult.calcResults[0].policy.calcID", notNullValue())
 //                .log().all();
         ;
-
-//        assertNotNull("calcPolicyResult.calcResults[0].policy.calcID");
     }
 
     @Test
     public void successCalcWithPOJO(){
 
-        Product product = new Product();
+        Product product = new Product("Программа долгосрочных сбережений граждан (ПДС)");
 
         List<Parameter> parametsItems = new ArrayList<>();
 

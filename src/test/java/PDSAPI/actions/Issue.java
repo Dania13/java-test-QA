@@ -11,12 +11,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class Issue {
-    public static void IssuePolicy(String BaseUrl, String sessionToken, String policyID) {
+    public static void IssuePolicy(String sessionToken, String policyID) {
         IssueRequest request = IssueRequest.builder()
                 .policyID(policyID).build();
 
         IssueResponse response = given()
-                .baseUri(BaseUrl)
+                .baseUri(ConstantValues.BASE_URL)
                 .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
                 .body(request)

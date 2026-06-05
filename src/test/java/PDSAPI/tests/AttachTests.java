@@ -19,24 +19,28 @@ public class AttachTests {
     @BeforeEach
     public void setUp() {
         sessionToken = Auth.loginUser(
-                ConstantValues.BASE_URL,
                 ConstantValues.LOGIN_AUTH,
                 ConstantValues.PASSWORD_AUTH
         );
-        ImportResponse response = Import.getImportResponse(ConstantValues.BASE_URL, sessionToken, policy);
+        ImportResponse response = Import.getImportResponse(sessionToken, policy);
         calcID = Import.getCalcID(response);
     }
 
 
     @Test
     public void successAttachWithPOJO(){
-        AttachRequest attachRequest = new AttachRequest(calcID, "Документ, удостоверяющий личность");
+        AttachRequest request = AttachRequest.builder()
+                .calcID(calcID)
+                .fileName("test.txt")
+                .type("Документ, удостоверяющий личность")
+                .comment("тестовый документ")
+                .attachment("0KLQtdGB0YLQvtCy0YvQuSDQtNC+0LrRg9C80LXQvdGC").build();
 
         AttachResponse response = given()
                 .baseUri(ConstantValues.BASE_URL)
                 .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
-                .body(attachRequest)
+                .body(request)
 //                .log().all()
                 .when()
                 .post(ConstantValues.ATTACH_ENDPOINT).
@@ -50,7 +54,5 @@ public class AttachTests {
         assertEquals(sessionToken, response.getAccID());
 
     }
-
-
 
 }

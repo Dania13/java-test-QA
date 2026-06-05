@@ -20,11 +20,10 @@ public class PrintTests {
     @BeforeEach
     public void setUp() {
         sessionToken = Auth.loginUser(
-                ConstantValues.BASE_URL,
                 ConstantValues.LOGIN_AUTH,
                 ConstantValues.PASSWORD_AUTH
         );
-        ImportResponse response = Import.getImportResponse(ConstantValues.BASE_URL, sessionToken, policy);
+        ImportResponse response = Import.getImportResponse(sessionToken, policy);
         calcID = Import.getCalcID(response);
         policyID = Import.getPolicyID(response);
         number = Import.getNumber(response);
@@ -33,12 +32,12 @@ public class PrintTests {
 
     @Test
     public void successPrintWithPOJO(){
-        Attach.AttachDocs(ConstantValues.BASE_URL, sessionToken, calcID, "Документ, удостоверяющий личность");
-        Attach.AttachDocs(ConstantValues.BASE_URL, sessionToken, calcID, "Анкета для проведения идентификации клиента");
-        Attach.AttachDocs(ConstantValues.BASE_URL, sessionToken, calcID, "Согласие на обработку ПД");
-        Attach.AttachDocs(ConstantValues.BASE_URL, sessionToken, calcID, "Согласие на доп. услугу");
+        Attach.AttachDocs(sessionToken, calcID, "Документ, удостоверяющий личность");
+        Attach.AttachDocs(sessionToken, calcID, "Анкета для проведения идентификации клиента");
+        Attach.AttachDocs(sessionToken, calcID, "Согласие на обработку ПД");
+        Attach.AttachDocs(sessionToken, calcID, "Согласие на доп. услугу");
 
-        Issue.IssuePolicy(ConstantValues.BASE_URL, sessionToken, policyID);
+        Issue.IssuePolicy(sessionToken, policyID);
 
         PrintRequest request = PrintRequest.builder()
                 .calcID(calcID)

@@ -22,11 +22,10 @@ public class IssueTests {
     @BeforeEach
     public void setUp() {
         sessionToken = Auth.loginUser(
-                ConstantValues.BASE_URL,
                 ConstantValues.LOGIN_AUTH,
                 ConstantValues.PASSWORD_AUTH
         );
-        ImportResponse response = Import.getImportResponse(ConstantValues.BASE_URL, sessionToken, policy);
+        ImportResponse response = Import.getImportResponse(sessionToken, policy);
         calcID = Import.getCalcID(response);
         policyID = Import.getPolicyID(response);
 
@@ -36,10 +35,10 @@ public class IssueTests {
     @Test
     public void successIssueWithPOJO(){
 
-        Attach.AttachDocs(ConstantValues.BASE_URL, sessionToken, calcID, "Документ, удостоверяющий личность");
-        Attach.AttachDocs(ConstantValues.BASE_URL, sessionToken, calcID, "Анкета для проведения идентификации клиента");
-        Attach.AttachDocs(ConstantValues.BASE_URL, sessionToken, calcID, "Согласие на обработку ПД");
-        Attach.AttachDocs(ConstantValues.BASE_URL, sessionToken, calcID, "Согласие на доп. услугу");
+        Attach.AttachDocs(sessionToken, calcID, "Документ, удостоверяющий личность");
+        Attach.AttachDocs(sessionToken, calcID, "Анкета для проведения идентификации клиента");
+        Attach.AttachDocs(sessionToken, calcID, "Согласие на обработку ПД");
+        Attach.AttachDocs(sessionToken, calcID, "Согласие на доп. услугу");
         IssueRequest request = IssueRequest.builder()
                 .policyID(policyID).build();
 

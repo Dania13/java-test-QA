@@ -19,7 +19,7 @@ public class CreatePolicy {
     Insurant createInsurant;
 
     {
-        product = new Product();
+        product = new Product("Программа долгосрочных сбережений граждан (ПДС)");
         parametsItems.add(new Parameter("dogovor.predvRaschet","Предварительный расчет", false,"Логический"));
         parameters = new Parameters(parametsItems);
         risks = new Risk("true", "Пенсионное накопление", 4000);

@@ -9,12 +9,12 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class Auth {
-    public static String loginUser(String BaseUrl, String Login, String Password) {
+    public static String loginUser(String Login, String Password) {
         AuthRequest request = AuthRequest.builder()
                 .login(Login)
                 .password(Password).build();
         AuthResponse response = given()
-                .baseUri(BaseUrl)
+                .baseUri(ConstantValues.BASE_URL)
                 .contentType(ContentType.JSON)
                 .body(request).
                 when()

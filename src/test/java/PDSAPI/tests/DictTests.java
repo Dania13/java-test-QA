@@ -17,7 +17,6 @@ public class DictTests {
     @BeforeEach
     public void setUp() {
         sessionToken = Auth.loginUser(
-                ConstantValues.BASE_URL,
                 ConstantValues.LOGIN_AUTH,
                 ConstantValues.PASSWORD_AUTH
         );

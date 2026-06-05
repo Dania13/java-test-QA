@@ -10,11 +10,11 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class Import {
 
-    public static ImportResponse ImportPolicy (String BaseUrl, String sessionToken, PolicyImport policy) {
+    public static ImportResponse ImportPolicy (String sessionToken, PolicyImport policy) {
         ImportRequest request = ImportRequest.builder()
                 .policy(policy).build();
         ImportResponse response = given()
-                .baseUri(BaseUrl)
+                .baseUri(ConstantValues.BASE_URL)
                 .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
 //                .log().all()
@@ -41,8 +41,8 @@ public class Import {
         return response;
     }
 
-    public static ImportResponse getImportResponse(String BaseUrl, String sessionToken, PolicyImport policy) {
-        return ImportPolicy(BaseUrl, sessionToken, policy);
+    public static ImportResponse getImportResponse(String sessionToken, PolicyImport policy) {
+        return ImportPolicy(sessionToken, policy);
     }
 
     public static String getCalcID(ImportResponse response) {
