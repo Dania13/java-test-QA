@@ -25,10 +25,14 @@ public class ConstantValues {
         return "";
     }
 
-    public static final String BASE_URL = getEnvValue("BASE_URL");
+//    Эндпоинты
     public static final String AUTH_ENDPOINT = "/v1/auth/login";
     public static final String DICT_ENDPOINT = "/v1/getDictionaries";
     public static final String CALC_ENDPOINT = "/v1/calculate";
+    public static final String IMPORT_ENDPOINT = "/v1/import";
+
+//    Переменные окружения
+    public static final String BASE_URL = getEnvValue("BASE_URL");
     public static final String LOGIN_AUTH = getEnvValue("LOGIN_AUTH");
     public static final String PASSWORD_AUTH = getEnvValue("PASSWORD_AUTH");
 }

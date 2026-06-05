@@ -17,7 +17,7 @@ public class Parameter {
     private Integer intValue;
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     private double decimalValue;
-    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Boolean boolValue;
 
 

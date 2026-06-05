@@ -9,10 +9,15 @@ import lombok.Setter;
 public class Policy {
     private String insCompanyName;
     private Product product;
+    private String number;
     private String date;
+    private String state;
     private Boolean prolongation;
+    private Insurant insurant;
+    private String insurantDocType;
     private InsuranceObjects insuranceObjects;
     private Double insPremTotal;
+    private String comment;
     private Representative representative;
     private CurrExchList currExchList;
     @JsonProperty("ID")

@@ -10,4 +10,5 @@ public class Payment {
     private int number;
     private String date;
     private double sum;
+    private double sumRur;
 }
