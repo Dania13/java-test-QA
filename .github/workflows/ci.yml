@@ -57,4 +57,4 @@ jobs:
           curl --request POST \
                --url https://api.telegram.org/bot${{ secrets.TEST_TELEGRAM_TOKEN }}/sendMessage \
                --header 'Content-Type: application/json' \
-                --data '{ "chat_id": "${{ secrets.TEST_TELEGRAM_CHAT_ID }}", "text": "$MESSAGE" }'
+                --data '{ "chat_id": "${{ secrets.TEST_TELEGRAM_CHAT_ID }}", "text": $MESSAGE }'
