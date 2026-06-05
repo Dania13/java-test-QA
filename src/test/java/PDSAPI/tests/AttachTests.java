@@ -1,7 +1,7 @@
 package PDSAPI.tests;
 
 import PDSAPI.actions.Auth;
-import PDSAPI.actions.CreatePolicy;
+import helpers.CreatePolicy;
 import PDSAPI.actions.Import;
 import PDSAPI.models.*;
 import PDSAPI.specs.ConstantValues;

@@ -1,14 +1,10 @@
-package PDSAPI.actions;
+package helpers;
 
 import PDSAPI.models.*;
 import com.github.javafaker.Faker;
-import helpers.DateFormatter;
-import helpers.InnGenerator;
-import helpers.SNILSGenerator;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
