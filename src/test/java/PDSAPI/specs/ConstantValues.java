@@ -34,6 +34,8 @@ public class ConstantValues {
     public static final String ATTACH_ENDPOINT = "/v1/attachDoc";
     public static final String ISSUE_ENDPOINT = "/v1/issue";
     public static final String PRINT_ENDPOINT = "/v1/print";
+    public static final String ANNUL_ENDPOINT = "/v1/annul";
+
 
 //    Переменные окружения
     public static final String BASE_URL = getEnvValue("BASE_URL");
