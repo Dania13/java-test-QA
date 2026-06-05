@@ -2,7 +2,10 @@ package PDSAPI.specs;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
+import java.net.URI;
+
 public class ConstantValues {
+
     private static String getEnvValue(String key) {
         // 1. Сначала пробуем получить из системных переменных (GitHub Secrets)
         String value = System.getenv(key);
@@ -32,6 +35,7 @@ public class ConstantValues {
     public static final String IMPORT_ENDPOINT = "/v1/import";
     public static final String ATTACH_ENDPOINT = "/v1/attachDoc";
     public static final String ISSUE_ENDPOINT = "/v1/issue";
+    public static final String PRINT_ENDPOINT = "/v1/print";
 
 //    Переменные окружения
     public static final String BASE_URL = getEnvValue("BASE_URL");
