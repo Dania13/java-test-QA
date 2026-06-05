@@ -29,13 +29,15 @@ public class AuthTests {
         given()
                 .baseUri(ConstantValues.BASE_URL)
                 .contentType(ContentType.JSON)
-                .body(requestBody).
-        when()
-                .post(ConstantValues.AUTH_ENDPOINT).
-        then()
+                .body(requestBody)
+//                .log().all().
+        .when()
+                .post(ConstantValues.AUTH_ENDPOINT)
+        .then()
                 .statusCode(200) // Проверяем статус код
                 .body("success", equalTo(true)) // Проверяем значение поля в JSON
-                .log().all();
+//                .log().all()
+                ;
     }
 
     @Test
@@ -55,7 +57,8 @@ public class AuthTests {
         then()
                 .statusCode(200) // Проверяем статус код
                 .body("success", equalTo(false)) // Проверяем значение поля в JSON
-                .log().all();
+//                .log().all()
+               ;
     }
 
 

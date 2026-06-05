@@ -200,7 +200,7 @@ public class CalcTests {
         CalcRequest calc = new CalcRequest("Рисковое страхование", policyCalc);
 
 
-        CalcResponse responce = given()
+        CalcResponse response = given()
                 .baseUri(ConstantValues.BASE_URL)
                 .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
@@ -216,8 +216,8 @@ public class CalcTests {
 //                .log().all()
         ;
 
-        assertNotNull(responce.getCalcPolicyResult().getCalcResults().getFirst().getPolicy().getCalcID());
-        assert responce.getCalcPolicyResult().getCalcResults().getFirst().getPolicy().getInsPremTotal() > 0;
+        assertNotNull(response.getCalcPolicyResult().getCalcResults().getFirst().getPolicy().getCalcID());
+        assert response.getCalcPolicyResult().getCalcResults().getFirst().getPolicy().getInsPremTotal() > 0;
     }
 
 }
