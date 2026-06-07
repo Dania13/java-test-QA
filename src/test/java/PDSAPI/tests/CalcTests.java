@@ -4,6 +4,11 @@ import PDSAPI.actions.Auth;
 import PDSAPI.models.*;
 import PDSAPI.models.Object;
 import PDSAPI.specs.ConstantValues;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,10 +22,14 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+
+@Epic("Проверка API методов продукта")
+@Feature("Метод Расчёт")
 public class CalcTests {
     private String sessionToken;
 
     @BeforeEach
+    @Step("Предустановка")
     public void setUp() {
         sessionToken = Auth.loginUser(
                 ConstantValues.LOGIN_AUTH,
@@ -29,6 +38,7 @@ public class CalcTests {
     }
 
     @Test
+    @Description("Успешный расчёт с передачей JSON")
     public void successCalc(){
 
         String requestBody = """
@@ -142,18 +152,19 @@ public class CalcTests {
                 .baseUri(ConstantValues.BASE_URL)
                 .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
-                .body(requestBody).
-        when()
-                .post(ConstantValues.CALC_ENDPOINT).
-        then()
+                .body(requestBody)
+                .filter(new AllureRestAssured())
+        .when()
+                .post(ConstantValues.CALC_ENDPOINT)
+        .then()
                 .statusCode(200)
                 .body("accID", equalTo(sessionToken))
                 .body("calcPolicyResult.calcResults[0].policy.calcID", notNullValue())
-//                .log().all();
         ;
     }
 
     @Test
+    @Description("Успешный расчёт с передачей объекта")
     public void successCalcWithPOJO(){
 
         Product product = new Product("Программа долгосрочных сбережений граждан (ПДС)");
@@ -201,15 +212,14 @@ public class CalcTests {
                 .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
                 .body(calc)
-//                .log().all()
-                .when()
-                .post(ConstantValues.CALC_ENDPOINT).
-                then()
+                .filter(new AllureRestAssured())
+        .when()
+                .post(ConstantValues.CALC_ENDPOINT)
+        .then()
                 .statusCode(200)
                 .body("accID", equalTo(sessionToken))
                 .extract()
                 .as(CalcResponse.class)
-//                .log().all()
         ;
 
         assertNotNull(response.getCalcPolicyResult().getCalcResults().getFirst().getPolicy().getCalcID());

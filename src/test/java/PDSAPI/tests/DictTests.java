@@ -3,6 +3,11 @@ package PDSAPI.tests;
 import PDSAPI.actions.Auth;
 import PDSAPI.models.DictRequest;
 import PDSAPI.specs.ConstantValues;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -10,11 +15,15 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 
+
+@Epic("Проверка API методов продукта")
+@Feature("Метод Получения справочных значений")
 public class DictTests {
 
     private String sessionToken;
 
     @BeforeEach
+    @Step("Предустановка")
     public void setUp() {
         sessionToken = Auth.loginUser(
                 ConstantValues.LOGIN_AUTH,
@@ -25,6 +34,7 @@ public class DictTests {
 
     @Test
     @Disabled("в процессе отладки")
+    @Description("Получение справочника регионов")
     public void successGetDict(){
         DictRequest dict = DictRequest.builder()
                 .accID(sessionToken)
@@ -35,13 +45,12 @@ public class DictTests {
                 .baseUri(ConstantValues.BASE_URL)
                 .contentType(ContentType.JSON)
                 .body(dict)
-//                .log().all()
+                .filter(new AllureRestAssured())
         .when()
                 .post(ConstantValues.DICT_ENDPOINT)
         .then()
                 .statusCode(200)
 //                .body("types.dictionaries.code", equalTo("region"))
-//                .log().all()
         ;
     }
 }

@@ -4,6 +4,8 @@ import PDSAPI.models.Error;
 import PDSAPI.models.IssueRequest;
 import PDSAPI.models.IssueResponse;
 import PDSAPI.specs.ConstantValues;
+import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 
 import static io.restassured.RestAssured.given;
@@ -11,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class Issue {
+    @Step("Оформление полиса c policyID = {policyID}")
     public static void IssuePolicy(String sessionToken, String policyID) {
         IssueRequest request = IssueRequest.builder()
                 .policyID(policyID).build();
@@ -20,17 +23,18 @@ public class Issue {
                 .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
                 .body(request)
-//                .log().all()
-                .when()
-                .post(ConstantValues.ISSUE_ENDPOINT).
-                then()
+                .filter(new AllureRestAssured())
+        .when()
+                .post(ConstantValues.ISSUE_ENDPOINT)
+        .then()
                 .statusCode(200)
-//                .log().all()
                 .extract()
                 .as(IssueResponse.class)
                 ;
 
         assertEquals(sessionToken, response.getAccID());
+
+        // Вывод ошибок в Assert при ошибках, получаемых от метода
         try {
             assertNull(response.getErrors());
         } catch (AssertionError e) {

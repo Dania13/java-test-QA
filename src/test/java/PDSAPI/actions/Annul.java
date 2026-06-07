@@ -4,12 +4,16 @@ import PDSAPI.models.AnnulRequest;
 import PDSAPI.models.AnnulResponse;
 import PDSAPI.models.Error;
 import PDSAPI.specs.ConstantValues;
+import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
 
+
 public class Annul {
+    @Step("Аннулирование полиса с calcID = {calcID}")
     public static void AnnulPolicy(String sessionToken, String calcID) {
         AnnulRequest request = AnnulRequest.builder()
                 .calcID(calcID)
@@ -21,18 +25,19 @@ public class Annul {
                 .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
                 .body(request)
-//                .log().all()
-                .when()
-                .post(ConstantValues.ANNUL_ENDPOINT).
-                then()
+                .filter(new AllureRestAssured())
+        .when()
+                .post(ConstantValues.ANNUL_ENDPOINT)
+        .then()
                 .statusCode(200)
-//                .log().all()
                 .extract()
                 .as(AnnulResponse.class)
                 ;
 
         assertEquals(sessionToken, response.getAccID());
         assertEquals(calcID, response.getCalcID());
+
+        // Вывод ошибок в Assert при ошибках, получаемых от метода
         try {
             assertTrue(response.isOk());
             assertNull(response.getErrors());

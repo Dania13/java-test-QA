@@ -5,6 +5,11 @@ import PDSAPI.models.*;
 import PDSAPI.models.Error;
 import PDSAPI.specs.ConstantValues;
 import helpers.CreatePolicy;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,10 +17,14 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
 
+@Epic("Проверка API методов продукта")
+@Feature("Метод Аннулирование")
 public class AnnulTests {
     private String sessionToken, calcID, policyID;
 
+
     @BeforeEach
+    @Step("Предустановка")
     public void setUp() {
         sessionToken = Auth.loginUser(
                 ConstantValues.LOGIN_AUTH,
@@ -26,8 +35,8 @@ public class AnnulTests {
         policyID = Import.getPolicyID(response);
     }
 
-
     @Test
+    @Description("Аннулирование полиса в статусе Оформлен")
     public void successAnnulWithPOJO(){
         Attach.AttachDocs(sessionToken, calcID, "Документ, удостоверяющий личность");
         Attach.AttachDocs(sessionToken, calcID, "Анкета для проведения идентификации клиента");
@@ -45,18 +54,19 @@ public class AnnulTests {
                 .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
                 .body(request)
-//                .log().all()
-                .when()
-                .post(ConstantValues.ANNUL_ENDPOINT).
-                then()
+                .filter(new AllureRestAssured())
+        .when()
+                .post(ConstantValues.ANNUL_ENDPOINT)
+        .then()
                 .statusCode(200)
-//                .log().all()
                 .extract()
                 .as(AnnulResponse.class)
                 ;
 
         assertEquals(sessionToken, response.getAccID());
         assertEquals(calcID, response.getCalcID());
+
+        // Вывод ошибок в Assert при ошибках, получаемых от метода
         try {
             assertTrue(response.isOk());
             assertNull(response.getErrors());
@@ -66,13 +76,14 @@ public class AnnulTests {
             for (Error error : response.getErrors().getErrors()) {
                 errorMessages.append(error.getMessage()).append("\n");
             }
-
             throw new AssertionError(errorMessages.toString().trim() + " " + calcID);
         }
 
     }
 
+
     @Test
+    @Description("Аннулирование полиса в статусе Проект")
     public void badAnnulDraftPOJO(){
 
         AnnulRequest request = AnnulRequest.builder()
@@ -84,12 +95,11 @@ public class AnnulTests {
                 .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
                 .body(request)
-//                .log().all()
-                .when()
-                .post(ConstantValues.ANNUL_ENDPOINT).
-                then()
+                .filter(new AllureRestAssured())
+        .when()
+                .post(ConstantValues.ANNUL_ENDPOINT)
+        .then()
                 .statusCode(200)
-//                .log().all()
                 .extract()
                 .as(AnnulResponse.class)
                 ;

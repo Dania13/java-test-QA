@@ -5,6 +5,11 @@ import PDSAPI.models.*;
 import PDSAPI.models.Error;
 import PDSAPI.specs.ConstantValues;
 import helpers.CreatePolicy;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,10 +18,13 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+@Epic("Проверка API методов продукта")
+@Feature("Метод Печати полиса")
 public class PrintTests {
     private String sessionToken, calcID, policyID, number;
 
     @BeforeEach
+    @Step("Предустановка")
     public void setUp() {
         sessionToken = Auth.loginUser(
                 ConstantValues.LOGIN_AUTH,
@@ -30,6 +38,7 @@ public class PrintTests {
 
 
     @Test
+    @Description("Печать оформленного полиса")
     public void successPrintWithPOJO(){
         Attach.AttachDocs(sessionToken, calcID, "Документ, удостоверяющий личность");
         Attach.AttachDocs(sessionToken, calcID, "Анкета для проведения идентификации клиента");
@@ -47,17 +56,18 @@ public class PrintTests {
                 .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
                 .body(request)
-//                .log().all()
-                .when()
-                .post(ConstantValues.PRINT_ENDPOINT).
-                then()
+                .filter(new AllureRestAssured())
+        .when()
+                .post(ConstantValues.PRINT_ENDPOINT)
+        .then()
                 .statusCode(200)
-//                .log().all()
                 .extract()
                 .as(PrintResponse.class)
         ;
 
         assertEquals(number, response.getNumber());
+
+        // Вывод ошибок в Assert при ошибках, получаемых от метода
         try {
             assertNull(response.getErrors());
         } catch (AssertionError e) {
@@ -73,6 +83,7 @@ public class PrintTests {
     }
 
     @Test
+    @Description("Печать Проекта")
     public void successPrintDraftPOJO(){
 
         PrintRequest request = PrintRequest.builder()
@@ -84,17 +95,18 @@ public class PrintTests {
                 .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
                 .body(request)
-//                .log().all()
-                .when()
-                .post(ConstantValues.PRINT_ENDPOINT).
-                then()
+                .filter(new AllureRestAssured())
+        .when()
+                .post(ConstantValues.PRINT_ENDPOINT)
+        .then()
                 .statusCode(200)
-//                .log().all()
                 .extract()
                 .as(PrintResponse.class)
                 ;
 
         assertEquals(number, response.getNumber());
+
+        // Вывод ошибок в Assert при ошибках, получаемых от метода
         try {
             assertNull(response.getErrors());
         } catch (AssertionError e) {
@@ -106,7 +118,5 @@ public class PrintTests {
 
             throw new AssertionError(errorMessages.toString().trim() + " " + calcID);
         }
-
     }
-
 }

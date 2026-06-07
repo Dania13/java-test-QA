@@ -3,12 +3,15 @@ package PDSAPI.actions;
 import PDSAPI.models.AttachRequest;
 import PDSAPI.models.AttachResponse;
 import PDSAPI.specs.ConstantValues;
+import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Attach {
+    @Step("Прикрепление документа {typeDoc}")
     public static void AttachDocs(String sessionToken, String calcID, String typeDoc) {
 
         AttachRequest request = AttachRequest.builder()
@@ -23,12 +26,11 @@ public class Attach {
                 .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
                 .body(request)
-//                .log().all()
+                .filter(new AllureRestAssured())
                 .when()
                 .post(ConstantValues.ATTACH_ENDPOINT).
                 then()
                 .statusCode(200)
-//                .log().all()
                 .extract()
                 .as(AttachResponse.class)
                 ;

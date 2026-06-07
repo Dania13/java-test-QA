@@ -5,6 +5,11 @@ import helpers.CreatePolicy;
 import PDSAPI.models.*;
 import PDSAPI.models.Error;
 import PDSAPI.specs.ConstantValues;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,10 +18,13 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+@Epic("Проверка API методов продукта")
+@Feature("Метод сохранения")
 public class ImportTests {
     private String sessionToken;
 
     @BeforeEach
+    @Step("Предустановка")
     public void setUp() {
         sessionToken = Auth.loginUser(
                 ConstantValues.LOGIN_AUTH,
@@ -25,6 +33,7 @@ public class ImportTests {
     }
 
     @Test
+    @Description("Успешное сохранение полиса")
     public void successImportWithPOJO(){
 
         ImportRequest importRequest = new ImportRequest(new CreatePolicy().getPolicy());
@@ -35,18 +44,19 @@ public class ImportTests {
                 .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
                 .body(importRequest)
-//                .log().all()
-                .when()
-                .post(ConstantValues.IMPORT_ENDPOINT).
-                then()
+                .filter(new AllureRestAssured())
+        .when()
+                .post(ConstantValues.IMPORT_ENDPOINT)
+        .then()
                 .statusCode(200)
-//                .log().all()
                 .extract()
                 .as(ImportResponse.class)
         ;
 
         assertNotNull(response.getPolicy().getCalcID());
         assert response.getPolicy().getInsPremTotal() > 0;
+
+        // Вывод ошибок в Assert при ошибках, получаемых от метода
         try {
             assertNull(response.getWarnings());
         } catch (AssertionError e) {

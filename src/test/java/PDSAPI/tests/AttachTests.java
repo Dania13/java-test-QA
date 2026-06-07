@@ -5,6 +5,11 @@ import helpers.CreatePolicy;
 import PDSAPI.actions.Import;
 import PDSAPI.models.*;
 import PDSAPI.specs.ConstantValues;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,10 +17,14 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
 
+
+@Epic("Проверка API методов продукта")
+@Feature("Метод Прикрепление документов")
 public class AttachTests {
     private String sessionToken, calcID;
 
     @BeforeEach
+    @Step("Предустановка")
     public void setUp() {
         sessionToken = Auth.loginUser(
                 ConstantValues.LOGIN_AUTH,
@@ -27,6 +36,7 @@ public class AttachTests {
 
 
     @Test
+    @Description("Успешное прикрепление документа в полис в статусе Проект")
     public void successAttachWithPOJO(){
         AttachRequest request = AttachRequest.builder()
                 .calcID(calcID)
@@ -40,12 +50,11 @@ public class AttachTests {
                 .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
                 .body(request)
-//                .log().all()
-                .when()
-                .post(ConstantValues.ATTACH_ENDPOINT).
-                then()
+                .filter(new AllureRestAssured())
+        .when()
+                .post(ConstantValues.ATTACH_ENDPOINT)
+        .then()
                 .statusCode(200)
-//                .log().all()
                 .extract()
                 .as(AttachResponse.class)
         ;

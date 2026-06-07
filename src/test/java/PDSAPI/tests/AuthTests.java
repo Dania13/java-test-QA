@@ -1,5 +1,9 @@
 package PDSAPI.tests;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
@@ -16,9 +20,12 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+@Epic("Проверка API методов продукта")
+@Feature("Метод Авторизация")
 public class AuthTests {
 
     @Test
+    @Description("Успешная авторизация")
     public void successAuth(){
         String requestBody = """
                 {
@@ -30,16 +37,16 @@ public class AuthTests {
                 .baseUri(ConstantValues.BASE_URL)
                 .contentType(ContentType.JSON)
                 .body(requestBody)
-//                .log().all().
+                .filter(new AllureRestAssured())
         .when()
                 .post(ConstantValues.AUTH_ENDPOINT)
         .then()
                 .statusCode(200) // Проверяем статус код
                 .body("success", equalTo(true)) // Проверяем значение поля в JSON
-//                .log().all()
                 ;
     }
 
+    @Description("Авторизация с неверным паролем")
     @Test
     public void badAuth(){
         String requestBody = String.format("""
@@ -51,10 +58,11 @@ public class AuthTests {
         given()
                 .baseUri(ConstantValues.BASE_URL)
                 .contentType(ContentType.JSON)
-                .body(requestBody).
-        when()
-                .post(ConstantValues.AUTH_ENDPOINT).
-        then()
+                .body(requestBody)
+                .filter(new AllureRestAssured())
+        .when()
+                .post(ConstantValues.AUTH_ENDPOINT)
+        .then()
                 .statusCode(200) // Проверяем статус код
                 .body("success", equalTo(false)) // Проверяем значение поля в JSON
 //                .log().all()
@@ -64,6 +72,7 @@ public class AuthTests {
 
     @ParameterizedTest
     @MethodSource("provideAuthData")
+    @Description("Проверка метода с передачей разных параметров на вход")
     public void successAuthWithPOJO(String password, boolean success){
         AuthRequest user = AuthRequest.builder()
                 .login(ConstantValues.LOGIN_AUTH)
@@ -71,12 +80,12 @@ public class AuthTests {
         AuthResponse response = given()
                 .baseUri(ConstantValues.BASE_URL)
                 .contentType(ContentType.JSON)
-                .body(user).
-        when()
-                .post(ConstantValues.AUTH_ENDPOINT).
-        then()
+                .body(user)
+                .filter(new AllureRestAssured())
+        .when()
+                .post(ConstantValues.AUTH_ENDPOINT)
+        .then()
                 .statusCode(200)
-//                .log().all()
                 .extract()
                 .as(AuthResponse.class);
 
@@ -90,6 +99,7 @@ public class AuthTests {
         }
     }
 
+    // Метод куда передаются варианты комбинаций логина и пароля и результата теста
     static Stream<Arguments> provideAuthData() {
         String validPassword = ConstantValues.PASSWORD_AUTH;
         return Stream.of(

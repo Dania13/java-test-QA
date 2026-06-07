@@ -4,15 +4,22 @@ import PDSAPI.actions.*;
 import PDSAPI.models.*;
 import PDSAPI.specs.ConstantValues;
 import helpers.CreatePolicy;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
+@Epic("Проверка API методов продукта")
+@Feature("Регрессионные тесты")
 public class RegressionTests {
     private String sessionToken, calcID, policyID, policyNumber;
 
     @BeforeEach
+    @Step("Предустановка")
     public void setUp() {
         sessionToken = Auth.loginUser(
                 ConstantValues.LOGIN_AUTH,
@@ -32,6 +39,7 @@ public class RegressionTests {
 
     @Test
     @Tag("regression")
+    @Description("Оформление полиса")
     public void issue(TestInfo testInfo){
         Issue.IssuePolicy(sessionToken, policyID);
         System.out.println("=== ТЕСТ: " + testInfo.getDisplayName() + " ===");
@@ -41,6 +49,7 @@ public class RegressionTests {
 
     @Test
     @Tag("regression")
+    @Description("Оформление полиса с последующим аннулированием")
     public void issueWithAnnulate(TestInfo testInfo){
         Issue.IssuePolicy(sessionToken, policyID);
         Annul.AnnulPolicy(sessionToken, calcID);

@@ -7,6 +7,11 @@ import PDSAPI.actions.Import;
 import PDSAPI.models.*;
 import PDSAPI.models.Error;
 import PDSAPI.specs.ConstantValues;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,10 +20,13 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+@Epic("Проверка API методов продукта")
+@Feature("Метод оформления")
 public class IssueTests {
     private String sessionToken, calcID, policyID;
 
     @BeforeEach
+    @Step("Предустановка")
     public void setUp() {
         sessionToken = Auth.loginUser(
                 ConstantValues.LOGIN_AUTH,
@@ -32,6 +40,7 @@ public class IssueTests {
 
 
     @Test
+    @Description("Оформление полиса в статусе Проект")
     public void successIssueWithPOJO(){
 
         Attach.AttachDocs(sessionToken, calcID, "Документ, удостоверяющий личность");
@@ -46,12 +55,11 @@ public class IssueTests {
                 .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
                 .body(request)
-//                .log().all()
-                .when()
-                .post(ConstantValues.ISSUE_ENDPOINT).
-                then()
+                .filter(new AllureRestAssured())
+        .when()
+                .post(ConstantValues.ISSUE_ENDPOINT)
+        .then()
                 .statusCode(200)
-//                .log().all()
                 .extract()
                 .as(IssueResponse.class)
         ;
@@ -68,9 +76,5 @@ public class IssueTests {
 
             throw new AssertionError(errorMessages.toString().trim()+ " " + calcID);
         }
-
     }
-
-
-
 }
