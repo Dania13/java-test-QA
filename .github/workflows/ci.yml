@@ -81,7 +81,7 @@ jobs:
             ls -la target/allure-results/ || echo "No allure-results found"
         - name: Deploy report to GitHub Pages
           uses: peaceiris/actions-gh-pages@v4
-          if: ${{ always() && steps.allure-report.outcome == 'success' }}
+          if: ${{ always() }}
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
             publish_branch: gh-pages
