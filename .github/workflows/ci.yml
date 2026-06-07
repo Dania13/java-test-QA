@@ -38,17 +38,22 @@ jobs:
             else
               mvn clean test 
             fi
-        - run: mvn allure:report
-        - name: Setup Pages
-          uses: actions/configure-pages@v4
-        - name: Upload artifact
-          uses: actions/upload-pages-artifact@v3
+        - name: Load previous report history
+          uses: actions/checkout@v4
+          if: always()
+          continue-on-error: true
           with:
-            allure_results: target/allure-results   # Папка с сырыми данными
-            gh_pages: gh-pages                      # Папка с историей
-            allure_report: allure-report            # Папка для сгенерированного отчёта
-            allure_history: allure-history          # Папка для обновлённой истории
-
+            ref: gh-pages
+            path: gh-pages
+        - name: Build Allure report
+          uses: simple-elf/allure-report-action@v1.11
+          if: always()
+          id: allure-report
+          with:
+            allure_results: target/allure-results
+            gh_pages: gh-pages
+            allure_report: allure-report
+            allure_history: allure-history
         - name: Deploy report to GitHub Pages
           uses: peaceiris/actions-gh-pages@v4
           if: ${{ always() && steps.allure-report.outcome == 'success' }}
@@ -71,7 +76,7 @@ jobs:
             STATUS="😒 Провалилось :-("
           fi
           
-          MESSAGE="${STATUS} \n Report link: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"  
+          MESSAGE="${STATUS} Report link: https://dania13.github.io/java-test-QA/}"  
           
               # Экранируем для JSON: кавычки, слеши, переносы строк
           ESCAPED=$(echo "$MESSAGE" | jq -R -s '.')
