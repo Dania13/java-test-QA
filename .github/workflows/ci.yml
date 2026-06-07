@@ -31,12 +31,23 @@ jobs:
         - run: echo "LOGIN_AUTH=${{ secrets.LOGIN_AUTH }}" >> .env
         - run: echo "PASSWORD_AUTH=${{ secrets.PASSWORD_AUTH }}" >> .env
         - run: echo "BASE_URL=${{ vars.BASE_URL }}" >> .env
-        - run: |
+        - name: Тест
+          run: |
             if [[ "${{ github.event_name  }}" == "schedule" ]]; then
-              mvn test -Dgroups="regression"
+              mvn clean test -Dgroups="regression"
             else
-              mvn test 
+              mvn clean test 
             fi
+        - run: mvn allure:serve
+        - name: Setup Pages
+          uses: actions/configure-pages@v4
+        - name: Upload artifact
+          uses: actions/upload-pages-artifact@v3
+          with:
+            path: 'target/allure-results'
+        - name: Deploy to GitHub Pages
+          id: deployment
+          uses: actions/deploy-pages@v4
 
   notification:
     if: always()
