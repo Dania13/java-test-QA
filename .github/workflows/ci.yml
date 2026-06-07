@@ -38,18 +38,11 @@ jobs:
             else
               mvn clean test 
             fi
-        - name: Load test report history
-          uses: actions/checkout@v4
-          if: always()
-          continue-on-error: true
-          with:
-            ref: gh-pages
-            path: gh-pages
-
-        - name: Build Allure report
-          uses: simple-elf/allure-report-action@v1.11
-          if: always()
-          id: allure-report
+        - run: mvn allure:report
+        - name: Setup Pages
+          uses: actions/configure-pages@v4
+        - name: Upload artifact
+          uses: actions/upload-pages-artifact@v3
           with:
             allure_results: target/allure-results   # Папка с сырыми данными
             gh_pages: gh-pages                      # Папка с историей
