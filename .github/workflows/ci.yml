@@ -39,21 +39,23 @@ jobs:
               mvn clean test 
             fi
         - name: Load previous report history
-          uses: actions/checkout@v4
+          uses: actions/checkout@v6
           if: always()
           continue-on-error: true
           with:
             ref: gh-pages
             path: gh-pages
         - name: Build Allure report
-          uses: simple-elf/allure-report-action@v1.11
+          uses: allegro/allure-report-action@v1
           if: always()
           id: allure-report
           with:
-            allure_results: target/allure-results
-            gh_pages: gh-pages
-            allure_report: allure-report
-            allure_history: allure-history
+            report_path: allure-report
+            results_path: target/allure-results
+        - name: Check allure results
+          if: always()
+          run: |
+            ls -la target/allure-results/ || echo "No allure-results found"
         - name: Deploy report to GitHub Pages
           uses: peaceiris/actions-gh-pages@v4
           if: ${{ always() && steps.allure-report.outcome == 'success' }}
@@ -76,7 +78,7 @@ jobs:
             STATUS="😒 Провалилось :-("
           fi
           
-          MESSAGE="${STATUS} Report link: https://dania13.github.io/java-test-QA/}"  
+          MESSAGE="${STATUS} \nReport link: https://dania13.github.io/java-test-QA/}"  
           
               # Экранируем для JSON: кавычки, слеши, переносы строк
           ESCAPED=$(echo "$MESSAGE" | jq -R -s '.')
@@ -84,4 +86,4 @@ jobs:
           curl --request POST \
             --url https://api.telegram.org/bot${{ secrets.TEST_TELEGRAM_TOKEN }}/sendMessage \
             --header 'Content-Type: application/json' \
-            --data "{\"chat_id\": \"${{ secrets.TEST_TELEGRAM_CHAT_ID }}\", \"text\": $ESCAPED}"
+            --data "{\"chat_id\": \"${{ secrets.TEST_TELEGRAM_CHAT_ID }}\", \"text\": $ESCAPED"
