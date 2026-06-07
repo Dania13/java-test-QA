@@ -45,13 +45,17 @@ jobs:
           with:
             ref: gh-pages
             path: gh-pages
-        - name: Build Allure report
-          uses: allegro/allure-report-action@v1
+        - name: Generate Allure report via Maven
           if: always()
-          id: allure-report
-          with:
-            report_path: allure-report
-            results_path: target/allure-results
+          run: |
+            mvn allure:report
+            # Копируем историю из предыдущего отчёта, если она есть
+            if [ -d "gh-pages/history" ]; then
+              cp -r gh-pages/history target/site/allure-maven-plugin/history/
+            fi
+            # Создаём папку для публикации в формате, ожидаемом peaceiris/actions-gh-pages
+            mkdir -p allure-history
+            cp -r target/site/allure-maven-plugin/* allure-history/
         - name: Check allure results
           if: always()
           run: |
