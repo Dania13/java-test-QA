@@ -38,16 +38,31 @@ jobs:
             else
               mvn clean test 
             fi
-        - run: mvn allure:report
-        - name: Setup Pages
-          uses: actions/configure-pages@v4
-        - name: Upload artifact
-          uses: actions/upload-pages-artifact@v3
+        - name: Load test report history
+          uses: actions/checkout@v4
+          if: always()
+          continue-on-error: true
           with:
-            path: 'target/allure-results'
-        - name: Deploy to GitHub Pages
-          id: deployment
-          uses: actions/deploy-pages@v4
+            ref: gh-pages
+            path: gh-pages
+
+        - name: Build Allure report
+          uses: simple-elf/allure-report-action@v1.11
+          if: always()
+          id: allure-report
+          with:
+            allure_results: target/allure-results   # Папка с сырыми данными
+            gh_pages: gh-pages                      # Папка с историей
+            allure_report: allure-report            # Папка для сгенерированного отчёта
+            allure_history: allure-history          # Папка для обновлённой истории
+
+        - name: Deploy report to GitHub Pages
+          uses: peaceiris/actions-gh-pages@v4
+          if: ${{ always() && steps.allure-report.outcome == 'success' }}
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_branch: gh-pages
+            publish_dir: allure-history
 
   notification:
     if: always()
