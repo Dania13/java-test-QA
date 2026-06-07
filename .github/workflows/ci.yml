@@ -48,14 +48,33 @@ jobs:
         - name: Generate Allure report via Maven
           if: always()
           run: |
+            echo "=== Генерируем Allure отчёт ==="
             mvn allure:report
-            # Копируем историю из предыдущего отчёта, если она есть
+
+            echo "=== Проверяем результат ==="
+            ls -la target/site/allure-maven-plugin/
+
+            echo "=== Копируем историю из предыдущего отчёта ==="
             if [ -d "gh-pages/history" ]; then
-              cp -r gh-pages/history target/site/allure-maven-plugin/history/
+              echo "Копируем историю из gh-pages/history"
+              mkdir -p target/site/allure-maven-plugin/history
+              cp -r gh-pages/history/* target/site/allure-maven-plugin/history/ || echo "Предупреждение: не удалось скопировать историю"
+            else
+              echo "Папка gh-pages/history не найдена, создаём новую историю"
             fi
-            # Создаём папку для публикации в формате, ожидаемом peaceiris/actions-gh-pages
+
+            echo "=== Подготавливаем allure-history для деплоя ==="
             mkdir -p allure-history
-            cp -r target/site/allure-maven-plugin/* allure-history/
+            cp -r target/site/allure-maven-plugin/* allure-history/ || echo "ОШИБКА: не удалось скопировать отчёт!"
+
+            echo "=== Проверяем allure-history ==="
+            ls -la allure-history/
+            if [ -f "allure-history/index.html" ]; then
+              echo "✅ index.html найден, отчёт готов к публикации"
+            else
+              echo "❌ ОШИБКА: index.html не найден!"
+              exit 1
+            fi
         - name: Check allure results
           if: always()
           run: |
