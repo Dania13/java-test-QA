@@ -44,26 +44,28 @@ public class Import {
         return response;
     }
 
-    @Step("Расчёт и сохранение полиса")
+//    @Step("Расчёт и сохранение полиса")
     public static ImportResponse getImportResponse(String sessionToken, PolicyImport policy) {
         return ImportPolicy(sessionToken, policy);
     }
 
     // Метод получения CalcID из ответа
-    @Step("Получения CalcID ({response.policy.calcID})")
+    @Step("Получение CalcID ({response.policy.calcID})")
     public static String getCalcID(ImportResponse response) {
         Allure.addAttachment("CalcID", "text/plain", response.getPolicy().getCalcID(), "txt");
         return response.getPolicy().getCalcID();
     }
     // Метод получения PolicyID из ответа
-    @Step("Получения PolicyID ({response.policy.ID})")
+    @Step("Получение PolicyID ({response.policy.ID})")
     public static String getPolicyID(ImportResponse response) {
+        Allure.addAttachment("PolicyID", "text/plain", response.getPolicy().getID(), "txt");
         return response.getPolicy().getID();
     }
-    // Метод получения номера полиса из ответа
 
-    @Step("Получения номера полиса ({response.policy.number})")
+    // Метод получения номера полиса из ответа
+    @Step("Получение номера полиса ({response.policy.number})")
     public static String getNumber(ImportResponse response) {
+        Allure.addAttachment("Номер полиса", "text/plain", response.getPolicy().getNumber(), "txt");
         return response.getPolicy().getNumber();
     }
 }
