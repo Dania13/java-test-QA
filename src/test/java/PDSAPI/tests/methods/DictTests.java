@@ -1,4 +1,4 @@
-package PDSAPI.tests;
+package PDSAPI.tests.methods;
 
 import PDSAPI.actions.Auth;
 import PDSAPI.models.DictRequest;
@@ -16,12 +16,18 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 
 
+/**
+ * Тесты для проверки метода получения справочных значений
+ */
 @Epic("Проверка API методов продукта")
 @Feature("Метод Получения справочных значений")
 public class DictTests {
 
     private String sessionToken;
 
+    /**
+     * Предустановка с авторизацией
+     */
     @BeforeEach
     @Step("Предустановка")
     public void setUp() {
@@ -31,7 +37,9 @@ public class DictTests {
         );
     }
 
-
+    /**
+     * Позитивный тест получения справочника
+     */
     @Test
     @Disabled("в процессе отладки")
     @Description("Получение справочника регионов")

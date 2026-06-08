@@ -6,6 +6,8 @@ import PDSAPI.specs.ConstantValues;
 import io.qameta.allure.Step;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,6 +34,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * </pre>
  */
 public class Attach {
+
+    private static final Logger log = LoggerFactory.getLogger(Attach.class);
 
     /** Имя файла по умолчанию для тестов */
     private static final String DEFAULT_FILE_NAME = "test.txt";
@@ -82,6 +86,7 @@ public class Attach {
     @Step("Прикрепление документа {typeDoc} с именем файла {fileName}")
     public static void AttachDocs(String sessionToken, String calcID, String typeDoc,
                                   String fileName, String comment, String attachment) {
+        log.info("Прикрепление документа: {}, к полису с calcID: {} и accID: {}", typeDoc, calcID, maskToken(sessionToken));
 
         // Формирование запроса на прикрепление документа
         AttachRequest request = AttachRequest.builder()
@@ -108,42 +113,50 @@ public class Attach {
 
         // Валидация ответа
         validateResponse(response, sessionToken, calcID, typeDoc);
+        log.info("Документ: {} прикреплён, к полису с calcID: {} и accID: {}", typeDoc, calcID, maskToken(sessionToken));
     }
 
+
     /**
-     * Прикрепляет документ и возвращает идентификатор созданного документа.
+     * Прикрепляет несколько документов к расчёту полиса.
+     * <p>Метод последовательно прикрепляет все документы из переданного массива.
+     * При возникновении ошибки прикрепления любого из документов выполнение метода
+     * прерывается и выбрасывается исключение с указанием проблемного документа.</p>
      *
-     * @param sessionToken токен сессии
-     * @param calcID       идентификатор расчёта
-     * @param typeDoc      тип документа
-     * @return идентификатор созданного документа (docID)
-     * @throws AssertionError если операция прикрепления не успешна
+     * <p><b>Важно:</b> Документы прикрепляются в том порядке, в котором они указаны в массиве.
+     * Если требуется прикрепить обязательные документы, рекомендуется передавать их
+     * в порядке, соответствующем бизнес-логике.</p>
+     *
+     * <p>Пример использования:</p>
+     * <pre>
+     * String sessionToken = Auth.loginUser("user", "pass");
+     * String calcID = "CALC123456";
+     * String[] docs = {
+     *     "Документ, удостоверяющий личность",
+     *     "Анкета для проведения идентификации клиента",
+     *     "Согласие на обработку ПД"
+     * };
+     * attachRequiredDocuments(sessionToken, calcID, docs);
+     * </pre>
+     *
+     * @param sessionToken токен сессии авторизованного пользователя
+     * @param calcID       идентификатор расчёта, к которому прикрепляются документы
+     * @param documents    массив строк с типами документов для прикрепления
+     * @throws AssertionError если не удалось прикрепить хотя бы один документ.
+     *         Сообщение ошибки содержит тип документа, на котором произошёл сбой
+     * @throws IllegalArgumentException если sessionToken, calcID или documents равны null
+     * @see Attach#AttachDocs(String, String, String) для деталей прикрепления отдельного документа
      */
-    @Step("Прикрепление документа {typeDoc} с получением docID")
-    public static int AttachDocsAndGetDocId(String sessionToken, String calcID, String typeDoc) {
-        AttachRequest request = AttachRequest.builder()
-                .calcID(calcID)
-                .fileName(DEFAULT_FILE_NAME)
-                .type(typeDoc)
-                .comment(DEFAULT_COMMENT)
-                .attachment(TEST_ATTACHMENT)
-                .build();
+    @Step("Прикрепление нескольких документов")
+    public static void AttachDocs(String sessionToken, String calcID, String[] documents) {
 
-        AttachResponse response = given()
-                .baseUri(ConstantValues.BASE_URL)
-                .header("sessionToken", sessionToken)
-                .contentType(ContentType.JSON)
-                .body(request)
-                .filter(new AllureRestAssured())
-        .when()
-                .post(ConstantValues.ATTACH_ENDPOINT)
-        .then()
-                .statusCode(200)
-                .extract()
-                .as(AttachResponse.class);
-
-        validateResponse(response, sessionToken, calcID, typeDoc);
-        return response.getDocID();
+        for (String docType : documents) {
+            try {
+                Attach.AttachDocs(sessionToken, calcID, docType);
+            } catch (AssertionError e) {
+                throw new AssertionError("Не удалось прикрепить документ: " + docType, e);
+            }
+        }
     }
 
     /**
@@ -174,5 +187,18 @@ public class Attach {
                 String.format("docID должен быть положительным числом. " +
                                 "Получено: %d. Расчет: %s, Тип документа: %s",
                         response.getDocID(), calcID, typeDoc));
+    }
+
+    /**
+     * Маскирует токен для безопасного логирования.
+     *
+     * @param token оригинальный токен
+     * @return замаскированный токен
+     */
+    private static String maskToken(String token) {
+        if (token == null || token.length() <= 8) {
+            return "***";
+        }
+        return token.substring(0, 4) + "..." + token.substring(token.length() - 4);
     }
 }

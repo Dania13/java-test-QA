@@ -33,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * String sessionToken = Auth.loginUser("username", "password");
  *
  * // Импорт полиса
- * ImportResponse importResponse = Import.importPolicy(sessionToken, policy);
+ * ImportResponse = Import.importPolicy(sessionToken, policy);
  * String policyId = Import.getPolicyId(importResponse);
  *
  * // Оформление полиса
@@ -94,7 +94,7 @@ public class Issue {
      */
     @Step("Оформление полиса c policyID = {policyID} (skipAccIdCheck={skipAccIdCheck})")
     public static void issuePolicy(String sessionToken, String policyID, boolean skipAccIdCheck) {
-        log.info("Оформление полиса. PolicyID: {}, Сессия: {}", policyID, maskToken(sessionToken));
+        log.info("Оформление полиса. PolicyID: {}, AccID:: {}", policyID, maskToken(sessionToken));
 
         // Валидация входных параметров
         validateInputParams(sessionToken, policyID);
@@ -121,65 +121,7 @@ public class Issue {
         // Валидация ответа
         validateIssueResponse(response, sessionToken, policyID, skipAccIdCheck);
 
-        log.info("Полис успешно оформлен. PolicyID: {}, AccID: {}", policyID, response.getAccID());
-    }
-
-    /**
-     * Выполняет оформление полиса и возвращает объект ответа.
-     * <p>Используется, когда требуется дополнительная проверка полей ответа.</p>
-     *
-     * @param sessionToken токен сессии авторизованного пользователя
-     * @param policyID     идентификатор полиса
-     * @return объект {@link IssueResponse} с ответом от сервера
-     * @throws AssertionError если операция оформления не успешна
-     */
-    @Step("Оформление полиса c policyID = {policyID} (с возвратом ответа)")
-    public static IssueResponse issuePolicyAndGetResponse(String sessionToken, String policyID) {
-        log.info("Оформление полиса с возвратом ответа. PolicyID: {}", policyID);
-
-        validateInputParams(sessionToken, policyID);
-
-        IssueRequest request = IssueRequest.builder()
-                .policyID(policyID)
-                .build();
-
-        IssueResponse response = given()
-                .baseUri(ConstantValues.BASE_URL)
-                .header("sessionToken", sessionToken)
-                .contentType(ContentType.JSON)
-                .body(request)
-                .filter(new AllureRestAssured())
-        .when()
-                .post(ConstantValues.ISSUE_ENDPOINT)
-        .then()
-                .statusCode(200)
-                .extract()
-                .as(IssueResponse.class);
-
-        validateIssueResponse(response, sessionToken, policyID, false);
-
-        return response;
-    }
-
-    /**
-     * Проверяет, был ли полис успешно оформлен.
-     *
-     * @param response объект {@link IssueResponse} от сервера
-     * @return true, если оформление успешно (нет ошибок)
-     */
-    public static boolean isIssueSuccessful(IssueResponse response) {
-        if (response == null) {
-            return false;
-        }
-
-        boolean hasNoErrors = response.getErrors() == null
-                || response.getErrors().getErrors() == null
-                || response.getErrors().getErrors().isEmpty();
-
-        boolean hasAccId = response.getAccID() != null && !response.getAccID().isEmpty();
-        boolean hasPolicyId = response.getPolicyID() != null && !response.getPolicyID().isEmpty();
-
-        return hasNoErrors && hasAccId && hasPolicyId;
+        log.info("Полис успешно оформлен. PolicyID: {}, AccID: {}", policyID, maskToken(response.getAccID()));
     }
 
     /**

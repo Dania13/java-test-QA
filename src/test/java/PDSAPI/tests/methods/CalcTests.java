@@ -1,4 +1,4 @@
-package PDSAPI.tests;
+package PDSAPI.tests.methods;
 
 import PDSAPI.actions.Auth;
 import PDSAPI.models.*;
@@ -21,12 +21,17 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-
+/**
+ * Тесты для проверки метода расчёта
+ */
 @Epic("Проверка API методов продукта")
 @Feature("Метод Расчёт")
 public class CalcTests {
     private String sessionToken;
 
+    /**
+     * Предустановка с авторизацией
+     */
     @BeforeEach
     @Step("Предустановка")
     public void setUp() {
@@ -36,6 +41,9 @@ public class CalcTests {
         );
     }
 
+    /**
+     * Позитивный тест расчта с передачей JSON
+     */
     @Test
     @Description("Успешный расчёт с передачей JSON")
     public void successCalc(){
@@ -162,14 +170,20 @@ public class CalcTests {
         ;
     }
 
+    /**
+     * Позитивный тест расчта с передачей объекта полиса
+     */
     @Test
     @Description("Успешный расчёт с передачей объекта")
     public void successCalcWithPOJO(){
 
+        // Название продукта
         Product product = new Product("Программа долгосрочных сбережений граждан (ПДС)");
 
+        // Создание списка параметров
         List<Parameter> parametsItems = new ArrayList<>();
 
+        // Параметры
         parametsItems.add(new Parameter("dogovor.vkladchikPol", "Возраст", "жен.", "Строка"));
         parametsItems.add(new Parameter("dogovor.vkladchikVozrast","Возраст вкладчика", 45,"Целое"));
         parametsItems.add(new Parameter("dogovor.dohodvmes", "Среднемесячный доход", 60000., "Вещественный"));
@@ -183,10 +197,13 @@ public class CalcTests {
         parametsItems.add(new Parameter("dogovor.godDohodnostInvestSredstv", "Годовая доходность инвестирования средств", 25., "Вещественный"));
         parametsItems.add(new Parameter("dogovor.predvRaschet", "Предварительный расчет", true, "Логический"));
 
+        // Передача параметров в список
         Parameters parameters = new Parameters(parametsItems);
 
+        // Риски
         Risk risks = new Risk("true", "Пенсионное накопление", 4000);
 
+        // Список рисков
         RiskInfo riskInfo = new RiskInfo(Collections.singletonList(risks));
 
         List<InsuranceObject> Objects = new ArrayList<>();
@@ -222,7 +239,10 @@ public class CalcTests {
                 .as(CalcResponse.class)
         ;
 
+        // Проверка, что в ответе есть calcID
         assertNotNull(response.getCalcPolicyResult().getCalcResults().getFirst().getPolicy().getCalcID());
+
+        // Проверка, что страховая премия больше нуля
         assert response.getCalcPolicyResult().getCalcResults().getFirst().getPolicy().getInsPremTotal() > 0;
     }
 

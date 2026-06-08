@@ -14,5 +14,8 @@ public class AttachResponse {
     private String accID;
 
     /** Идентификатор созданного документа в системе */
-    private int docID;
+    private Integer docID;
+
+    /** Объект с информацией об ошибках */
+    private Errors errors;
 }

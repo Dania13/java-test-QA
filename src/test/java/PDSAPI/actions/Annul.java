@@ -7,7 +7,8 @@ import PDSAPI.specs.ConstantValues;
 import io.qameta.allure.Step;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,8 +30,17 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class Annul {
 
+    private static final Logger log = LoggerFactory.getLogger(Annul.class);
+
     /** Причина аннулирования по умолчанию для тестов */
     private static final String DEFAULT_REASON = "Тестовое аннулирование";
+
+    /**
+     * Приватный конструктор для утилитарного класса.
+     */
+    private Annul() {
+        throw new UnsupportedOperationException("Utility class cannot be instantiated");
+    }
 
     /**
      * Выполняет аннулирование полиса по указанному идентификатору расчёта.
@@ -73,6 +83,8 @@ public class Annul {
      */
     @Step("Аннулирование полиса с calcID = {calcID} по причине: {reason}")
     public static void AnnulPolicy(String sessionToken, String calcID, String reason) {
+        log.info("Аннулирование полиса. calcID: {}, AccID: {}", calcID, maskToken(sessionToken));
+
         // Формирование запроса на аннулирование
         AnnulRequest request = AnnulRequest.builder()
                 .calcID(calcID)
@@ -93,31 +105,10 @@ public class Annul {
                 .extract()
                 .as(AnnulResponse.class);
 
+        // Валидация ответа
         validateResponse(response, calcID);
-    }
 
-    /**
-     * Выполняет аннулирование и возвращает raw Response для дополнительной проверки.
-     *
-     * @param sessionToken токен сессии
-     * @param calcID       идентификатор расчёта
-     * @return объект Response для дальнейшей валидации
-     */
-    @Step("Аннулирование полиса с calcID = {calcID} (сырой ответ)")
-    public static Response AnnulPolicyRaw(String sessionToken, String calcID) {
-        AnnulRequest request = AnnulRequest.builder()
-                .calcID(calcID)
-                .reason(DEFAULT_REASON)
-                .build();
-
-        return given()
-                .baseUri(ConstantValues.BASE_URL)
-                .header("sessionToken", sessionToken)
-                .contentType(ContentType.JSON)
-                .body(request)
-                .filter(new AllureRestAssured())
-        .when()
-                .post(ConstantValues.ANNUL_ENDPOINT);
+        log.info("Полис успешно аннулирован. calcID: {}, AccID: {}", calcID, maskToken(response.getAccID()));
     }
 
     /**
@@ -167,5 +158,12 @@ public class Annul {
 
         errorMessages.append(" [calcID: ").append(response.getCalcID()).append("]");
         return errorMessages.toString();
+    }
+
+    private static String maskToken(String token) {
+        if (token == null || token.length() <= 8) {
+            return "***";
+        }
+        return token.substring(0, 4) + "..." + token.substring(token.length() - 4);
     }
 }
