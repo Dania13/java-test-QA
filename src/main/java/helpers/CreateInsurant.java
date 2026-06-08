@@ -10,7 +10,7 @@ public class CreateInsurant {
     static Faker faker = new Faker(Locale.forLanguageTag("ru"));
     String INN = InnGenerator.getINNFL();
     String SNILS = SNILSGenerator.getSNILS(true);
-    Date birthDate = faker.date().birthday(0, 17);
+    Date birthDate = faker.date().birthday(18, 120);
 
     Address residenceAddress = new Address(340063, "Пермский край, Пермский р-н, с Гамово, ул. 50 лет Октября, д. 11", "Россия", "Пермский");
     Address factAddress = new Address(614520, "614520, Россия, Пермский край, Пермский р-н, п.Кукуштан , ул. Чапаева, д. 1", "Россия", "Пермский");
