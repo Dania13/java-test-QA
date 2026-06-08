@@ -44,48 +44,28 @@ jobs:
           continue-on-error: true
           with:
             ref: gh-pages
-            path: gh-pages
-        - name: Generate Allure report via Maven
+            path: previous-report
+        - name: Copy history to allure-results
           if: always()
           run: |
-            echo "=== Генерируем Allure отчёт ==="
-            mvn allure:report
-
-            echo "=== Проверяем результат ==="
-            ls -la target/site/allure-maven-plugin/
-
-            echo "=== Копируем историю из предыдущего отчёта ==="
-            if [ -d "gh-pages/history" ]; then
-              echo "Копируем историю из gh-pages/history"
-              mkdir -p target/site/allure-maven-plugin/history
-              cp -r gh-pages/history/* target/site/allure-maven-plugin/history/ || echo "Предупреждение: не удалось скопировать историю"
+            if [ -d "previous-report/history" ]; then
+              echo "✅ Найдена предыдущая история, копируем..."
+              mkdir -p target/allure-results/history
+              cp -r previous-report/history/* target/allure-results/history/
             else
-              echo "Папка gh-pages/history не найдена, создаём новую историю"
+              echo "⚠️ Предыдущая история не найдена, начинаем с нуля"
             fi
-
-            echo "=== Подготавливаем allure-history для деплоя ==="
-            mkdir -p allure-history
-            cp -r target/site/allure-maven-plugin/* allure-history/ || echo "ОШИБКА: не удалось скопировать отчёт!"
-
-            echo "=== Проверяем allure-history ==="
-            ls -la allure-history/
-            if [ -f "allure-history/index.html" ]; then
-              echo "✅ index.html найден, отчёт готов к публикации"
-            else
-              echo "❌ ОШИБКА: index.html не найден!"
-              exit 1
-            fi
-        - name: Check allure results
+        - name: Generate Allure report
           if: always()
-          run: |
-            ls -la target/allure-results/ || echo "No allure-results found"
+          run: mvn allure:report
         - name: Deploy report to GitHub Pages
           uses: peaceiris/actions-gh-pages@v4
-          if: ${{ always() }}
+          if: always()
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
             publish_branch: gh-pages
-            publish_dir: allure-history
+            publish_dir:  target/site/allure-maven-plugin
+            keep_files: true
 
   notification:
     if: always()
@@ -101,7 +81,7 @@ jobs:
             STATUS="😒 Провалилось :-("
           fi
           
-          MESSAGE="${STATUS} \nReport link: https://dania13.github.io/java-test-QA/}"  
+          MESSAGE="${STATUS} \nReport link: https://dania13.github.io/java-test-QA/"  
           
               # Экранируем для JSON: кавычки, слеши, переносы строк
           ESCAPED=$(echo "$MESSAGE" | jq -R -s '.')
