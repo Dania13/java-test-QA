@@ -1,0 +1,34 @@
+<div>POST to https://test.soglasie-vita.ru/PO.Insurance/services/partner/v1/attachDoc</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;calcID&quot;: &quot;0626_059472&quot;,
+    &quot;fileName&quot;: &quot;test.txt&quot;,
+    &quot;type&quot;: &quot;Согласие на доп. услугу&quot;,
+    &quot;comment&quot;: &quot;тестовый документ&quot;,
+    &quot;attachment&quot;: &quot;0KLQtdGB0YLQvtCy0YvQuSDQtNC+0LrRg9C80LXQvdGC&quot;
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Accept: */*</div>
+            <div>sessionToken: B1A96C65-4488-4841-A34A-94586CC93E82</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;https://test.soglasie-vita.ru/PO.Insurance/services/partner/v1/attachDoc&#39; -H &#39;Accept: */*&#39; -H &#39;sessionToken: B1A96C65-4488-4841-A34A-94586CC93E82&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;calcID&quot;: &quot;0626_059472&quot;,
+    &quot;fileName&quot;: &quot;test.txt&quot;,
+    &quot;type&quot;: &quot;Согласие на доп. услугу&quot;,
+    &quot;comment&quot;: &quot;тестовый документ&quot;,
+    &quot;attachment&quot;: &quot;0KLQtdGB0YLQvtCy0YvQuSDQtNC+0LrRg9C80LXQvdGC&quot;
+}&#39;
+    </div>
+
