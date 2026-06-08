@@ -48,7 +48,7 @@ public class CreateInsurant {
             .factAddress(factAddress)
             .firstName(faker.name().firstName())
             .lastName(faker.name().lastName())
-            .middleName("Ивановна")
+            .middleName(faker.name().nameWithMiddle())
             .isIP("false")
             .phone("+79997778866")
             .residenceAddress(residenceAddress)

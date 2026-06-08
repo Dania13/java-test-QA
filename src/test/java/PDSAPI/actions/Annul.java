@@ -10,6 +10,7 @@ import io.restassured.http.ContentType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static helpers.MaskParametsForLog.maskToken;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -158,12 +159,5 @@ public class Annul {
 
         errorMessages.append(" [calcID: ").append(response.getCalcID()).append("]");
         return errorMessages.toString();
-    }
-
-    private static String maskToken(String token) {
-        if (token == null || token.length() <= 8) {
-            return "***";
-        }
-        return token.substring(0, 4) + "..." + token.substring(token.length() - 4);
     }
 }

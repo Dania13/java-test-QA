@@ -95,18 +95,6 @@ public final class Auth {
         return newToken;
     }
 
-    /**
-     * Очищает кэш токена сессии.
-     * <p>Используется для принудительного сброса кэша, например,
-     * при смене пользователя или для тестов.</p>
-     */
-    @Step("Очистка кэша токена сессии")
-    public static void clearTokenCache() {
-        log.info("Очистка кэша токена сессии");
-        cachedSessionToken = null;
-        cachedUserLogin = null;
-        tokenExpiryTime = null;
-    }
 
     /**
      * Проверяет, действителен ли кэшированный токен.
@@ -159,60 +147,16 @@ public final class Auth {
      * @throws IllegalArgumentException если login или password пустые
      * @throws AssertionError если авторизация не успешна
      */
-    @Step("Выполнение авторизации пользователя: {login}")
+    @Step("Выполнение авторизации пользователя")
     public static String loginUser(String login, String password) {
         validateCredentials(login, password);
-        log.info("Авторизация пользователя: {}", login);
+        log.info("Авторизация пользователя");
 
         AuthResponse response = executeAuthRequest(login, password);
         validateAuthResponse(response);
 
-        log.info("Авторизация успешна для пользователя: {}", login);
+        log.info("Авторизация успешна для пользователя");
         return response.getSessionToken();
-    }
-
-    /**
-     * Выполняет авторизацию с заведомо неверными учетными данными.
-     * <p>Используется для негативного тестирования.</p>
-     *
-     * @param login    логин пользователя
-     * @param password неверный пароль
-     * @return сообщение об ошибке из ответа API
-     * @throws AssertionError если авторизация неожиданно успешна
-     */
-    @Step("Попытка авторизации с неверными данными: {login}")
-    public static String loginUserInvalid(String login, String password) {
-        log.info("Попытка авторизации с неверными данными: {}", login);
-
-        AuthRequest request = AuthRequest.builder()
-                .login(login)
-                .password(password)
-                .build();
-
-        AuthResponse response = given()
-                .baseUri(ConstantValues.BASE_URL)
-                .contentType(ContentType.JSON)
-                .body(request)
-                .filter(new AllureRestAssured())
-        .when()
-                .post(ConstantValues.AUTH_ENDPOINT)
-        .then()
-                .statusCode(200)
-                .extract()
-                .as(AuthResponse.class);
-
-        // Ожидаем, что авторизация не успешна
-        assertFalse(response.getSuccess(),
-                "Авторизация с неверными данными должна быть не успешной");
-        assertNull(response.getSessionToken(),
-                "При неверных данных sessionToken должен быть null");
-
-        String errorMessage = response.getMessage() != null
-                ? response.getMessage()
-                : "Сообщение об ошибке отсутствует";
-
-        log.debug("Получено сообщение об ошибке: {}", errorMessage);
-        return errorMessage;
     }
 
     /**
@@ -289,45 +233,10 @@ public final class Auth {
                 "При успешной авторизации sessionToken не должен быть пустым");
 
         // Проверка минимальной длины токена (обычно JWT или UUID)
-        if (response.getSessionToken().length() < 10) {
-            log.warn("sessionToken имеет необычно маленькую длину: {} символов",
+        if (response.getSessionToken().length() != 36) {
+            log.warn("sessionToken не равно стандартным 36 символам, а имеет {}",
                     response.getSessionToken().length());
         }
     }
 
-    /**
-     * Возвращает информацию о состоянии кэша токена.
-     * <p>Используется для отладки и мониторинга.</p>
-     *
-     * @return строка с информацией о кэше
-     */
-    public static String getCacheStatus() {
-        if (cachedSessionToken == null) {
-            return "Кэш пуст";
-        }
-
-        boolean expired = tokenExpiryTime != null && Instant.now().isAfter(tokenExpiryTime);
-        long minutesLeft = tokenExpiryTime != null
-                ? Duration.between(Instant.now(), tokenExpiryTime).toMinutes()
-                : 0;
-
-        return String.format("Пользователь: %s, Токен: %s, Истекает через: %d минут, Истек: %s",
-                cachedUserLogin,
-                maskToken(cachedSessionToken),
-                minutesLeft,
-                expired ? "Да" : "Нет");
-    }
-
-    /**
-     * Маскирует токен для безопасного логирования.
-     *
-     * @param token оригинальный токен
-     * @return замаскированный токен (показывает только первые 6 и последние 4 символа)
-     */
-    private static String maskToken(String token) {
-        if (token == null || token.length() <= 10) {
-            return "***";
-        }
-        return token.substring(0, 6) + "..." + token.substring(token.length() - 4);
-    }
 }

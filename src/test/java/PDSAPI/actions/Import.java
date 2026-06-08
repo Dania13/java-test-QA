@@ -7,10 +7,10 @@ import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
-import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static helpers.MaskParametsForLog.maskToken;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -114,33 +114,6 @@ public class Import {
         return response;
     }
 
-    /**
-     * Выполняет импорт полиса с дополнительной проверкой на наличие ошибок.
-     * <p>В отличие от метода {@link #importPolicy(String, PolicyImport)}, этот метод
-     * также проверяет наличие ошибок (errors) в ответе, не только предупреждений.</p>
-     *
-     * @param sessionToken токен сессии авторизованного пользователя
-     * @param policy       объект полиса для импорта
-     * @return объект {@link ImportResponse} с результатами импорта
-     * @throws AssertionError если присутствуют ошибки или предупреждения
-     */
-    @Step("Сохранение полиса с расчётом (строгая проверка)")
-    public static ImportResponse importPolicyStrict(String sessionToken, PolicyImport policy) {
-        ImportResponse response = importPolicy(sessionToken, policy);
-
-        // Дополнительная проверка на наличие ошибок
-        if (response.getErrors() != null && response.getErrors().getErrors() != null
-                && !response.getErrors().getErrors().isEmpty()) {
-            StringBuilder errorMsg = new StringBuilder("Ошибки при импорте полиса:\n");
-            for (Error error : response.getErrors().getErrors()) {
-                errorMsg.append("- ").append(error.getMessage())
-                        .append(": ").append(error.getDetailMessage()).append("\n");
-            }
-            throw new AssertionError(errorMsg.toString());
-        }
-
-        return response;
-    }
 
     /**
      * Извлекает идентификатор расчёта (calcID) из ответа импорта.
@@ -211,43 +184,6 @@ public class Import {
         return number;
     }
 
-    /**
-     * Извлекает все идентификаторы из ответа импорта одновременно.
-     * <p>Удобный метод для получения всех идентификаторов за один вызов.</p>
-     *
-     * @param response объект {@link ImportResponse} от успешного импорта
-     * @return объект {@link ImportIdentifiers} со всеми идентификаторами
-     */
-    @Step("Получение всех идентификаторов из ответа импорта")
-    public static ImportIdentifiers getAllIdentifiers(ImportResponse response) {
-        return ImportIdentifiers.builder()
-                .calcId(getCalcId(response))
-                .policyId(getPolicyId(response))
-                .policyNumber(getNumber(response))
-                .build();
-    }
-
-    /**
-     * Проверяет, был ли импорт успешным.
-     *
-     * @param response объект {@link ImportResponse}
-     * @return true, если импорт успешен (нет ошибок и предупреждений)
-     */
-    public static boolean isImportSuccessful(ImportResponse response) {
-        if (response == null || response.getPolicy() == null) {
-            return false;
-        }
-
-        boolean hasNoErrors = response.getErrors() == null
-                || response.getErrors().getErrors() == null
-                || response.getErrors().getErrors().isEmpty();
-
-        boolean hasNoWarnings = response.getWarnings() == null
-                || response.getWarnings().getErrors() == null
-                || response.getWarnings().getErrors().isEmpty();
-
-        return hasNoErrors && hasNoWarnings;
-    }
 
     /**
      * Валидирует ответ импорта на наличие предупреждений.
@@ -275,72 +211,9 @@ public class Import {
 
             warningMessages.append("CalcID: ").append(response.getPolicy().getCalcID());
 
-            log.warn("Импорт выполнен с предупреждениями: {}", warningMessages.toString());
+            log.warn("Импорт выполнен с предупреждениями: {}", warningMessages);
             throw new AssertionError(warningMessages.toString().trim());
         }
     }
 
-    /**
-     * Маскирует токен для безопасного логирования.
-     *
-     * @param token оригинальный токен
-     * @return замаскированный токен
-     */
-    private static String maskToken(String token) {
-        if (token == null || token.length() <= 8) {
-            return "***";
-        }
-        return token.substring(0, 4) + "..." + token.substring(token.length() - 4);
-    }
-
-    /**
-     * Вспомогательный класс для хранения всех идентификаторов полиса.
-     */
-    @Getter
-    public static class ImportIdentifiers {
-        private final String calcId;
-        private final String policyId;
-        private final String policyNumber;
-
-        private ImportIdentifiers(String calcId, String policyId, String policyNumber) {
-            this.calcId = calcId;
-            this.policyId = policyId;
-            this.policyNumber = policyNumber;
-        }
-
-        public static Builder builder() {
-            return new Builder();
-        }
-
-        @Override
-        public String toString() {
-            return String.format("ImportIdentifiers{calcId='%s', policyId='%s', policyNumber='%s'}",
-                    calcId, policyId, policyNumber);
-        }
-
-        public static class Builder {
-            private String calcId;
-            private String policyId;
-            private String policyNumber;
-
-            public Builder calcId(String calcId) {
-                this.calcId = calcId;
-                return this;
-            }
-
-            public Builder policyId(String policyId) {
-                this.policyId = policyId;
-                return this;
-            }
-
-            public Builder policyNumber(String policyNumber) {
-                this.policyNumber = policyNumber;
-                return this;
-            }
-
-            public ImportIdentifiers build() {
-                return new ImportIdentifiers(calcId, policyId, policyNumber);
-            }
-        }
-    }
 }

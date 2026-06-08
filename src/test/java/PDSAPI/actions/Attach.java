@@ -9,6 +9,7 @@ import io.restassured.http.ContentType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static helpers.MaskParametsForLog.maskToken;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -147,7 +148,7 @@ public class Attach {
      * @throws IllegalArgumentException если sessionToken, calcID или documents равны null
      * @see Attach#AttachDocs(String, String, String) для деталей прикрепления отдельного документа
      */
-    @Step("Прикрепление нескольких документов")
+    @Step("Прикрепление документов к полису")
     public static void AttachDocs(String sessionToken, String calcID, String[] documents) {
 
         for (String docType : documents) {
@@ -189,16 +190,4 @@ public class Attach {
                         response.getDocID(), calcID, typeDoc));
     }
 
-    /**
-     * Маскирует токен для безопасного логирования.
-     *
-     * @param token оригинальный токен
-     * @return замаскированный токен
-     */
-    private static String maskToken(String token) {
-        if (token == null || token.length() <= 8) {
-            return "***";
-        }
-        return token.substring(0, 4) + "..." + token.substring(token.length() - 4);
-    }
 }
