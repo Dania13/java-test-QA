@@ -1,0 +1,168 @@
+<div>POST to https://test.soglasie-vita.ru/PO.Insurance/services/partner/v1/import</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;policy&quot;: {
+        &quot;currCode&quot;: &quot;RUR&quot;,
+        &quot;insCompanyName&quot;: &quot;ООО СК «Согласие-Вита»&quot;,
+        &quot;comment&quot;: &quot;Получили идеальный расчёт&quot;,
+        &quot;insurant&quot;: {
+            &quot;physical&quot;: {
+                &quot;birthDate&quot;: &quot;1950-04-17T12:00:00.000Z&quot;,
+                &quot;birthplace&quot;: &quot;Гор. Лермонтов&quot;,
+                &quot;citizenship&quot;: &quot;Россия&quot;,
+                &quot;document&quot;: {
+                    &quot;dateOfIssue&quot;: &quot;2022-06-05T12:00:00.000Z&quot;,
+                    &quot;kodPodrazd&quot;: &quot;001-001&quot;,
+                    &quot;number&quot;: &quot;865673&quot;,
+                    &quot;placeOfIssue&quot;: &quot;ОВД1&quot;,
+                    &quot;series&quot;: &quot;9364&quot;,
+                    &quot;type&quot;: &quot;ПАСПОРТ_РФ&quot;
+                },
+                &quot;email&quot;: &quot;qa@virtusystems.ru&quot;,
+                &quot;factAddress&quot;: {
+                    &quot;country&quot;: &quot;Россия&quot;,
+                    &quot;region&quot;: &quot;Пермский&quot;,
+                    &quot;addressText&quot;: &quot;614520, Россия, Пермский край, Пермский р-н, п.Кукуштан , ул. Чапаева, д. 1&quot;,
+                    &quot;postIndex&quot;: 614520
+                },
+                &quot;firstName&quot;: &quot;Тамара&quot;,
+                &quot;lastName&quot;: &quot;Носов&quot;,
+                &quot;middleName&quot;: &quot;Ивановна&quot;,
+                &quot;isIP&quot;: &quot;false&quot;,
+                &quot;phone&quot;: &quot;+79997778866&quot;,
+                &quot;residenceAddress&quot;: {
+                    &quot;country&quot;: &quot;Россия&quot;,
+                    &quot;region&quot;: &quot;Пермский&quot;,
+                    &quot;addressText&quot;: &quot;Пермский край, Пермский р-н, с Гамово, ул. 50 лет Октября, д. 11&quot;,
+                    &quot;postIndex&quot;: 340063
+                },
+                &quot;sex&quot;: &quot;F&quot;,
+                &quot;snils&quot;: &quot;552-145-002 46&quot;,
+                &quot;inn&quot;: &quot;347249698301&quot;
+            },
+            &quot;type&quot;: &quot;ФЛ&quot;
+        },
+        &quot;insuranceObjects&quot;: {
+            &quot;objects&quot;: [
+                {
+                    &quot;name&quot;: &quot;Объект страхования&quot;,
+                    &quot;parameters&quot;: null,
+                    &quot;riskInfo&quot;: {
+                        &quot;risks&quot;: [
+                            {
+                                &quot;insured&quot;: &quot;true&quot;,
+                                &quot;name&quot;: &quot;Пенсионное накопление&quot;,
+                                &quot;insPrem&quot;: 4000
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        &quot;parameters&quot;: {
+            &quot;parameters&quot;: [
+                {
+                    &quot;code&quot;: &quot;dogovor.predvRaschet&quot;,
+                    &quot;name&quot;: &quot;Предварительный расчет&quot;,
+                    &quot;type&quot;: &quot;Логический&quot;,
+                    &quot;boolValue&quot;: false
+                }
+            ]
+        },
+        &quot;product&quot;: {
+            &quot;name&quot;: &quot;Программа долгосрочных сбережений граждан (ПДС)&quot;
+        }
+    }
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Accept: */*</div>
+            <div>sessionToken: D0718088-54E7-4F3D-A34D-C613EAC81501</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;https://test.soglasie-vita.ru/PO.Insurance/services/partner/v1/import&#39; -H &#39;Accept: */*&#39; -H &#39;sessionToken: D0718088-54E7-4F3D-A34D-C613EAC81501&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;policy&quot;: {
+        &quot;currCode&quot;: &quot;RUR&quot;,
+        &quot;insCompanyName&quot;: &quot;ООО СК «Согласие-Вита»&quot;,
+        &quot;comment&quot;: &quot;Получили идеальный расчёт&quot;,
+        &quot;insurant&quot;: {
+            &quot;physical&quot;: {
+                &quot;birthDate&quot;: &quot;1950-04-17T12:00:00.000Z&quot;,
+                &quot;birthplace&quot;: &quot;Гор. Лермонтов&quot;,
+                &quot;citizenship&quot;: &quot;Россия&quot;,
+                &quot;document&quot;: {
+                    &quot;dateOfIssue&quot;: &quot;2022-06-05T12:00:00.000Z&quot;,
+                    &quot;kodPodrazd&quot;: &quot;001-001&quot;,
+                    &quot;number&quot;: &quot;865673&quot;,
+                    &quot;placeOfIssue&quot;: &quot;ОВД1&quot;,
+                    &quot;series&quot;: &quot;9364&quot;,
+                    &quot;type&quot;: &quot;ПАСПОРТ_РФ&quot;
+                },
+                &quot;email&quot;: &quot;qa@virtusystems.ru&quot;,
+                &quot;factAddress&quot;: {
+                    &quot;country&quot;: &quot;Россия&quot;,
+                    &quot;region&quot;: &quot;Пермский&quot;,
+                    &quot;addressText&quot;: &quot;614520, Россия, Пермский край, Пермский р-н, п.Кукуштан , ул. Чапаева, д. 1&quot;,
+                    &quot;postIndex&quot;: 614520
+                },
+                &quot;firstName&quot;: &quot;Тамара&quot;,
+                &quot;lastName&quot;: &quot;Носов&quot;,
+                &quot;middleName&quot;: &quot;Ивановна&quot;,
+                &quot;isIP&quot;: &quot;false&quot;,
+                &quot;phone&quot;: &quot;+79997778866&quot;,
+                &quot;residenceAddress&quot;: {
+                    &quot;country&quot;: &quot;Россия&quot;,
+                    &quot;region&quot;: &quot;Пермский&quot;,
+                    &quot;addressText&quot;: &quot;Пермский край, Пермский р-н, с Гамово, ул. 50 лет Октября, д. 11&quot;,
+                    &quot;postIndex&quot;: 340063
+                },
+                &quot;sex&quot;: &quot;F&quot;,
+                &quot;snils&quot;: &quot;552-145-002 46&quot;,
+                &quot;inn&quot;: &quot;347249698301&quot;
+            },
+            &quot;type&quot;: &quot;ФЛ&quot;
+        },
+        &quot;insuranceObjects&quot;: {
+            &quot;objects&quot;: [
+                {
+                    &quot;name&quot;: &quot;Объект страхования&quot;,
+                    &quot;parameters&quot;: null,
+                    &quot;riskInfo&quot;: {
+                        &quot;risks&quot;: [
+                            {
+                                &quot;insured&quot;: &quot;true&quot;,
+                                &quot;name&quot;: &quot;Пенсионное накопление&quot;,
+                                &quot;insPrem&quot;: 4000
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        &quot;parameters&quot;: {
+            &quot;parameters&quot;: [
+                {
+                    &quot;code&quot;: &quot;dogovor.predvRaschet&quot;,
+                    &quot;name&quot;: &quot;Предварительный расчет&quot;,
+                    &quot;type&quot;: &quot;Логический&quot;,
+                    &quot;boolValue&quot;: false
+                }
+            ]
+        },
+        &quot;product&quot;: {
+            &quot;name&quot;: &quot;Программа долгосрочных сбережений граждан (ПДС)&quot;
+        }
+    }
+}&#39;
+    </div>
+
