@@ -355,12 +355,12 @@ mvn clean test
 
 ### Запуск конкретного тестового класса
 ```bash
-mvn clean test -Dtest=PolicyLifecycleTest
+mvn clean test -Dtest=IssueTests
 ```
 
 ### Запуск регрессионных тестов (e2e)
 ```bash
-А
+mvn clean test -Dgroups="regression"
 ```
 
 ---
