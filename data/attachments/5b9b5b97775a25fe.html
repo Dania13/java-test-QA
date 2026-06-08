@@ -1,0 +1,817 @@
+<div>Status code 200 </div>
+
+
+<h4>Body</h4>
+<div>
+    <pre class="preformated-text">
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;script&gt;
+            ;(function (w, d, s, l, i) {
+                w[l] = w[l] || []
+                w[l].push({
+                    &#39;gtm.start&#39;: new Date().getTime(),
+                    event: &#39;gtm.js&#39;,
+                })
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != &#39;dataLayer&#39; ? &#39;&amp;amp;l=&#39; + l : &#39;&#39;
+                j.async = true
+                j.src = &#39;https://www.googletagmanager.com/gtm.js?id=&#39; + i + dl
+                f.parentNode.insertBefore(j, f)
+            })(window, document, &#39;script&#39;, &#39;dataLayer&#39;, &#39;GTM-KB622KF&#39;)
+        &lt;/script&gt;
+    &lt;script src=&quot;https://analytics.ahrefs.com/analytics.js&quot; data-key=&quot;JuVKDRQ5EM9I8yXFMoHuXw&quot; async=&quot;async&quot;/&gt;
+    &lt;script src=&quot;https://js.stripe.com/v3/&quot;/&gt;
+    &lt;meta charset=&quot;utf-8&quot;/&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;/&gt;
+    &lt;meta name=&quot;description&quot; content=&quot;API documentation for ReqRes. Quickstart guide, endpoint reference, authentication, OpenAPI spec, and code examples for testing and backend development.&quot;/&gt;
+    &lt;title&gt;API docs | ReqRes | ReqRes&lt;/title&gt;
+    &lt;link rel=&quot;icon&quot; type=&quot;image/png&quot; href=&quot;/img/logo-dark.jpg&quot; alt=&quot;ReqRes Logo&quot;/&gt;
+    &lt;link rel=&quot;canonical&quot; href=&quot;https://reqres.in/docs&quot;/&gt;
+    &lt;meta property=&quot;og:title&quot; content=&quot;ReqRes API docs&quot;/&gt;
+    &lt;meta property=&quot;og:description&quot; content=&quot;API documentation for ReqRes. Quickstart guide, endpoint reference, authentication, OpenAPI spec, and code examples for testing and backend development.&quot;/&gt;
+    &lt;meta property=&quot;og:image&quot; content=&quot;https://reqres.in/img/reqres-og-2x.png&quot;/&gt;
+    &lt;meta property=&quot;og:url&quot; content=&quot;https://reqres.in/docs&quot;/&gt;
+    &lt;meta property=&quot;og:site_name&quot; content=&quot;ReqRes&quot;/&gt;
+    &lt;meta property=&quot;og:type&quot; content=&quot;website&quot;/&gt;
+    &lt;meta name=&quot;twitter:card&quot; content=&quot;summary_large_image&quot;/&gt;
+    &lt;meta name=&quot;twitter:title&quot; content=&quot;ReqRes API docs&quot;/&gt;
+    &lt;meta name=&quot;twitter:description&quot; content=&quot;API documentation for ReqRes. Quickstart guide, endpoint reference, authentication, OpenAPI spec, and code examples for testing and backend development.&quot;/&gt;
+    &lt;meta name=&quot;twitter:image&quot; content=&quot;https://reqres.in/img/reqres-og-2x.png&quot;/&gt;
+    &lt;meta name=&quot;theme-color&quot; content=&quot;#4f46e5&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/app.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/tailwind.css&quot;/&gt;
+    &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin=&quot;crossorigin&quot; _=&quot;_&quot;/&gt;
+    &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;amp;family=JetBrains+Mono:wght@400;500;600&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/design.css&quot;/&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        function resolvePdSDKFunction(e,...t){return new Promise((n,i)=&amp;gt;{!function r(){window.PDPromotionUISDK&amp;amp;&amp;amp;&quot;function&quot;==typeof window.PDPromotionUISDK[e]?window.PDPromotionUISDK[e](...t).then(n).catch(i):setTimeout(r,100)}()})}!function(e,t,n,i,r,a,c){e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(Array.prototype.slice.call(arguments))},a=t.createElement(n),c=t.getElementsByTagName(n)[0],a.id=&quot;parity-deals-sdk&quot;,a.async=1,a.src=r,c.parentNode.insertBefore(a,c)}(window,document,&quot;script&quot;,&quot;PDPromotionUISDK&quot;,&quot;https://cdn.paritydeals.com/js-promotions-ui/1.0.0/js-promotions-ui.umd.js&quot;),window.PDPromotionUI={init:function(e){return resolvePdSDKFunction(&quot;init&quot;,e)},getUpdatedPrice:function(e,t){return resolvePdSDKFunction(&quot;getUpdatedPrice&quot;,e,t)},updatePriceElement:function(e,t){return resolvePdSDKFunction(&quot;updatePriceElement&quot;,e,t)},updatePrice:function(e){return resolvePdSDKFunction(&quot;updatePrice&quot;,e)}};
+        &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body class=&quot;dark-site bg-black text-white&quot;&gt;
+    &lt;script&gt;
+            (function () {
+                try {
+                    if (/(?:^|;\s*)rr_signed_in=1(?:;|$)/.test(document.cookie)) {
+                        document.documentElement.classList.add(&#39;rr-signed-in&#39;);
+                    }
+                } catch (e) { /* ignore */ }
+            })();
+        &lt;/script&gt;
+    &lt;div id=&quot;rr-welcome-back-banner&quot; style=&quot;display: none; background: rgba(16, 185, 129, 0.08); border-bottom: 1px solid rgba(16, 185, 129, 0.18); position: relative; z-index: 60;&quot;&gt;
+      &lt;div class=&quot;max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between gap-3 text-sm&quot;&gt;
+        &lt;span style=&quot;color: rgba(255,255,255,0.78);&quot;&gt;
+                    Welcome back - you&#39;re signed in.
+                &lt;/span&gt;
+        &lt;a shape=&quot;rect&quot; href=&quot;https://app.reqres.in/dashboard&quot; style=&quot;color: #6ee7b7; font-weight: 500; text-decoration: none;&quot;&gt;
+                    Open your dashboard →
+                &lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;style&gt;
+            html.rr-signed-in #rr-welcome-back-banner { display: block !important; }
+        &lt;/style&gt;
+    &lt;main role=&quot;main&quot;&gt;
+      &lt;style&gt;
+    .rr-header-nav {
+        gap: 1.75rem;
+    }
+    .rr-header-link {
+        position: relative;
+        font-size: 14px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.65);
+        text-decoration: none;
+        padding: 6px 0;
+        transition: color 180ms ease, transform 180ms ease;
+    }
+    .rr-header-link:hover,
+    .rr-header-link:focus-visible {
+        color: rgba(255, 255, 255, 0.95);
+        outline: none;
+        transform: translateY(-1px);
+    }
+    .rr-header-link::after {
+        content: &#39;&#39;;
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(
+            90deg,
+            rgba(52, 211, 153, 0),
+            rgba(52, 211, 153, 0.7),
+            rgba(52, 211, 153, 0)
+        );
+        transform: scaleX(0);
+        transform-origin: center;
+        opacity: 0;
+        transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+            opacity 220ms ease;
+    }
+    .rr-header-link:hover::after,
+    .rr-header-link:focus-visible::after {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+    .rr-header-link.is-active {
+        color: rgba(255, 255, 255, 0.98);
+    }
+    .rr-header-link.is-active::after {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .rr-header-link,
+        .rr-header-link::after {
+            transition: none !important;
+        }
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+&lt;/style&gt;
+      &lt;div class=&quot;book-promo-banner&quot; id=&quot;book-banner&quot; style=&quot;display:none;&quot;&gt;
+        &lt;div class=&quot;book-promo-inner&quot;&gt;
+          &lt;span class=&quot;book-promo-text&quot;&gt;
+
+            New from the maker of ReqRes →
+                        &lt;a shape=&quot;rect&quot; class=&quot;book-promo-link&quot; href=&quot;https://benhowdle.im/first-cto-playbook?utm_source=reqres&amp;amp;utm_medium=banner&amp;amp;utm_campaign=launch&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;The First CTO: a playbook for first-time startup CTOs&lt;/a&gt;
+          &lt;/span&gt;
+          &lt;button type=&quot;button&quot; class=&quot;book-promo-close&quot; aria-label=&quot;Dismiss&quot; onclick=&quot;(function(e){e.closest(&#39;.book-promo-banner&#39;).style.display=&#39;none&#39;;try{sessionStorage.setItem(&#39;rr_book_banner_dismissed&#39;,&#39;1&#39;)}catch(x){}})(this)&quot;&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;style&gt;
+    .book-promo-banner {
+        background: rgba(255,255,255,0.03);
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .book-promo-inner {
+        max-width: 72rem;
+        margin: 0 auto;
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+    }
+    .book-promo-text {
+        font-size: 13px;
+        color: rgba(255,255,255,0.55);
+    }
+    .book-promo-link {
+        color: #6ee7b7;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    .book-promo-link:hover {
+        color: #a7f3d0;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+    .book-promo-close {
+        background: none;
+        border: none;
+        color: rgba(255,255,255,0.3);
+        font-size: 18px;
+        cursor: pointer;
+        padding: 0 4px;
+        line-height: 1;
+        flex-shrink: 0;
+    }
+    .book-promo-close:hover { color: rgba(255,255,255,0.6); }
+&lt;/style&gt;
+      &lt;script&gt;
+    (function(){
+        try {
+            if (sessionStorage.getItem(&#39;rr_book_banner_dismissed&#39;) === &#39;1&#39;) return;
+        } catch(e) {}
+        var b = document.getElementById(&#39;book-banner&#39;);
+        if (b) b.style.display = &#39;block&#39;;
+    })();
+&lt;/script&gt;
+      &lt;nav class=&quot;sticky top-0 z-50 backdrop-blur bg-black/40 border-b border-white/5&quot;&gt;
+        &lt;div class=&quot;max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-3&quot;&gt;
+          &lt;div class=&quot;hidden sm:flex items-center justify-between&quot;&gt;
+            &lt;a shape=&quot;rect&quot; class=&quot;flex items-center gap-2.5 group&quot; href=&quot;/&quot;/&gt;
+            &lt;div class=&quot;w-[30px] h-[30px] rounded-lg border border-emerald-400/15 bg-emerald-400/[0.04] flex items-center justify-center text-[13px] font-bold text-emerald-300/70 tracking-tight transition-all duration-300 group-hover:border-emerald-400/25 group-hover:bg-emerald-400/[0.07]&quot;&gt;R&lt;/div&gt;
+            &lt;span class=&quot;text-[15px] font-medium text-white/75 tracking-tight&quot;&gt;
+Req              &lt;span class=&quot;text-emerald-300/60&quot;&gt;Res&lt;/span&gt;
+            &lt;/span&gt;
+            &lt;div class=&quot;flex items-center rr-header-nav&quot;&gt;
+              &lt;a shape=&quot;rect&quot; class=&quot;rr-header-link&quot; href=&quot;/#pricing&quot;&gt;Pricing&lt;/a&gt;
+              &lt;a shape=&quot;rect&quot; class=&quot;rr-header-link&quot; href=&quot;/teams&quot;&gt;Teams&lt;/a&gt;
+              &lt;a shape=&quot;rect&quot; class=&quot;rr-header-link&quot; href=&quot;/blog&quot;&gt;Blog&lt;/a&gt;
+              &lt;a shape=&quot;rect&quot; class=&quot;rr-header-link is-active&quot; href=&quot;/docs&quot; data-visitors-event=&quot;Docs CTA&quot; data-visitors-source=&quot;nav&quot;&gt;Docs&lt;/a&gt;
+              &lt;a shape=&quot;rect&quot; class=&quot;rr-header-link&quot; href=&quot;/about&quot;&gt;About&lt;/a&gt;
+            &lt;/div&gt;
+            &lt;a shape=&quot;rect&quot; class=&quot;inline-flex items-center gap-1.5 px-4 py-1.5 text-[13px] font-medium text-white/60 border border-white/[0.08] rounded-lg bg-white/[0.02] hover:border-white/[0.15] hover:text-white/80 hover:bg-white/[0.04] transition-all duration-300&quot; href=&quot;https://app.reqres.in/&quot; data-visitors-event=&quot;Signup CTA&quot; data-visitors-source=&quot;nav&quot;&gt;
+
+                Get Started
+                              &lt;svg class=&quot;w-3 h-3&quot; viewbox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;
+                &lt;polyline points=&quot;9 18 15 12 9 6&quot;/&gt;
+              &lt;/svg&gt;
+            &lt;/a&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;sm:hidden space-y-2&quot;&gt;
+            &lt;div class=&quot;flex items-center justify-between&quot;&gt;
+              &lt;a shape=&quot;rect&quot; class=&quot;flex items-center gap-2 group shrink-0&quot; href=&quot;/&quot;/&gt;
+              &lt;div class=&quot;w-[28px] h-[28px] rounded-lg border border-emerald-400/15 bg-emerald-400/[0.04] flex items-center justify-center text-[12px] font-bold text-emerald-300/70 tracking-tight&quot;&gt;R&lt;/div&gt;
+              &lt;span class=&quot;text-[14px] font-medium text-white/75 tracking-tight&quot;&gt;
+Req                &lt;span class=&quot;text-emerald-300/60&quot;&gt;Res&lt;/span&gt;
+              &lt;/span&gt;
+              &lt;a shape=&quot;rect&quot; class=&quot;inline-flex items-center gap-1.5 px-3 py-1.5 text-[13px] font-medium text-white/60 border border-white/[0.08] rounded-lg bg-white/[0.02] hover:border-white/[0.15] hover:text-white/80 hover:bg-white/[0.04] transition-all duration-300 shrink-0&quot; href=&quot;https://app.reqres.in/&quot; data-visitors-event=&quot;Signup CTA&quot; data-visitors-source=&quot;nav&quot;&gt;
+
+                    Get Started
+                                    &lt;svg class=&quot;w-3 h-3&quot; viewbox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;
+                  &lt;polyline points=&quot;9 18 15 12 9 6&quot;/&gt;
+                &lt;/svg&gt;
+              &lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;flex items-center gap-4 overflow-x-auto -mx-4 px-4 scrollbar-hide&quot; style=&quot;-webkit-overflow-scrolling: touch; scrollbar-width: none;&quot;&gt;
+              &lt;a shape=&quot;rect&quot; class=&quot;rr-header-link !text-[13px] shrink-0&quot; href=&quot;/#pricing&quot;&gt;Pricing&lt;/a&gt;
+              &lt;a shape=&quot;rect&quot; class=&quot;rr-header-link !text-[13px] shrink-0&quot; href=&quot;/teams&quot;&gt;Teams&lt;/a&gt;
+              &lt;a shape=&quot;rect&quot; class=&quot;rr-header-link !text-[13px] shrink-0&quot; href=&quot;/blog&quot;&gt;Blog&lt;/a&gt;
+              &lt;a shape=&quot;rect&quot; class=&quot;rr-header-link !text-[13px] shrink-0 is-active&quot; href=&quot;/docs&quot; data-visitors-event=&quot;Docs CTA&quot; data-visitors-source=&quot;nav&quot;&gt;Docs&lt;/a&gt;
+              &lt;a shape=&quot;rect&quot; class=&quot;rr-header-link !text-[13px] shrink-0&quot; href=&quot;/about&quot;&gt;About&lt;/a&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/nav&gt;
+      &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css&quot;/&gt;
+      &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js&quot;/&gt;
+      &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js&quot;/&gt;
+      &lt;style&gt;
+    .docs-code pre {
+        margin: 0;
+        overflow-x: auto;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255,255,255,0.15) transparent;
+    }
+    .docs-code pre::-webkit-scrollbar { height: 6px; }
+    .docs-code pre::-webkit-scrollbar-track { background: transparent; }
+    .docs-code pre::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+    .docs-code pre code.hljs {
+        background: transparent;
+        padding: 0;
+        font-size: 12px;
+        line-height: 1.6;
+    }
+&lt;/style&gt;
+      &lt;section class=&quot;relative overflow-hidden bg-black text-white&quot;&gt;
+        &lt;div class=&quot;absolute inset-0 bg-[radial-gradient(80%_80%_at_50%_15%,rgba(99,102,241,0.18)_0%,rgba(0,0,0,0)_60%)]&quot;/&gt;
+        &lt;div class=&quot;relative max-w-6xl mx-auto px-6 md:px-8 py-10 md:py-14&quot;&gt;
+          &lt;p class=&quot;text-[11px] tracking-[0.24em] uppercase text-white/45 font-semibold&quot;&gt;
+            Docs
+        &lt;/p&gt;
+          &lt;h1 class=&quot;mt-4 text-4xl md:text-6xl font-semibold tracking-tight leading-[0.95]&quot;&gt;
+            API docs for QA automation and backend development
+        &lt;/h1&gt;
+          &lt;p class=&quot;mt-4 text-white/70 max-w-3xl&quot;&gt;
+            This hub is for QA, automation, and frontend teams who need a
+            reliable API - for testing or production. It includes quickstart steps,
+            OpenAPI reference, and practical guidance for Postman, Playwright,
+            and CI runs.
+        &lt;/p&gt;
+          &lt;div class=&quot;mt-6 flex flex-col sm:flex-row gap-3&quot;&gt;
+            &lt;a shape=&quot;rect&quot; class=&quot;inline-flex items-center justify-center rounded-xl bg-white text-black px-5 py-3 text-sm font-semibold shadow-sm hover:bg-white/90 motion-safe:transition motion-safe:duration-200&quot; href=&quot;https://app.reqres.in/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;
+                Open the dashboard
+            &lt;/a&gt;
+            &lt;a shape=&quot;rect&quot; class=&quot;inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 motion-safe:transition motion-safe:duration-200&quot; href=&quot;https://app.reqres.in/examples/notes-app&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;
+                See Notes example
+            &lt;/a&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;mt-5 flex flex-wrap gap-2 text-[11px] text-white/60&quot;&gt;
+            &lt;span class=&quot;inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1&quot;&gt;Stable payloads&lt;/span&gt;
+            &lt;span class=&quot;inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1&quot;&gt;Logs built-in&lt;/span&gt;
+            &lt;span class=&quot;inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1&quot;&gt;CORS enabled&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+      &lt;div class=&quot;hidden lg:block sticky top-[72px] z-40 backdrop-blur bg-black/60 border-b border-white/5&quot;&gt;
+        &lt;div class=&quot;max-w-6xl mx-auto px-6 md:px-8 py-3 flex items-center gap-6 text-xs text-white/60&quot;&gt;
+          &lt;a shape=&quot;rect&quot; class=&quot;hover:text-white&quot; href=&quot;#start-here&quot;&gt;Start here&lt;/a&gt;
+          &lt;a shape=&quot;rect&quot; class=&quot;hover:text-white&quot; href=&quot;#quickstart&quot;&gt;Quickstart&lt;/a&gt;
+          &lt;a shape=&quot;rect&quot; class=&quot;hover:text-white&quot; href=&quot;#qa-automation&quot;&gt;QA automation&lt;/a&gt;
+          &lt;a shape=&quot;rect&quot; class=&quot;hover:text-white&quot; href=&quot;#api-reference&quot;&gt;API reference&lt;/a&gt;
+          &lt;a shape=&quot;rect&quot; class=&quot;hover:text-white&quot; href=&quot;#example-app&quot;&gt;Example app&lt;/a&gt;
+          &lt;a shape=&quot;rect&quot; class=&quot;hover:text-white&quot; href=&quot;#common-issues&quot;&gt;Common issues&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;section id=&quot;start-here&quot; class=&quot;py-10 md:py-14 bg-black text-white&quot;&gt;
+        &lt;div class=&quot;max-w-6xl mx-auto px-6 md:px-8 space-y-6&quot;&gt;
+          &lt;div&gt;
+            &lt;p class=&quot;text-[11px] tracking-[0.24em] uppercase text-white/45 font-semibold&quot;&gt;
+                Start here
+            &lt;/p&gt;
+            &lt;h2 class=&quot;mt-3 text-2xl md:text-3xl font-semibold tracking-tight&quot;&gt;
+                What you will do in 2 minutes
+            &lt;/h2&gt;
+            &lt;p class=&quot;mt-3 text-white/70 max-w-3xl&quot;&gt;
+                Use the fastest path to get predictable responses, then decide
+                whether you need per-user sessions for isolation testing.
+            &lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;rounded-2xl border border-white/10 bg-white/[0.03] shadow-[0_18px_50px_rgba(0,0,0,0.45)] p-6 md:p-8&quot;&gt;
+            &lt;div class=&quot;grid gap-6 lg:grid-cols-[1.2fr_1fr]&quot;&gt;
+              &lt;div class=&quot;space-y-5&quot;&gt;
+                &lt;div class=&quot;flex items-start gap-3&quot;&gt;
+                  &lt;div class=&quot;h-7 w-7 rounded-full border border-white/10 bg-white/10 text-xs font-semibold grid place-items-center&quot;&gt;
+                            1
+                        &lt;/div&gt;
+                  &lt;div&gt;
+                    &lt;p class=&quot;text-sm font-semibold&quot;&gt;
+
+                                Create a project + keys on
+                                                      &lt;a shape=&quot;rect&quot; class=&quot;text-indigo-200 hover:text-indigo-100&quot; href=&quot;https://app.reqres.in/?next=/projects&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;app.reqres.in&lt;/a&gt;
+.
+                                                &lt;/p&gt;
+                    &lt;p class=&quot;text-sm text-white/55&quot;&gt;
+                                Use a manage key for setup and a public key for
+                                read-only testing.
+                            &lt;/p&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;flex items-start gap-3&quot;&gt;
+                  &lt;div class=&quot;h-7 w-7 rounded-full border border-white/10 bg-white/10 text-xs font-semibold grid place-items-center&quot;&gt;
+                            2
+                        &lt;/div&gt;
+                  &lt;div&gt;
+                    &lt;p class=&quot;text-sm font-semibold&quot;&gt;
+
+                                Send your first request with
+                                                      &lt;code class=&quot;text-white/80&quot;&gt;x-api-key&lt;/code&gt;
+.
+                                                &lt;/p&gt;
+                    &lt;p class=&quot;text-sm text-white/55&quot;&gt;
+                                Your starter project has a Products collection
+                                with sample data ready to query.
+                            &lt;/p&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;flex items-start gap-3&quot;&gt;
+                  &lt;div class=&quot;h-7 w-7 rounded-full border border-white/10 bg-white/10 text-xs font-semibold grid place-items-center&quot;&gt;
+                            3
+                        &lt;/div&gt;
+                  &lt;div&gt;
+                    &lt;p class=&quot;text-sm font-semibold&quot;&gt;
+
+                                For per-user testing, mint a session token and
+                                use
+                                                      &lt;code class=&quot;text-white/80&quot;&gt;Authorization: Bearer&lt;/code&gt;
+.
+                                                &lt;/p&gt;
+                    &lt;p class=&quot;text-sm text-white/55&quot;&gt;
+                                App-user sessions isolate reads and writes to a
+                                single user.
+                            &lt;/p&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;space-y-4&quot;&gt;
+                &lt;div class=&quot;text-sm font-semibold text-white/80&quot;&gt;
+                        Sample request
+                    &lt;/div&gt;
+                &lt;div class=&quot;docs-code relative&quot;&gt;
+                  &lt;button type=&quot;button&quot; class=&quot;absolute top-3 right-3 z-10 text-[11px] text-white/60 hover:text-white border border-white/10 rounded-md px-2 py-1 bg-black/60&quot; data-copy-target=&quot;quickstart-curl&quot;&gt;
+                            Copy
+                        &lt;/button&gt;
+                  &lt;pre class=&quot;rounded-2xl border border-white/10 bg-black/70 p-4&quot;&gt;
+                    &lt;code class=&quot;language-bash&quot; id=&quot;quickstart-curl&quot;&gt;curl &quot;https://reqres.in/api/collections/products/records&quot; \
+  -H &quot;x-api-key: YOUR_API_KEY&quot; \
+  -H &quot;X-Reqres-Env: prod&quot;&lt;/code&gt;
+                  &lt;/pre&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;flex flex-wrap items-center gap-3 text-xs&quot;&gt;
+                  &lt;a shape=&quot;rect&quot; class=&quot;text-indigo-200 hover:text-indigo-100&quot; href=&quot;/blog/qa-automation-with-reqres&quot;&gt;QA automation guide&lt;/a&gt;
+                  &lt;span class=&quot;text-white/50&quot;&gt;•&lt;/span&gt;
+                  &lt;a shape=&quot;rect&quot; class=&quot;text-indigo-200 hover:text-indigo-100&quot; href=&quot;/llm.txt&quot;&gt;API reference (LLM guide)&lt;/a&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+      &lt;section class=&quot;py-10 md:py-14 bg-black text-white&quot;&gt;
+        &lt;div class=&quot;max-w-6xl mx-auto px-6 md:px-8&quot;&gt;
+          &lt;div class=&quot;flex items-center justify-between&quot;&gt;
+            &lt;div&gt;
+              &lt;p class=&quot;text-[11px] tracking-[0.24em] uppercase text-white/45 font-semibold&quot;&gt;
+                    Paths
+                &lt;/p&gt;
+              &lt;h2 class=&quot;mt-3 text-2xl md:text-3xl font-semibold tracking-tight&quot;&gt;
+                    Choose a path
+                &lt;/h2&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;mt-6 grid gap-4 md:grid-cols-2&quot;&gt;
+            &lt;a shape=&quot;rect&quot; class=&quot;rounded-2xl border border-white/10 bg-white/[0.03] shadow-[0_18px_50px_rgba(0,0,0,0.45)] p-5 hover:bg-white/[0.045] motion-safe:transition motion-safe:duration-200 motion-safe:hover:-translate-y-0.5&quot; href=&quot;#quickstart&quot;/&gt;
+            &lt;h3 class=&quot;text-base font-semibold&quot;&gt;Quickstart&lt;/h3&gt;
+            &lt;p class=&quot;mt-2 text-sm text-white/60&quot;&gt;
+
+                    Get a request working with               &lt;code&gt;x-api-key&lt;/code&gt;
+ in under
+                    two minutes.
+                            &lt;/p&gt;
+            &lt;span class=&quot;mt-3 inline-flex text-sm text-indigo-200&quot;&gt;Go →&lt;/span&gt;
+            &lt;a shape=&quot;rect&quot; class=&quot;rounded-2xl border border-white/10 bg-white/[0.03] shadow-[0_18px_50px_rgba(0,0,0,0.45)] p-5 hover:bg-white/[0.045] motion-safe:transition motion-safe:duration-200 motion-safe:hover:-translate-y-0.5&quot; href=&quot;#qa-automation&quot;/&gt;
+            &lt;h3 class=&quot;text-base font-semibold&quot;&gt;QA automation&lt;/h3&gt;
+            &lt;p class=&quot;mt-2 text-sm text-white/60&quot;&gt;
+                    Stable payloads, logs, and guardrails for CI and headless
+                    runs.
+                &lt;/p&gt;
+            &lt;span class=&quot;mt-3 inline-flex text-sm text-indigo-200&quot;&gt;Go →&lt;/span&gt;
+            &lt;a shape=&quot;rect&quot; class=&quot;rounded-2xl border border-white/10 bg-white/[0.03] shadow-[0_18px_50px_rgba(0,0,0,0.45)] p-5 hover:bg-white/[0.045] motion-safe:transition motion-safe:duration-200 motion-safe:hover:-translate-y-0.5&quot; href=&quot;#api-reference&quot;/&gt;
+            &lt;h3 class=&quot;text-base font-semibold&quot;&gt;API reference&lt;/h3&gt;
+            &lt;p class=&quot;mt-2 text-sm text-white/60&quot;&gt;
+                    OpenAPI and Swagger UI for payload shapes.
+                &lt;/p&gt;
+            &lt;span class=&quot;mt-3 inline-flex text-sm text-indigo-200&quot;&gt;Go →&lt;/span&gt;
+            &lt;a shape=&quot;rect&quot; class=&quot;rounded-2xl border border-white/10 bg-white/[0.03] shadow-[0_18px_50px_rgba(0,0,0,0.45)] p-5 hover:bg-white/[0.045] motion-safe:transition motion-safe:duration-200 motion-safe:hover:-translate-y-0.5&quot; href=&quot;#example-app&quot;/&gt;
+            &lt;h3 class=&quot;text-base font-semibold&quot;&gt;Example app&lt;/h3&gt;
+            &lt;p class=&quot;mt-2 text-sm text-white/60&quot;&gt;
+                    Launch the Notes app to see auth + CRUD in action.
+                &lt;/p&gt;
+            &lt;span class=&quot;mt-3 inline-flex text-sm text-indigo-200&quot;&gt;Go →&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+      &lt;section class=&quot;py-6 bg-black text-white&quot;&gt;
+        &lt;div class=&quot;max-w-6xl mx-auto px-6 md:px-8&quot;&gt;
+          &lt;div class=&quot;rounded-2xl border border-indigo-400/20 bg-indigo-500/[0.06] p-5 md:p-6 flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6&quot;&gt;
+            &lt;div class=&quot;flex-1 space-y-1&quot;&gt;
+              &lt;p class=&quot;text-sm font-semibold text-indigo-200&quot;&gt;API key required for all requests&lt;/p&gt;
+              &lt;p class=&quot;text-sm text-white/60&quot;&gt;
+
+                    Every request to reqres.in requires an                 &lt;code class=&quot;text-white/80&quot;&gt;x-api-key&lt;/code&gt;
+ header.
+                    Sign up free to get your key and a starter project with sample data.
+                              &lt;/p&gt;
+            &lt;/div&gt;
+            &lt;a shape=&quot;rect&quot; class=&quot;shrink-0 inline-flex items-center justify-center rounded-xl bg-indigo-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 motion-safe:transition motion-safe:duration-200&quot; href=&quot;https://app.reqres.in/api-keys&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;
+                Get your API key
+            &lt;/a&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+      &lt;section id=&quot;quickstart&quot; class=&quot;py-10 md:py-14 bg-black text-white&quot;&gt;
+        &lt;div class=&quot;max-w-6xl mx-auto px-6 md:px-8 grid gap-8 lg:grid-cols-2&quot;&gt;
+          &lt;div&gt;
+            &lt;p class=&quot;text-[11px] tracking-[0.24em] uppercase text-white/45 font-semibold&quot;&gt;
+                Quickstart
+            &lt;/p&gt;
+            &lt;h2 class=&quot;mt-3 text-2xl md:text-3xl font-semibold tracking-tight&quot;&gt;
+                First request with Postman or curl
+            &lt;/h2&gt;
+            &lt;p class=&quot;mt-3 text-white/70&quot;&gt;
+                After signup you get a project with a Products collection and
+                sample data. Use your API key to read, create, update, and
+                delete records. Changes persist.
+            &lt;/p&gt;
+            &lt;p class=&quot;mt-3 text-white/55&quot;&gt;
+                For per-user isolation, start an app-user session and
+                send the session token as a Bearer header.
+            &lt;/p&gt;
+            &lt;a shape=&quot;rect&quot; class=&quot;inline-flex mt-4 text-indigo-200 hover:text-indigo-100 text-sm font-semibold&quot; href=&quot;/blog/api-testing-with-postman&quot;&gt;Read the Postman setup guide →&lt;/a&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;space-y-4&quot;&gt;
+            &lt;div class=&quot;docs-code rounded-2xl border border-white/10 bg-black/70 p-4&quot;&gt;
+              &lt;div class=&quot;text-[11px] text-white/50 mb-2&quot;&gt;
+                    Example: list records from your collection
+                &lt;/div&gt;
+              &lt;pre&gt;
+                &lt;code class=&quot;language-bash&quot;&gt;curl &quot;https://reqres.in/api/collections/products/records&quot; \
+  -H &quot;x-api-key: YOUR_API_KEY&quot; \
+  -H &quot;X-Reqres-Env: prod&quot;&lt;/code&gt;
+              &lt;/pre&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;docs-code rounded-2xl border border-white/10 bg-black/70 p-4&quot;&gt;
+              &lt;div class=&quot;text-[11px] text-white/50 mb-2&quot;&gt;
+                    Example: create a record
+                &lt;/div&gt;
+              &lt;pre&gt;
+                &lt;code class=&quot;language-bash&quot;&gt;curl -X POST &quot;https://reqres.in/api/collections/products/records&quot; \
+  -H &quot;x-api-key: YOUR_API_KEY&quot; \
+  -H &quot;X-Reqres-Env: prod&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;data&quot;:{&quot;name&quot;:&quot;New Product&quot;,&quot;price&quot;:9.99}}&#39;&lt;/code&gt;
+              &lt;/pre&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;docs-code rounded-2xl border border-white/10 bg-black/70 p-4&quot;&gt;
+              &lt;div class=&quot;text-[11px] text-white/50 mb-2&quot;&gt;
+                    Example: app-user session (per-user isolation)
+                &lt;/div&gt;
+              &lt;pre&gt;
+                &lt;code class=&quot;language-bash&quot;&gt;curl &quot;https://reqres.in/app/collections/products/records&quot; \
+  -H &quot;Authorization: Bearer YOUR_SESSION_TOKEN&quot;&lt;/code&gt;
+              &lt;/pre&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+      &lt;section id=&quot;qa-automation&quot; class=&quot;py-10 md:py-14 bg-black text-white&quot;&gt;
+        &lt;div class=&quot;max-w-6xl mx-auto px-6 md:px-8 grid gap-8 lg:grid-cols-2&quot;&gt;
+          &lt;div&gt;
+            &lt;p class=&quot;text-[11px] tracking-[0.24em] uppercase text-white/45 font-semibold&quot;&gt;
+                QA automation
+            &lt;/p&gt;
+            &lt;h2 class=&quot;mt-3 text-2xl md:text-3xl font-semibold tracking-tight&quot;&gt;
+                Reliable runs without getting blocked
+            &lt;/h2&gt;
+            &lt;p class=&quot;mt-3 text-white/70&quot;&gt;
+                ReqRes is tuned for predictable payloads and stable status
+                codes. Logs help explain failures fast, and guidance keeps CI
+                runs from tripping rate limits or WAF rules.
+            &lt;/p&gt;
+            &lt;div class=&quot;mt-4 flex flex-wrap gap-4&quot;&gt;
+              &lt;a shape=&quot;rect&quot; class=&quot;text-indigo-200 hover:text-indigo-100 text-sm font-semibold&quot; href=&quot;/for/qa-engineers&quot;&gt;QA engineers overview →&lt;/a&gt;
+              &lt;a shape=&quot;rect&quot; class=&quot;text-indigo-200 hover:text-indigo-100 text-sm font-semibold&quot; href=&quot;/blog/qa-automation-with-reqres&quot;&gt;Automation guide →&lt;/a&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;rounded-2xl border border-white/10 bg-white/[0.03] shadow-[0_18px_50px_rgba(0,0,0,0.45)] p-6&quot;&gt;
+            &lt;h3 class=&quot;text-base font-semibold&quot;&gt;What this helps with&lt;/h3&gt;
+            &lt;ul class=&quot;mt-4 space-y-3 text-sm text-white/60&quot;&gt;
+              &lt;li&gt;
+                    Stable payloads for Postman collections and Playwright
+                    suites.
+                &lt;/li&gt;
+              &lt;li&gt;
+                    Predictable status codes to keep QA assertions consistent.
+                &lt;/li&gt;
+              &lt;li&gt;
+                    Logs for auth, rate limits, and WAF-related failures.
+                &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+      &lt;section id=&quot;api-reference&quot; class=&quot;py-10 md:py-14 bg-black text-white&quot;&gt;
+        &lt;div class=&quot;max-w-6xl mx-auto px-6 md:px-8&quot;&gt;
+          &lt;p class=&quot;text-[11px] tracking-[0.24em] uppercase text-white/45 font-semibold&quot;&gt;
+            API reference
+        &lt;/p&gt;
+          &lt;h2 class=&quot;mt-3 text-2xl md:text-3xl font-semibold tracking-tight&quot;&gt;
+            API reference
+        &lt;/h2&gt;
+          &lt;p class=&quot;mt-3 text-white/70 max-w-3xl&quot;&gt;
+            Machine-readable specs for tooling, LLMs, and code generation.
+        &lt;/p&gt;
+          &lt;div class=&quot;mt-6 grid gap-4 md:grid-cols-2&quot;&gt;
+            &lt;a shape=&quot;rect&quot; class=&quot;rounded-2xl border border-white/10 bg-white/[0.03] shadow-[0_18px_50px_rgba(0,0,0,0.45)] p-5 hover:bg-white/[0.045] motion-safe:transition motion-safe:duration-200 motion-safe:hover:-translate-y-0.5&quot; href=&quot;/llm.txt&quot;/&gt;
+            &lt;h3 class=&quot;text-base font-semibold&quot;&gt;LLM guide&lt;/h3&gt;
+            &lt;p class=&quot;mt-2 text-sm text-white/60&quot;&gt;
+                    Structured API reference for Claude, ChatGPT, Cursor, and other AI tools.
+                &lt;/p&gt;
+            &lt;span class=&quot;mt-3 inline-flex text-sm text-indigo-200&quot;&gt;View →&lt;/span&gt;
+            &lt;a shape=&quot;rect&quot; class=&quot;rounded-2xl border border-white/10 bg-white/[0.03] shadow-[0_18px_50px_rgba(0,0,0,0.45)] p-5 hover:bg-white/[0.045] motion-safe:transition motion-safe:duration-200 motion-safe:hover:-translate-y-0.5&quot; href=&quot;/openapi.json&quot;/&gt;
+            &lt;h3 class=&quot;text-base font-semibold&quot;&gt;openapi.json&lt;/h3&gt;
+            &lt;p class=&quot;mt-2 text-sm text-white/60&quot;&gt;
+                    Raw spec for importing into Postman or tooling.
+                &lt;/p&gt;
+            &lt;span class=&quot;mt-3 inline-flex text-sm text-indigo-200&quot;&gt;Download →&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+      &lt;section id=&quot;example-app&quot; class=&quot;py-10 md:py-14 bg-black text-white&quot;&gt;
+        &lt;div class=&quot;max-w-6xl mx-auto px-6 md:px-8&quot;&gt;
+          &lt;div class=&quot;rounded-2xl border border-white/10 bg-white/[0.03] shadow-[0_18px_50px_rgba(0,0,0,0.45)] p-6 md:p-8&quot;&gt;
+            &lt;div class=&quot;flex flex-col lg:flex-row lg:items-center gap-6&quot;&gt;
+              &lt;div class=&quot;flex-1&quot;&gt;
+                &lt;p class=&quot;text-[11px] tracking-[0.24em] uppercase text-white/45 font-semibold&quot;&gt;
+                        Example app
+                    &lt;/p&gt;
+                &lt;h2 class=&quot;mt-3 text-2xl md:text-3xl font-semibold tracking-tight&quot;&gt;
+                        Notes app flow with auth + CRUD
+                    &lt;/h2&gt;
+                &lt;p class=&quot;mt-3 text-white/70&quot;&gt;
+                        See how magic links, per-user data, and collections work
+                        together in a real UI.
+                    &lt;/p&gt;
+              &lt;/div&gt;
+              &lt;a shape=&quot;rect&quot; class=&quot;inline-flex items-center justify-center rounded-xl bg-white text-black px-5 py-3 text-sm font-semibold shadow-sm hover:bg-white/90 motion-safe:transition motion-safe:duration-200&quot; href=&quot;https://app.reqres.in/examples/notes-app&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;
+                    Open Notes example
+                &lt;/a&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+      &lt;section id=&quot;common-issues&quot; class=&quot;py-10 md:py-14 bg-black text-white&quot;&gt;
+        &lt;div class=&quot;max-w-6xl mx-auto px-6 md:px-8&quot;&gt;
+          &lt;p class=&quot;text-[11px] tracking-[0.24em] uppercase text-white/45 font-semibold&quot;&gt;
+            Common issues
+        &lt;/p&gt;
+          &lt;h2 class=&quot;mt-3 text-2xl md:text-3xl font-semibold tracking-tight&quot;&gt;
+            Common failure modes
+        &lt;/h2&gt;
+          &lt;div class=&quot;mt-6 grid gap-4 md:grid-cols-3&quot;&gt;
+            &lt;div class=&quot;rounded-2xl border border-white/10 bg-white/[0.03] shadow-[0_18px_50px_rgba(0,0,0,0.45)] p-5&quot;&gt;
+              &lt;h3 class=&quot;text-base font-semibold&quot;&gt;Getting a 401 or 403?&lt;/h3&gt;
+              &lt;p class=&quot;mt-2 text-sm text-white/60&quot;&gt;
+
+                    All requests require an                 &lt;code class=&quot;text-white/80&quot;&gt;x-api-key&lt;/code&gt;
+ header.
+                                    &lt;a shape=&quot;rect&quot; class=&quot;text-indigo-200 hover:text-indigo-100&quot; href=&quot;https://app.reqres.in/api-keys&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Get your key here&lt;/a&gt;
+.
+                    Use                 &lt;code class=&quot;text-white/80&quot;&gt;Authorization: Bearer&lt;/code&gt;
+ only for per-user sessions.
+                              &lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;rounded-2xl border border-white/10 bg-white/[0.03] shadow-[0_18px_50px_rgba(0,0,0,0.45)] p-5&quot;&gt;
+              &lt;h3 class=&quot;text-base font-semibold&quot;&gt;Environment header&lt;/h3&gt;
+              &lt;p class=&quot;mt-2 text-sm text-white/60&quot;&gt;
+
+                    If you see environment errors, set
+                                    &lt;code class=&quot;text-white/80&quot;&gt;X-Reqres-Env&lt;/code&gt;
+ to
+                                    &lt;code class=&quot;text-white/80&quot;&gt;prod&lt;/code&gt;
+ or
+                                    &lt;code class=&quot;text-white/80&quot;&gt;dev&lt;/code&gt;
+.
+                              &lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;rounded-2xl border border-white/10 bg-white/[0.03] shadow-[0_18px_50px_rgba(0,0,0,0.45)] p-5&quot;&gt;
+              &lt;h3 class=&quot;text-base font-semibold&quot;&gt;Rate limits in CI&lt;/h3&gt;
+              &lt;p class=&quot;mt-2 text-sm text-white/60&quot;&gt;
+
+                    CI runners can trigger rate limits or WAF rules. Add backoff
+                    and stable user agents, then review the
+                                    &lt;a shape=&quot;rect&quot; class=&quot;text-indigo-200 hover:text-indigo-100&quot; href=&quot;/blog/qa-automation-with-reqres&quot;&gt;QA guide&lt;/a&gt;
+.
+                              &lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+      &lt;section id=&quot;related-reading&quot; class=&quot;py-10 md:py-14 bg-black text-white&quot;&gt;
+        &lt;div class=&quot;max-w-6xl mx-auto px-6 md:px-8&quot;&gt;
+          &lt;p class=&quot;text-[11px] tracking-[0.24em] uppercase text-white/45 font-semibold&quot;&gt;
+            Related reading
+        &lt;/p&gt;
+          &lt;h2 class=&quot;mt-3 text-2xl md:text-3xl font-semibold tracking-tight&quot;&gt;
+            Deeper dives for API testing and QA automation
+        &lt;/h2&gt;
+          &lt;div class=&quot;mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4&quot;&gt;
+            &lt;a shape=&quot;rect&quot; class=&quot;rounded-2xl border border-white/10 bg-white/[0.03] p-5 hover:bg-white/[0.045] motion-safe:transition motion-safe:duration-200 motion-safe:hover:-translate-y-0.5&quot; href=&quot;/blog/qa-automation-with-reqres&quot;/&gt;
+            &lt;h3 class=&quot;text-base font-semibold&quot;&gt;
+                    QA automation without getting blocked
+                &lt;/h3&gt;
+            &lt;p class=&quot;mt-2 text-sm text-white/60&quot;&gt;
+                    Keys, headers, logs, and retries that keep tests reliable.
+                &lt;/p&gt;
+            &lt;div class=&quot;mt-3 flex flex-wrap gap-2 text-[11px] text-white/50&quot;&gt;
+              &lt;span class=&quot;rounded-full border border-white/10 px-2 py-0.5&quot;&gt;qa&lt;/span&gt;
+              &lt;span class=&quot;rounded-full border border-white/10 px-2 py-0.5&quot;&gt;testing&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;a shape=&quot;rect&quot; class=&quot;rounded-2xl border border-white/10 bg-white/[0.03] p-5 hover:bg-white/[0.045] motion-safe:transition motion-safe:duration-200 motion-safe:hover:-translate-y-0.5&quot; href=&quot;/blog/stop-faking-apis&quot;/&gt;
+            &lt;h3 class=&quot;text-base font-semibold&quot;&gt;
+                    When mock data slows you down
+                &lt;/h3&gt;
+            &lt;p class=&quot;mt-2 text-sm text-white/60&quot;&gt;
+                    Why fake APIs hide real issues and when to move on.
+                &lt;/p&gt;
+            &lt;div class=&quot;mt-3 flex flex-wrap gap-2 text-[11px] text-white/50&quot;&gt;
+              &lt;span class=&quot;rounded-full border border-white/10 px-2 py-0.5&quot;&gt;mock backend&lt;/span&gt;
+              &lt;span class=&quot;rounded-full border border-white/10 px-2 py-0.5&quot;&gt;api testing&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;a shape=&quot;rect&quot; class=&quot;rounded-2xl border border-white/10 bg-white/[0.03] p-5 hover:bg-white/[0.045] motion-safe:transition motion-safe:duration-200 motion-safe:hover:-translate-y-0.5&quot; href=&quot;/blog/when-jsonplaceholder-isnt-enough&quot;/&gt;
+            &lt;h3 class=&quot;text-base font-semibold&quot;&gt;
+                    When JSONPlaceholder is not enough
+                &lt;/h3&gt;
+            &lt;p class=&quot;mt-2 text-sm text-white/60&quot;&gt;
+                    A path from fake endpoints to real persistence.
+                &lt;/p&gt;
+            &lt;div class=&quot;mt-3 flex flex-wrap gap-2 text-[11px] text-white/50&quot;&gt;
+              &lt;span class=&quot;rounded-full border border-white/10 px-2 py-0.5&quot;&gt;fake api&lt;/span&gt;
+              &lt;span class=&quot;rounded-full border border-white/10 px-2 py-0.5&quot;&gt;alternatives&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;a shape=&quot;rect&quot; class=&quot;rounded-2xl border border-white/10 bg-white/[0.03] p-5 hover:bg-white/[0.045] motion-safe:transition motion-safe:duration-200 motion-safe:hover:-translate-y-0.5&quot; href=&quot;/blog/frontend-only-auth-without-backend&quot;/&gt;
+            &lt;h3 class=&quot;text-base font-semibold&quot;&gt;Frontend-only auth&lt;/h3&gt;
+            &lt;p class=&quot;mt-2 text-sm text-white/60&quot;&gt;
+                    Login flow testing without standing up servers.
+                &lt;/p&gt;
+            &lt;div class=&quot;mt-3 flex flex-wrap gap-2 text-[11px] text-white/50&quot;&gt;
+              &lt;span class=&quot;rounded-full border border-white/10 px-2 py-0.5&quot;&gt;auth&lt;/span&gt;
+              &lt;span class=&quot;rounded-full border border-white/10 px-2 py-0.5&quot;&gt;frontend&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+      &lt;script&gt;
+    hljs.highlightAll();
+    ;(() =&amp;gt; {
+        const buttons = document.querySelectorAll(&#39;[data-copy-target]&#39;)
+        buttons.forEach((button) =&amp;gt; {
+            button.addEventListener(&#39;click&#39;, () =&amp;gt; {
+                const targetId = button.getAttribute(&#39;data-copy-target&#39;)
+                const target = targetId
+                    ? document.getElementById(targetId)
+                    : null
+                if (!target) return
+                const text = target.textContent || &#39;&#39;
+                const onSuccess = () =&amp;gt; {
+                    const original = button.textContent
+                    button.textContent = &#39;Copied&#39;
+                    window.setTimeout(() =&amp;gt; {
+                        button.textContent = original
+                    }, 1500)
+                }
+                if (navigator.clipboard &amp;amp;&amp;amp; navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(text).then(onSuccess)
+                } else {
+                    const textarea = document.createElement(&#39;textarea&#39;)
+                    textarea.value = text
+                    textarea.style.position = &#39;fixed&#39;
+                    textarea.style.opacity = &#39;0&#39;
+                    document.body.appendChild(textarea)
+                    textarea.focus()
+                    textarea.select()
+                    try {
+                        document.execCommand(&#39;copy&#39;)
+                        onSuccess()
+                    } catch (err) {
+                        console.warn(&#39;Copy failed&#39;, err)
+                    }
+                    document.body.removeChild(textarea)
+                }
+            })
+        })
+    })()
+&lt;/script&gt;
+    &lt;/main&gt;
+    &lt;script&gt;
+            window.__REQRES_POSTHOG__ = {
+                key: &#39;phc_NrJczFx5WV2TAzo2YWa3fMmalFDTuTfl3MfZVtjW7Of&#39;,
+                host: &#39;https://eu.i.posthog.com&#39;,
+            }
+        &lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.3/fastclick.min.js&quot;/&gt;
+    &lt;script src=&quot;/js/app.js&quot;/&gt;
+    &lt;script async=&quot;async&quot; src=&quot;https://www.googletagmanager.com/gtag/js?id=UA-174008107-1&quot;/&gt;
+    &lt;script&gt;
+            window.dataLayer = window.dataLayer || []
+            function gtag() {
+                dataLayer.push(arguments)
+            }
+            gtag(&#39;js&#39;, new Date())
+
+            gtag(&#39;config&#39;, &#39;UA-174008107-1&#39;)
+        &lt;/script&gt;
+    &lt;script&gt;
+            ;(function (i, s, o, g, r, a, m) {
+                i[&#39;GoogleAnalyticsObject&#39;] = r
+                ;(i[r] =
+                    i[r] ||
+                    function () {
+                        ;(i[r].q = i[r].q || []).push(arguments)
+                    }),
+                    (i[r].l = 1 * new Date())
+                ;(a = s.createElement(o)), (m = s.getElementsByTagName(o)[0])
+                a.async = 1
+                a.src = g
+                m.parentNode.insertBefore(a, m)
+            })(
+                window,
+                document,
+                &#39;script&#39;,
+                &#39;//www.google-analytics.com/analytics.js&#39;,
+                &#39;ga&#39;
+            )
+
+            ga(&#39;create&#39;, &#39;UA-55888877-1&#39;, &#39;auto&#39;)
+            ga(&#39;send&#39;, &#39;pageview&#39;)
+        &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;    </pre>
+</div>
+
+<h4>Headers</h4>
+<div>
+        <div>Transfer-Encoding: chunked</div>
+        <div>Origin-Agent-Cluster: ?1</div>
+        <div>X-Dns-Prefetch-Control: off</div>
+        <div>Server: cloudflare</div>
+        <div>CF-RAY: a0876ae40e18356f-ORD</div>
+        <div>X-Request-Id: 5e84085f-003f-b374-b410-c9566495d397</div>
+        <div>X-Content-Type-Options: nosniff</div>
+        <div>Connection: keep-alive</div>
+        <div>X-Download-Options: noopen</div>
+        <div>Cross-Origin-Opener-Policy: same-origin</div>
+        <div>Reporting-Endpoints: heroku-nel=&quot;https://nel.heroku.com/reports?s=0SZ77vVQU4BnxZ3sdwuQvZxpzErcxWXxRBgkdunZhrg%3D&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;ts=1780916685&quot;</div>
+        <div>X-Permitted-Cross-Domain-Policies: none</div>
+        <div>cf-cache-status: DYNAMIC</div>
+        <div>Date: Mon, 08 Jun 2026 11:04:45 GMT</div>
+        <div>Via: 1.1 heroku-router</div>
+        <div>Referrer-Policy: strict-origin-when-cross-origin</div>
+        <div>X-Frame-Options: DENY</div>
+        <div>Strict-Transport-Security: max-age=31536000; includeSubDomains</div>
+        <div>Nel: {&quot;report_to&quot;:&quot;heroku-nel&quot;,&quot;response_headers&quot;:[&quot;Via&quot;],&quot;max_age&quot;:3600,&quot;success_fraction&quot;:0.01,&quot;failure_fraction&quot;:0.1}</div>
+        <div>Report-To: {&quot;group&quot;:&quot;heroku-nel&quot;,&quot;endpoints&quot;:[{&quot;url&quot;:&quot;https://nel.heroku.com/reports?s=0SZ77vVQU4BnxZ3sdwuQvZxpzErcxWXxRBgkdunZhrg%3D\u0026sid=c4c9725f-1ab0-44d8-820f-430df2718e11\u0026ts=1780916685&quot;}],&quot;max_age&quot;:3600}</div>
+        <div>X-Xss-Protection: 0</div>
+        <div>Content-Encoding: gzip</div>
+        <div>Cross-Origin-Resource-Policy: same-origin</div>
+        <div>Content-Type: text/html; charset=utf-8</div>
+</div>
+
+
