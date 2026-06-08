@@ -7,8 +7,6 @@ import helpers.CreatePolicy;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import io.qameta.allure.Step;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
@@ -18,30 +16,24 @@ import org.junit.jupiter.api.TestInfo;
 public class RegressionTests {
     private String sessionToken, calcID, policyID, policyNumber;
 
-    @BeforeEach
-    @Step("Предустановка")
-    public void setUp() {
-        sessionToken = Auth.loginUser(
+    @Test
+    @Tag("regression")
+    @Description("Оформление полиса")
+    public void issue(TestInfo testInfo){
+        sessionToken = Auth.getCachedSessionToken(
                 ConstantValues.LOGIN_AUTH,
                 ConstantValues.PASSWORD_AUTH
         );
-        ImportResponse response = Import.getImportResponse(sessionToken, new CreatePolicy().getPolicy());
-        calcID = Import.getCalcID(response);
-        policyID = Import.getPolicyID(response);
+        ImportResponse response = Import.importPolicy(sessionToken, new CreatePolicy().getPolicy());
+        calcID = Import.getCalcId(response);
+        policyID = Import.getPolicyId(response);
         policyNumber = Import.getNumber(response);
 
         Attach.AttachDocs(sessionToken, calcID, "Документ, удостоверяющий личность");
         Attach.AttachDocs(sessionToken, calcID, "Анкета для проведения идентификации клиента");
         Attach.AttachDocs(sessionToken, calcID, "Согласие на обработку ПД");
         Attach.AttachDocs(sessionToken, calcID, "Согласие на доп. услугу");
-    }
-
-
-    @Test
-    @Tag("regression")
-    @Description("Оформление полиса")
-    public void issue(TestInfo testInfo){
-        Issue.IssuePolicy(sessionToken, policyID);
+        Issue.issuePolicy(sessionToken, policyID);
         System.out.println("=== ТЕСТ: " + testInfo.getDisplayName() + " ===");
         System.out.println("Метка: " + testInfo.getTags());
         System.out.println("Полис оформлен: " + policyNumber);
@@ -51,7 +43,20 @@ public class RegressionTests {
     @Tag("regression")
     @Description("Оформление полиса с последующим аннулированием")
     public void issueWithAnnulate(TestInfo testInfo){
-        Issue.IssuePolicy(sessionToken, policyID);
+        sessionToken = Auth.getCachedSessionToken(
+                ConstantValues.LOGIN_AUTH,
+                ConstantValues.PASSWORD_AUTH
+        );
+        ImportResponse response = Import.importPolicy(sessionToken, new CreatePolicy().getPolicy());
+        calcID = Import.getCalcId(response);
+        policyID = Import.getPolicyId(response);
+        policyNumber = Import.getNumber(response);
+
+        Attach.AttachDocs(sessionToken, calcID, "Документ, удостоверяющий личность");
+        Attach.AttachDocs(sessionToken, calcID, "Анкета для проведения идентификации клиента");
+        Attach.AttachDocs(sessionToken, calcID, "Согласие на обработку ПД");
+        Attach.AttachDocs(sessionToken, calcID, "Согласие на доп. услугу");
+        Issue.issuePolicy(sessionToken, policyID);
         Annul.AnnulPolicy(sessionToken, calcID);
         System.out.println("=== ТЕСТ: " + testInfo.getDisplayName() + " ===");
         System.out.println("Метка: " + testInfo.getTags());

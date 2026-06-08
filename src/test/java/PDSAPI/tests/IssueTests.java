@@ -28,13 +28,13 @@ public class IssueTests {
     @BeforeEach
     @Step("Предустановка")
     public void setUp() {
-        sessionToken = Auth.loginUser(
+        sessionToken = Auth.getCachedSessionToken(
                 ConstantValues.LOGIN_AUTH,
                 ConstantValues.PASSWORD_AUTH
         );
-        ImportResponse response = Import.getImportResponse(sessionToken, new CreatePolicy().getPolicy());
-        calcID = Import.getCalcID(response);
-        policyID = Import.getPolicyID(response);
+        ImportResponse response = Import.importPolicy(sessionToken, new CreatePolicy().getPolicy());
+        calcID = Import.getCalcId(response);
+        policyID = Import.getPolicyId(response);
 
     }
 

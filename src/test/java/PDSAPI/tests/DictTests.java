@@ -25,7 +25,7 @@ public class DictTests {
     @BeforeEach
     @Step("Предустановка")
     public void setUp() {
-        sessionToken = Auth.loginUser(
+        sessionToken = Auth.getCachedSessionToken(
                 ConstantValues.LOGIN_AUTH,
                 ConstantValues.PASSWORD_AUTH
         );

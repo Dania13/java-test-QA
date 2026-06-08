@@ -26,12 +26,12 @@ public class AttachTests {
     @BeforeEach
     @Step("Предустановка")
     public void setUp() {
-        sessionToken = Auth.loginUser(
+        sessionToken = Auth.getCachedSessionToken(
                 ConstantValues.LOGIN_AUTH,
                 ConstantValues.PASSWORD_AUTH
         );
-        ImportResponse response = Import.getImportResponse(sessionToken, new CreatePolicy().getPolicy());
-        calcID = Import.getCalcID(response);
+        ImportResponse response = Import.importPolicy(sessionToken, new CreatePolicy().getPolicy());
+        calcID = Import.getCalcId(response);
     }
 
 

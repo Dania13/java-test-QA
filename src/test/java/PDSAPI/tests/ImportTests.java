@@ -26,7 +26,7 @@ public class ImportTests {
     @BeforeEach
     @Step("Предустановка")
     public void setUp() {
-        sessionToken = Auth.loginUser(
+        sessionToken = Auth.getCachedSessionToken(
                 ConstantValues.LOGIN_AUTH,
                 ConstantValues.PASSWORD_AUTH
         );
@@ -36,7 +36,9 @@ public class ImportTests {
     @Description("Успешное сохранение полиса")
     public void successImportWithPOJO(){
 
-        ImportRequest importRequest = new ImportRequest(new CreatePolicy().getPolicy());
+        ImportRequest importRequest = ImportRequest.builder()
+                .policy(new CreatePolicy().getPolicy())
+                .build();
 
         ImportResponse response =
                 given()

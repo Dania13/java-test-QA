@@ -26,13 +26,13 @@ public class AnnulTests {
     @BeforeEach
     @Step("Предустановка")
     public void setUp() {
-        sessionToken = Auth.loginUser(
+        sessionToken = Auth.getCachedSessionToken(
                 ConstantValues.LOGIN_AUTH,
                 ConstantValues.PASSWORD_AUTH
         );
-        ImportResponse response = Import.getImportResponse(sessionToken, new CreatePolicy().getPolicy());
-        calcID = Import.getCalcID(response);
-        policyID = Import.getPolicyID(response);
+        ImportResponse response = Import.importPolicy(sessionToken, new CreatePolicy().getPolicy());
+        calcID = Import.getCalcId(response);
+        policyID = Import.getPolicyId(response);
     }
 
     @Test
@@ -43,7 +43,7 @@ public class AnnulTests {
         Attach.AttachDocs(sessionToken, calcID, "Согласие на обработку ПД");
         Attach.AttachDocs(sessionToken, calcID, "Согласие на доп. услугу");
 
-        Issue.IssuePolicy(sessionToken, policyID);
+        Issue.issuePolicy(sessionToken, policyID);
 
         AnnulRequest request = AnnulRequest.builder()
                 .calcID(calcID)

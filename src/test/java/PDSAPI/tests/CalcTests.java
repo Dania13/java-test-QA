@@ -2,7 +2,6 @@ package PDSAPI.tests;
 
 import PDSAPI.actions.Auth;
 import PDSAPI.models.*;
-import PDSAPI.models.Object;
 import PDSAPI.specs.ConstantValues;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -31,7 +30,7 @@ public class CalcTests {
     @BeforeEach
     @Step("Предустановка")
     public void setUp() {
-        sessionToken = Auth.loginUser(
+        sessionToken = Auth.getCachedSessionToken(
                 ConstantValues.LOGIN_AUTH,
                 ConstantValues.PASSWORD_AUTH
         );
@@ -190,9 +189,9 @@ public class CalcTests {
 
         RiskInfo riskInfo = new RiskInfo(Collections.singletonList(risks));
 
-        List<Object> Objects = new ArrayList<>();
+        List<InsuranceObject> Objects = new ArrayList<>();
 
-        Objects.add(new Object("Объект страхования", null, riskInfo));
+        Objects.add(new InsuranceObject("Объект страхования", null, riskInfo));
 
         InsuranceObjects insuranceObjects = new InsuranceObjects(Objects);
 
@@ -204,14 +203,15 @@ public class CalcTests {
                 .parameters(parameters)
                 .product(product).build();
 
-        CalcRequest calc = new CalcRequest("Рисковое страхование", policyCalc);
-
+        CalcRequest request = CalcRequest.builder()
+                .productType("Рисковое страхование")
+                .policyCalc(policyCalc).build();
 
         CalcResponse response = given()
                 .baseUri(ConstantValues.BASE_URL)
                 .header("sessionToken", sessionToken)
                 .contentType(ContentType.JSON)
-                .body(calc)
+                .body(request)
                 .filter(new AllureRestAssured())
         .when()
                 .post(ConstantValues.CALC_ENDPOINT)

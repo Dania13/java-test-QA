@@ -2,8 +2,29 @@ package helpers;
 
 import java.util.Random;
 
+/**
+ * Утилитарный класс для генерации валидных номеров СНИЛС.
+ * <p>
+ * Генерирует 11-значный номер СНИЛС (9 цифр номера + 2 контрольные цифры)
+ * с корректным расчётом контрольной суммы в соответствии с законодательством РФ.
+ * </p>
+ *
+ * @see <a href="https://sfr.gov.ru/grazhdanam/personificirovannyj_uchet/snils/">Официальная информация о СНИЛС</a>
+ */
 public class SNILSGenerator {
 
+    /**
+     * Генерирует валидный номер СНИЛС.
+     * <p>
+     * Алгоритм: сумма произведений первых 9 цифр на веса от 9 до 1,
+     * затем вычисление остатка от деления на 101. Если остаток равен 100,
+     * контрольное число становится 00.
+     * </p>
+     *
+     * @param formatted если true, возвращает номер в форматированном виде "XXX-XXX-XXX XX",
+     *                  если false — в неформатированном виде как 11 цифр подряд
+     * @return строка с валидным номером СНИЛС в указанном формате
+     */
     public static String getSNILS(boolean formatted){
         Random random = new Random();
         StringBuilder baseBuilder = new StringBuilder();
