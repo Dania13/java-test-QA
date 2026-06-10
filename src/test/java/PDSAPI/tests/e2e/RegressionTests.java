@@ -32,7 +32,7 @@ import org.junit.jupiter.api.Test;
  * mvn test -Dgroups=regression
  * </pre>
  */
-@Epic("Проверка API методов продукта")
+@Epic("e2e тесты")
 @Feature("Регрессионные тесты")
 public class RegressionTests extends BaseTest {
 
