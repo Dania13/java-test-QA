@@ -45,7 +45,11 @@ jobs:
               mvn clean test 
             fi
         - name: Clean secrets from Allure results
-          run: java -jar allure-cleaner.jar
+          run: |
+            # Компилируем
+            javac -cp . src/main/java/utils/AllureSecretsCleaner.java
+            # Запускаем
+            java -cp . utils.AllureSecretsCleaner
         - name: Load previous report history
           uses: actions/checkout@v6
           if: always()
