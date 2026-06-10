@@ -3,6 +3,7 @@ package PDSAPI.tests.methods;
 import PDSAPI.actions.Attach;
 import PDSAPI.actions.Auth;
 import PDSAPI.actions.Issue;
+import PDSAPI.tests.BaseTest;
 import helpers.CreatePolicy;
 import PDSAPI.actions.Import;
 import PDSAPI.models.*;
@@ -25,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @Epic("Проверка API методов продукта")
 @Feature("Метод оформления")
-public class IssueTests {
+public class IssueTests extends BaseTest {
     private String sessionToken, calcID, policyID;
 
     /**

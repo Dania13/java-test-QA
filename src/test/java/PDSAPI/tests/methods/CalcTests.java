@@ -3,6 +3,7 @@ package PDSAPI.tests.methods;
 import PDSAPI.actions.Auth;
 import PDSAPI.models.*;
 import PDSAPI.specs.ConstantValues;
+import PDSAPI.tests.BaseTest;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -26,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  */
 @Epic("Проверка API методов продукта")
 @Feature("Метод Расчёт")
-public class CalcTests {
+public class CalcTests extends BaseTest {
     private String sessionToken;
 
     /**

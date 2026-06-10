@@ -3,6 +3,7 @@ package PDSAPI.tests.methods;
 import PDSAPI.actions.Auth;
 import PDSAPI.models.DictRequest;
 import PDSAPI.specs.ConstantValues;
+import PDSAPI.tests.BaseTest;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -21,7 +22,7 @@ import static io.restassured.RestAssured.given;
  */
 @Epic("Проверка API методов продукта")
 @Feature("Метод Получения справочных значений")
-public class DictTests {
+public class DictTests extends BaseTest {
 
     private String sessionToken;
 

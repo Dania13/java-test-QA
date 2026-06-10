@@ -1,6 +1,7 @@
 package PDSAPI.tests.methods;
 
 import PDSAPI.actions.Auth;
+import PDSAPI.tests.BaseTest;
 import helpers.CreatePolicy;
 import PDSAPI.actions.Import;
 import PDSAPI.models.*;
@@ -22,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @Epic("Проверка API методов продукта")
 @Feature("Метод Прикрепление документов")
-public class AttachTests {
+public class AttachTests extends BaseTest {
     private String sessionToken, calcID;
 
     /**
@@ -110,7 +111,6 @@ public class AttachTests {
                 .post(ConstantValues.ATTACH_ENDPOINT)
                 .then()
                 .statusCode(200)
-                .log().all()
                 .extract()
                 .as(AttachResponse.class)
                 ;

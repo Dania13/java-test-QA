@@ -202,7 +202,8 @@ public final class Auth {
         .then()
                 .statusCode(200)
                 .extract()
-                .as(AuthResponse.class);
+                .as(AuthResponse.class)
+                ;
     }
 
     /**

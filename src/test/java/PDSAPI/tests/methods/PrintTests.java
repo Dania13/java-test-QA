@@ -4,6 +4,7 @@ import PDSAPI.actions.*;
 import PDSAPI.models.*;
 import PDSAPI.models.Error;
 import PDSAPI.specs.ConstantValues;
+import PDSAPI.tests.BaseTest;
 import helpers.CreatePolicy;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -22,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @Epic("Проверка API методов продукта")
 @Feature("Метод Печати полиса")
-public class PrintTests {
+public class PrintTests extends BaseTest {
     private String sessionToken, calcID, policyID, number;
 
     /**

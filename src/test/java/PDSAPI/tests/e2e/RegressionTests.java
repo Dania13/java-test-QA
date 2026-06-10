@@ -3,6 +3,7 @@ package PDSAPI.tests.e2e;
 import PDSAPI.actions.*;
 import PDSAPI.models.*;
 import PDSAPI.specs.ConstantValues;
+import PDSAPI.tests.BaseTest;
 import helpers.CreatePolicy;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -33,7 +34,7 @@ import org.junit.jupiter.api.Test;
  */
 @Epic("Проверка API методов продукта")
 @Feature("Регрессионные тесты")
-public class RegressionTests {
+public class RegressionTests extends BaseTest {
 
     /** Типы документов, необходимые для оформления полиса */
     private static final String[] REQUIRED_DOCUMENTS = {

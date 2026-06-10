@@ -1,6 +1,7 @@
 package PDSAPI.tests.methods;
 
 import PDSAPI.actions.Auth;
+import PDSAPI.tests.BaseTest;
 import helpers.CreatePolicy;
 import PDSAPI.models.*;
 import PDSAPI.models.Error;
@@ -23,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  */
 @Epic("Проверка API методов продукта")
 @Feature("Метод сохранения")
-public class ImportTests {
+public class ImportTests extends BaseTest {
     private String sessionToken;
 
     /**
