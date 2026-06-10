@@ -1,0 +1,228 @@
+<div>POST to https://test.soglasie-vita.ru/PO.Insurance/services/partner/v1/calculate</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;productType&quot;: &quot;Рисковое страхование&quot;,
+    &quot;policyCalc&quot;: {
+        &quot;currCode&quot;: &quot;RUR&quot;,
+        &quot;insCompanyName&quot;: &quot;ООО СК «Согласие-Вита»&quot;,
+        &quot;insuranceObjects&quot;: {
+            &quot;objects&quot;: [
+                {
+                    &quot;name&quot;: &quot;Объект страхования&quot;,
+                    &quot;parameters&quot;: null,
+                    &quot;riskInfo&quot;: {
+                        &quot;risks&quot;: [
+                            {
+                                &quot;insured&quot;: &quot;true&quot;,
+                                &quot;name&quot;: &quot;Пенсионное накопление&quot;,
+                                &quot;insPrem&quot;: 4000
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        &quot;onlinePayment&quot;: false,
+        &quot;parameters&quot;: {
+            &quot;parameters&quot;: [
+                {
+                    &quot;code&quot;: &quot;dogovor.vkladchikPol&quot;,
+                    &quot;name&quot;: &quot;Возраст&quot;,
+                    &quot;stringValue&quot;: &quot;жен.&quot;,
+                    &quot;type&quot;: &quot;Строка&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.vkladchikVozrast&quot;,
+                    &quot;name&quot;: &quot;Возраст вкладчика&quot;,
+                    &quot;type&quot;: &quot;Целое&quot;,
+                    &quot;intValue&quot;: 45
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.dohodvmes&quot;,
+                    &quot;name&quot;: &quot;Среднемесячный доход&quot;,
+                    &quot;type&quot;: &quot;Вещественный&quot;,
+                    &quot;decimalValue&quot;: 60000.0
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.povtornyeVznosy&quot;,
+                    &quot;name&quot;: &quot;Повторные взносы&quot;,
+                    &quot;type&quot;: &quot;Вещественный&quot;,
+                    &quot;decimalValue&quot;: 4500.0
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.periodichnostVznosov&quot;,
+                    &quot;name&quot;: &quot;Периодичность повторных взносов&quot;,
+                    &quot;stringValue&quot;: &quot;ежеквартально&quot;,
+                    &quot;type&quot;: &quot;Строка&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.srokNakoplenij&quot;,
+                    &quot;name&quot;: &quot;Срок накоплений&quot;,
+                    &quot;type&quot;: &quot;Целое&quot;,
+                    &quot;intValue&quot;: 25
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.srokEzhemesVyplat&quot;,
+                    &quot;name&quot;: &quot;Срок ежемесячных выплат&quot;,
+                    &quot;type&quot;: &quot;Целое&quot;,
+                    &quot;intValue&quot;: 10
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.perevestiPensionNakopleniya&quot;,
+                    &quot;name&quot;: &quot;Сумма кредита&quot;,
+                    &quot;stringValue&quot;: &quot;да&quot;,
+                    &quot;type&quot;: &quot;Строка&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.razmerPensionNakoplenij&quot;,
+                    &quot;name&quot;: &quot;Сумма пенсионных накоплений по ОПС&quot;,
+                    &quot;type&quot;: &quot;Вещественный&quot;,
+                    &quot;decimalValue&quot;: 6500.0
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.investirovatNalogovyjVychet&quot;,
+                    &quot;name&quot;: &quot;Инвестировать налоговый вычет в программу(&quot;,
+                    &quot;stringValue&quot;: &quot;да&quot;,
+                    &quot;type&quot;: &quot;Строка&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.godDohodnostInvestSredstv&quot;,
+                    &quot;name&quot;: &quot;Годовая доходность инвестирования средств&quot;,
+                    &quot;type&quot;: &quot;Вещественный&quot;,
+                    &quot;decimalValue&quot;: 25.0
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.predvRaschet&quot;,
+                    &quot;name&quot;: &quot;Предварительный расчет&quot;,
+                    &quot;type&quot;: &quot;Логический&quot;,
+                    &quot;boolValue&quot;: true
+                }
+            ]
+        },
+        &quot;product&quot;: {
+            &quot;name&quot;: &quot;Программа долгосрочных сбережений граждан (ПДС)&quot;
+        }
+    }
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Accept: */*</div>
+            <div>sessionToken: 8F688416-1E43-4076-88CF-37DCCB990FB1</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;https://test.soglasie-vita.ru/PO.Insurance/services/partner/v1/calculate&#39; -H &#39;Accept: */*&#39; -H &#39;sessionToken: 8F688416-1E43-4076-88CF-37DCCB990FB1&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;productType&quot;: &quot;Рисковое страхование&quot;,
+    &quot;policyCalc&quot;: {
+        &quot;currCode&quot;: &quot;RUR&quot;,
+        &quot;insCompanyName&quot;: &quot;ООО СК «Согласие-Вита»&quot;,
+        &quot;insuranceObjects&quot;: {
+            &quot;objects&quot;: [
+                {
+                    &quot;name&quot;: &quot;Объект страхования&quot;,
+                    &quot;parameters&quot;: null,
+                    &quot;riskInfo&quot;: {
+                        &quot;risks&quot;: [
+                            {
+                                &quot;insured&quot;: &quot;true&quot;,
+                                &quot;name&quot;: &quot;Пенсионное накопление&quot;,
+                                &quot;insPrem&quot;: 4000
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        &quot;onlinePayment&quot;: false,
+        &quot;parameters&quot;: {
+            &quot;parameters&quot;: [
+                {
+                    &quot;code&quot;: &quot;dogovor.vkladchikPol&quot;,
+                    &quot;name&quot;: &quot;Возраст&quot;,
+                    &quot;stringValue&quot;: &quot;жен.&quot;,
+                    &quot;type&quot;: &quot;Строка&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.vkladchikVozrast&quot;,
+                    &quot;name&quot;: &quot;Возраст вкладчика&quot;,
+                    &quot;type&quot;: &quot;Целое&quot;,
+                    &quot;intValue&quot;: 45
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.dohodvmes&quot;,
+                    &quot;name&quot;: &quot;Среднемесячный доход&quot;,
+                    &quot;type&quot;: &quot;Вещественный&quot;,
+                    &quot;decimalValue&quot;: 60000.0
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.povtornyeVznosy&quot;,
+                    &quot;name&quot;: &quot;Повторные взносы&quot;,
+                    &quot;type&quot;: &quot;Вещественный&quot;,
+                    &quot;decimalValue&quot;: 4500.0
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.periodichnostVznosov&quot;,
+                    &quot;name&quot;: &quot;Периодичность повторных взносов&quot;,
+                    &quot;stringValue&quot;: &quot;ежеквартально&quot;,
+                    &quot;type&quot;: &quot;Строка&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.srokNakoplenij&quot;,
+                    &quot;name&quot;: &quot;Срок накоплений&quot;,
+                    &quot;type&quot;: &quot;Целое&quot;,
+                    &quot;intValue&quot;: 25
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.srokEzhemesVyplat&quot;,
+                    &quot;name&quot;: &quot;Срок ежемесячных выплат&quot;,
+                    &quot;type&quot;: &quot;Целое&quot;,
+                    &quot;intValue&quot;: 10
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.perevestiPensionNakopleniya&quot;,
+                    &quot;name&quot;: &quot;Сумма кредита&quot;,
+                    &quot;stringValue&quot;: &quot;да&quot;,
+                    &quot;type&quot;: &quot;Строка&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.razmerPensionNakoplenij&quot;,
+                    &quot;name&quot;: &quot;Сумма пенсионных накоплений по ОПС&quot;,
+                    &quot;type&quot;: &quot;Вещественный&quot;,
+                    &quot;decimalValue&quot;: 6500.0
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.investirovatNalogovyjVychet&quot;,
+                    &quot;name&quot;: &quot;Инвестировать налоговый вычет в программу(&quot;,
+                    &quot;stringValue&quot;: &quot;да&quot;,
+                    &quot;type&quot;: &quot;Строка&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.godDohodnostInvestSredstv&quot;,
+                    &quot;name&quot;: &quot;Годовая доходность инвестирования средств&quot;,
+                    &quot;type&quot;: &quot;Вещественный&quot;,
+                    &quot;decimalValue&quot;: 25.0
+                },
+                {
+                    &quot;code&quot;: &quot;dogovor.predvRaschet&quot;,
+                    &quot;name&quot;: &quot;Предварительный расчет&quot;,
+                    &quot;type&quot;: &quot;Логический&quot;,
+                    &quot;boolValue&quot;: true
+                }
+            ]
+        },
+        &quot;product&quot;: {
+            &quot;name&quot;: &quot;Программа долгосрочных сбережений граждан (ПДС)&quot;
+        }
+    }
+}&#39;
+    </div>
+
