@@ -47,7 +47,7 @@ jobs:
         - name: Clean secrets from Allure results
           run: |
             # Компилируем
-            javac -cp . src/main/java/utils/AllureSecretsCleaner.java
+            javac -cp . src/test/java/utils/AllureSecretsCleaner.java
             # Запускаем
             java -cp . utils.AllureSecretsCleaner
         - name: Load previous report history
