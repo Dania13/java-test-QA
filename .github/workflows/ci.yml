@@ -31,13 +31,21 @@ jobs:
         - run: echo "LOGIN_AUTH=${{ secrets.LOGIN_AUTH }}" >> .env
         - run: echo "PASSWORD_AUTH=${{ secrets.PASSWORD_AUTH }}" >> .env
         - run: echo "BASE_URL=${{ vars.BASE_URL }}" >> .env
-        - name: Тест
+        - name: Cache Maven dependencies
+          uses: actions/cache@v3
+          with:
+            path: ~/.m2
+            key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+            restore-keys: ${{ runner.os }}-m2
+        - name: TESTS
           run: |
             if [[ "${{ github.event_name  }}" == "schedule" ]]; then
               mvn clean test -Dgroups="regression"
             else
               mvn clean test 
             fi
+        - name: Clean secrets from Allure results
+          run: java -jar allure-cleaner.jar
         - name: Load previous report history
           uses: actions/checkout@v6
           if: always()
