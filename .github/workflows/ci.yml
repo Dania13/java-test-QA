@@ -47,9 +47,8 @@ jobs:
         - name: Clean secrets from Allure results
           run: |
             # Компилируем
-            javac -cp . src/test/java/utils/AllureSecretsCleaner.java
-            # Запускаем
-            java -cp . utils.AllureSecretsCleaner
+            mvn compile
+            mvn exec:java -Dexec.mainClass="utils.AllureSecretsCleaner"
         - name: Load previous report history
           uses: actions/checkout@v6
           if: always()
