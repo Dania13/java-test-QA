@@ -8,7 +8,7 @@ public class AllureSecretsCleaner {
 
     private static final Pattern[] SECRET_PATTERNS = {
             // Паттерн для JSON формата: {"name":"password","value":"secret"}
-            Pattern.compile("\"\\\"name\\\":\\\"password\\\",\\\"value\\\":\\\"([^\\\"]*)\\\"\"", Pattern.CASE_INSENSITIVE),
+            Pattern.compile("\"name\":\"password\",\"value\":\"([^\"]*)\"", Pattern.CASE_INSENSITIVE),
             // Паттерн для HTML экранированных кавычек: &quot;password&quot;: &quot;secret&quot;
             Pattern.compile("&quot;password&quot;\\s*:\\s*&quot;([^&]*?)&quot;", Pattern.DOTALL | Pattern.CASE_INSENSITIVE),
 
