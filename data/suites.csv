@@ -1,3 +1,3 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Wed Jun 17 12:47:35 UTC 2026","Wed Jun 17 12:47:42 UTC 2026","7116","","PDSAPI.tests.e2e.RegressionTests","","PDSAPI.tests.e2e.RegressionTests","issueWithAnnulate","issueWithAnnulate()","Оформление полиса с последующим аннулированием"
-"passed","Wed Jun 17 12:47:35 UTC 2026","Wed Jun 17 12:47:42 UTC 2026","6473","","PDSAPI.tests.e2e.RegressionTests","","PDSAPI.tests.e2e.RegressionTests","issue","issue()","Оформление полиса"
+"passed","Thu Jun 18 12:19:40 UTC 2026","Thu Jun 18 12:19:48 UTC 2026","7893","","PDSAPI.tests.e2e.RegressionTests","","PDSAPI.tests.e2e.RegressionTests","issue","issue()","Оформление полиса"
+"passed","Thu Jun 18 12:19:40 UTC 2026","Thu Jun 18 12:19:49 UTC 2026","8846","","PDSAPI.tests.e2e.RegressionTests","","PDSAPI.tests.e2e.RegressionTests","issueWithAnnulate","issueWithAnnulate()","Оформление полиса с последующим аннулированием"
