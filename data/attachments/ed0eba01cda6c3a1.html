@@ -1,0 +1,28 @@
+<div>POST to https://test.soglasie-vita.ru/PO.Insurance/services/partner/v1/print</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;calcID&quot;: &quot;0626_061393&quot;,
+    &quot;type&quot;: &quot;Печать&quot;
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Accept: */*</div>
+            <div>sessionToken: FCCDE2BE-47FA-4B6E-99FC-6A4A1C85C35E</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;https://test.soglasie-vita.ru/PO.Insurance/services/partner/v1/print&#39; -H &#39;Accept: */*&#39; -H &#39;sessionToken: FCCDE2BE-47FA-4B6E-99FC-6A4A1C85C35E&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;calcID&quot;: &quot;0626_061393&quot;,
+    &quot;type&quot;: &quot;Печать&quot;
+}&#39;
+    </div>
+
