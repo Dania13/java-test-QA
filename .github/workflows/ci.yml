@@ -45,6 +45,7 @@ jobs:
               mvn clean test 
             fi
         - name: Clean secrets from Allure results
+          if: always()
           run: |
             # Компилируем
             mvn compile

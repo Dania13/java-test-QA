@@ -17,6 +17,9 @@ public class CreateInsurant {
     /** Генератор случайных данных с русской локализацией */
     static Faker faker = new Faker(Locale.forLanguageTag("ru"));
 
+    String middle = faker.name().nameWithMiddle();
+    String[] middleArray = middle.split(" ");
+
     /** Генерирует валидный ИНН физического лица (12 цифр) */
     String INN = InnGenerator.getINNFL();
 
@@ -48,7 +51,7 @@ public class CreateInsurant {
             .factAddress(factAddress)
             .firstName(faker.name().firstName())
             .lastName(faker.name().lastName())
-            .middleName(faker.name().nameWithMiddle())
+            .middleName(middleArray[1])
             .isIP("false")
             .phone("+79997778866")
             .residenceAddress(residenceAddress)

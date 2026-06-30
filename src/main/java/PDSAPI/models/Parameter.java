@@ -1,8 +1,11 @@
 package PDSAPI.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.Instant;
 
 /**
  * Модель параметра для настройки страхового полиса.
@@ -36,6 +39,11 @@ public class Parameter {
     /** Логическое значение параметра */
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Boolean boolValue;
+
+    /** Значение в формате дата параметра */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "UTC")
+    private Instant dateValue;
 
     /**
      * Конструктор для строкового параметра.
@@ -94,6 +102,21 @@ public class Parameter {
         this.code = code;
         this.name = name;
         this.decimalValue = decimalValue;
+        this.type = type;
+    }
+
+    /**
+     * Конструктор для параметра - даты.
+     *
+     * @param code         код параметра
+     * @param name         название параметра
+     * @param dateValue вещественное значение
+     * @param type         тип параметра
+     */
+    public Parameter (String code, String name, Instant dateValue, String type) {
+        this.code = code;
+        this.name = name;
+        this.dateValue = dateValue;
         this.type = type;
     }
 
