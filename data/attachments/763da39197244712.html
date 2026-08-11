@@ -1,0 +1,28 @@
+<div>POST to https://test.soglasie-vita.ru/PO.Insurance/services/partner/v1/annul</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;calcID&quot;: &quot;0826_064793&quot;,
+    &quot;reason&quot;: &quot;Тестовое аннулирование&quot;
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Accept: */*</div>
+            <div>sessionToken: 0B65E3A1-BB6D-43E5-96E6-DF54DB37FE36</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;https://test.soglasie-vita.ru/PO.Insurance/services/partner/v1/annul&#39; -H &#39;Accept: */*&#39; -H &#39;sessionToken: 0B65E3A1-BB6D-43E5-96E6-DF54DB37FE36&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;calcID&quot;: &quot;0826_064793&quot;,
+    &quot;reason&quot;: &quot;Тестовое аннулирование&quot;
+}&#39;
+    </div>
+
